@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
 
     // Displacement of the unit relative to bottom unit of player
     // after attachment
-    public Vector3 offsetOnAttachement;
+    public Vector3 offsetOnAttachment;
 
     // Determines if the unit currently attached
     public bool attached = false;
@@ -39,7 +39,7 @@ public class Unit : MonoBehaviour
         attached = true;
         
         transform.SetParent(_player.transform, true);
-        transform.position = _player.bottomUnit.transform.position + offsetOnAttachement;
+        transform.position = _player.bottomUnit.transform.position + offsetOnAttachment;
 
         _unitAbove = _player.bottomUnit;
         _unitAbove._unitBelow = this;
@@ -61,7 +61,8 @@ public class Unit : MonoBehaviour
         collider.enabled = false;
     }
     
-    private void OnCollisionEnter2D(Collision2D col)
+    // Using triggers to minimize effect on physics due to collisions.
+    private void OnTriggerEnter2D(Collider2D col)
     {
         // Ignore dropped items (redundant as of now due to collider disabling at drop)
         if (dropped == true)

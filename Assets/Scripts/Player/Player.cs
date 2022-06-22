@@ -4,7 +4,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // top and bottom units always known for ease of attachment/detachment
+    [HideInInspector]
     public Unit topUnit;
+    [HideInInspector]
     public Unit bottomUnit;
 
     private void Start()

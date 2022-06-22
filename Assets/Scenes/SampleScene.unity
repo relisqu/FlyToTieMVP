@@ -217,7 +217,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -247,9 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 284477991}
   lifetimeAfterDetachment: 1
-  unitAbove: {fileID: 0}
-  unitBelow: {fileID: 0}
-  offsetOnAttachement: {x: 0, y: -1, z: 0}
+  offsetOnAttachment: {x: 0, y: -1, z: 0}
   attached: 0
   dropped: 0
 --- !u!1 &519420028
@@ -368,9 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 534745222}
   lifetimeAfterDetachment: 1
-  unitAbove: {fileID: 0}
-  unitBelow: {fileID: 0}
-  offsetOnAttachement: {x: 0, y: -1, z: 0}
+  offsetOnAttachment: {x: 0, y: -1, z: 0}
   attached: 0
   dropped: 0
 --- !u!61 &534745222
@@ -681,7 +677,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -723,9 +719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 0}
   lifetimeAfterDetachment: 1
-  unitAbove: {fileID: 0}
-  unitBelow: {fileID: 0}
-  offsetOnAttachement: {x: 0, y: 0, z: 0}
+  offsetOnAttachment: {x: 0, y: 0, z: 0}
   attached: 1
   dropped: 0
 --- !u!1 &696471304
