@@ -3,93 +3,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public abstract class Unit : MonoBehaviour
 {
-    private static Player _player;
+    public static Unit unitBottom;
 
-    public Collider2D collider;
-    
-    // Time for death animation to play out
-    public float lifetimeAfterDetachment = 1;
-
-    // Displacement of the unit relative to bottom unit of player
-    // after attachment
     public Vector3 offsetOnAttachment;
-
-    // Determines if the unit currently attached
-    public bool attached = false;
-    // Determines if the unit was dropped due to damage
-    public bool dropped = false;
-
-    private Unit _unitAbove;
-    private Unit _unitBelow;
+    public UnitState unitState;
     
-    private void Start()
+    [HideInInspector]
+    public Unit unitAbove;
+    [HideInInspector]
+    public Unit unitBelow;
+
+    public void AttachTo(Unit unit)
     {
-        if (_player == null)
-        {
-            _player = FindObjectOfType<Player>();
-        }
-    }
-
-    private float _detachmentTime;
-
-    public void Attach()
-    {
-        attached = true;
-        
-        transform.SetParent(_player.transform, true);
-        transform.position = _player.bottomUnit.transform.position + offsetOnAttachment;
-
-        _unitAbove = _player.bottomUnit;
-        _unitAbove._unitBelow = this;
-        _player.bottomUnit = this;
-    }
-    
-    public void Detach()
-    {
-        dropped = true;
-        attached = false;
-        
-        if (_unitBelow != null)
-            _unitBelow.Detach();
-        _player.bottomUnit = _unitAbove;
-
-        transform.SetParent(null, true);
-
-        _detachmentTime = Time.time;
-        collider.enabled = false;
-    }
-    
-    // Using triggers to minimize effect on physics due to collisions.
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        // Ignore dropped items (redundant as of now due to collider disabling at drop)
-        if (dropped == true)
+        if (unitState != UnitState.Unattached)
         {
             return;
         }
         
-        // Trying to attach unattached unit
-        if (!attached && col.gameObject.GetComponentInChildren<Unit>())
+        transform.SetParent(unitBottom.transform, true);
+        transform.position = unitBottom.transform.position + offsetOnAttachment;
+
+        unitAbove = unitBottom;
+        unitAbove.unitBelow = this;
+        unitBottom = this;
+
+        unitState = UnitState.Attached;
+    }
+    
+    public void DamageSelf()
+    {
+        if (unitBelow != null)
         {
-            Attach();
+            unitBelow.DamageSelf();
         }
-        // Checking for hit for an attached unit
-        else if (attached && col.gameObject.GetComponent<Obstacle>())
+        transform.SetParent(null, true);
+        unitState = UnitState.Dropped;
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D col)
+    {
+        Obstacle _obstacle;
+        if (col.gameObject.TryGetComponent<Obstacle>(out _obstacle))
         {
-            _player.Damage(this);
+            DamageSelf();
+        }
+
+        Unit _otherUnit;
+        if (col.gameObject.TryGetComponent<Unit>(out _otherUnit))
+        {
+            _otherUnit.AttachTo(this);
         }
     }
 
-    private void Update()
-    {
-        if (dropped)
-        {
-            if (Time.time - _detachmentTime > lifetimeAfterDetachment)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
+    public abstract void OnJump();
 }
