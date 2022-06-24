@@ -35,7 +35,13 @@ public abstract class Unit : MonoBehaviour
         belowUnit = unit;
     }
 
-    public void AttachTo(Unit unit)
+    public static Vector3 GetAttachmentPosition(Unit unit)
+    {
+        Debug.Log(BottomUnit.transform.position + unit.offsetOnAttachment);
+        return BottomUnit.transform.position + unit.offsetOnAttachment;
+    }
+    
+    public void AttachTo()
     {
         if (unitState != UnitState.Unattached)
         {
@@ -62,13 +68,14 @@ public abstract class Unit : MonoBehaviour
 
     protected virtual void OnObstacleCollision(Obstacle obstacle)
     {
-        DamageSelf();
+        if (unitState == UnitState.Attached)
+            DamageSelf();
     }
 
     protected virtual void OnUnitCollision(Unit unit)
     {
         if (unitState == UnitState.Attached && unit.unitState == UnitState.Unattached)
-            unit.AttachTo(this);
+            unit.AttachTo();
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
@@ -76,11 +83,6 @@ public abstract class Unit : MonoBehaviour
         if (col.gameObject.TryGetComponent<Obstacle>(out Obstacle _obstacle))
         {
             OnObstacleCollision(_obstacle);
-        }
-
-        if (col.gameObject.TryGetComponent<Unit>(out Unit _unit))
-        {
-            OnUnitCollision(_unit);
         }
     }
 

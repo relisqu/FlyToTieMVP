@@ -25,6 +25,7 @@ public class StarterUnit : Unit
 
     private void Start()
     {
+        unitState = UnitState.Attached;
         BottomUnit = this;
     }
 }
