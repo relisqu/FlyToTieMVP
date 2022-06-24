@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -6,4 +7,9 @@ public class Projectile : MonoBehaviour
     public float initialSpeed;
     public float delay;
     public Vector3 spawnPosOffset;
+
+    private void Start()
+    {
+        speedController.maintainedSpeed = initialSpeed;
+    }
 }

@@ -19,7 +19,7 @@ public class Attraction : MonoBehaviour
                     .DOMove(Unit.GetAttachmentPosition(unit), duration)
                     .SetEase(Ease.InOutExpo)
                     .OnComplete(unit.AttachTo);
-                enabled = false;
+                gameObject.SetActive(false);
             }
         }
     }

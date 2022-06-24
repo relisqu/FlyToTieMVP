@@ -2,35 +2,21 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ShootingUnit : Unit
+public class ShootingUnit : Unit
 {
-    public List<Projectile> projectiles;
+    public Shooter shooter;
 
-    private Queue<Projectile> queuedProjectiles;
-
-    private float lastShotTime = 0;
-    
-    public override void OnJump()
+    public override void AttachTo()
     {
-        foreach (var projectile in projectiles)
-        {
-            queuedProjectiles.Enqueue(projectile);
-        }
+        base.AttachTo();
+        shooter.enabled = true;
     }
 
-    protected virtual void Update()
+    public override void OnJump()
     {
-        if (queuedProjectiles.Count == 0)
+        if (shooter.enabled)
         {
-            return;
-        }
-        
-        Projectile curProj = queuedProjectiles.Peek();
-        
-        if (Time.time - lastShotTime > curProj.delay)
-        {
-            Instantiate(curProj.gameObject, transform.position + curProj.spawnPosOffset, Quaternion.identity);
-            queuedProjectiles.Dequeue();
+            shooter.OnShoot();
         }
     }
 }

@@ -41,7 +41,7 @@ public abstract class Unit : MonoBehaviour
         return BottomUnit.transform.position + unit.offsetOnAttachment;
     }
     
-    public void AttachTo()
+    public virtual void AttachTo()
     {
         if (unitState != UnitState.Unattached)
         {
