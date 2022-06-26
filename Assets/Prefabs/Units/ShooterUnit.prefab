@@ -129,8 +129,6 @@ MonoBehaviour:
   collider: {fileID: 7331579639844584146}
   offsetOnAttachment: {x: 0, y: -1, z: 0}
   unitState: 0
-  aboveUnit: {fileID: 0}
-  belowUnit: {fileID: 0}
   shooter: {fileID: 9044376207866096881}
 --- !u!114 &9044376207866096881
 MonoBehaviour:
@@ -207,5 +205,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef45cff3e04745b4822b8615dff22b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 196826137974024212}
-  duration: 2
+  AttachSpeed: 1
+  Unit: {fileID: 196826137974024212}

@@ -2,89 +2,113 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Unit : MonoBehaviour
 {
     protected static Unit BottomUnit;
 
-    public Collider2D collider;
-    
-    public Vector3 offsetOnAttachment;
-    public UnitState unitState;
-    
-    [SerializeField] private Unit aboveUnit;
-    [SerializeField] private Unit belowUnit;
+    [FormerlySerializedAs("collider")] [SerializeField]
+    private Collider2D Collider;
+
+    [FormerlySerializedAs("offsetOnAttachment")] [SerializeField]
+    private Vector3 OffsetOnAttachment;
+
+    public UnitState UnitState { get; private set; }
+
+
+    private Unit _aboveUnit;
+    private Unit _belowUnit;
+
+    public static Action OnDamageTaken;
+    public abstract void OnJump();
+
+    public void SetState(UnitState state)
+    {
+        UnitState = state;
+    }
 
     public Unit GetAboveUnit()
     {
-        return aboveUnit;
+        return _aboveUnit;
     }
 
     public void SetAboveUnit(Unit unit)
     {
-        aboveUnit = unit;
+        _aboveUnit = unit;
     }
 
     public Unit GetBelowUnit()
     {
-        return belowUnit;
-    }
-
-    public void SetBelowUnit(Unit unit)
-    {
-        belowUnit = unit;
-    }
-
-    public static Vector3 GetAttachmentPosition(Unit unit)
-    {
-        Debug.Log(BottomUnit.transform.position + unit.offsetOnAttachment);
-        return BottomUnit.transform.position + unit.offsetOnAttachment;
-    }
-    
-    public virtual void AttachTo()
-    {
-        if (unitState != UnitState.Unattached)
-        {
-            return;
-        }
-        
-        transform.SetParent(BottomUnit.transform, true);
-        transform.position = BottomUnit.transform.position + offsetOnAttachment;
-
-        aboveUnit = BottomUnit;
-        aboveUnit.SetBelowUnit(this);
-        BottomUnit = this;
-
-        unitState = UnitState.Attached;
-    }
-    
-    public void DamageSelf()
-    {
-        BottomUnit.collider.enabled = false;
-        BottomUnit.transform.SetParent(null, true);
-        BottomUnit = BottomUnit.aboveUnit;
-        unitState = UnitState.Dropped;
-    }
-
-    protected virtual void OnObstacleCollision(Obstacle obstacle)
-    {
-        if (unitState == UnitState.Attached)
-            DamageSelf();
-    }
-
-    protected virtual void OnUnitCollision(Unit unit)
-    {
-        if (unitState == UnitState.Attached && unit.unitState == UnitState.Unattached)
-            unit.AttachTo();
+        return _belowUnit;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.TryGetComponent<Obstacle>(out Obstacle _obstacle))
+        if (col.gameObject.TryGetComponent(out Obstacle obstacle))
         {
-            OnObstacleCollision(_obstacle);
+            OnObstacleCollision(obstacle);
+        }
+
+        if (col.gameObject.TryGetComponent(out Unit unit))
+        {
+            OnUnitCollision(unit);
         }
     }
 
-    public abstract void OnJump();
+    public static Vector3 GetAttachmentPosition(Unit unit)
+    {
+        return BottomUnit.transform.position + unit.OffsetOnAttachment;
+    }
+
+    protected virtual void AttachTo()
+    {
+        if (UnitState != UnitState.Unattached)
+        {
+            return;
+        }
+
+        transform.SetParent(BottomUnit.transform, true);
+        transform.position = BottomUnit.transform.position + OffsetOnAttachment;
+
+        _aboveUnit = BottomUnit;
+        _aboveUnit.SetBelowUnit(this);
+        BottomUnit = this;
+
+        UnitState = UnitState.Attached;
+    }
+
+    protected virtual void OnObstacleCollision(Obstacle obstacle)
+    {
+        if (UnitState == UnitState.Attached)
+            DamageSelf();
+    }
+
+    private void DamageSelf()
+    {
+        if (StarterUnit.IsInvisible()) return;
+        OnDamageTaken?.Invoke();
+        BottomUnit.Collider.enabled = false;
+        BottomUnit.transform.SetParent(null, true);
+        BottomUnit = BottomUnit._aboveUnit;
+        UnitState = UnitState.Dropped;
+    }
+
+    private void SetBelowUnit(Unit unit)
+    {
+        _belowUnit = unit;
+    }
+
+
+    private void OnUnitCollision(Unit unit)
+    {
+        if (UnitState == UnitState.Attached && unit.UnitState == UnitState.Unattached)
+            unit.AttachTo();
+    }
+
+
+    public Vector3 GetAttachOffset()
+    {
+        return OffsetOnAttachment;
+    }
 }

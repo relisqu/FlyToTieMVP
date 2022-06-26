@@ -1,9 +1,12 @@
 using System;
+using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class StarterUnit : Unit
 {
-    public Jump jump;
+
+    [SerializeField] private ObstacleDamageable Damageable;
 
     protected override void OnObstacleCollision(Obstacle obstacle)
     {
@@ -11,7 +14,6 @@ public class StarterUnit : Unit
         {
             Debug.Log("Lost");
             return;
-            // TO-DO losing case
         }
 
         base.OnObstacleCollision(obstacle);
@@ -20,12 +22,24 @@ public class StarterUnit : Unit
 
     public override void OnJump()
     {
-        jump.OnJump();
     }
+
+    public static void SetInvisible(bool value)
+    {
+        _isInvisible = value;
+    }
+
+    public static bool IsInvisible()
+    {
+        return _isInvisible;
+    }
+
+    private static bool _isInvisible;
 
     private void Start()
     {
-        unitState = UnitState.Attached;
+        SetState(UnitState.Attached);
+        OnDamageTaken += Damageable.TakeDamage;
         BottomUnit = this;
     }
 }

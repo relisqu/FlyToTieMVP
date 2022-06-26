@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 public class ShootingUnit : Unit
 {
     public Shooter shooter;
 
-    public override void AttachTo()
+    protected override void AttachTo()
     {
         base.AttachTo();
         shooter.enabled = true;
