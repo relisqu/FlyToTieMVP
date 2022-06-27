@@ -16,10 +16,8 @@ namespace Player
         {
             print("AAA");
             PlayerMovement.SetState(PlayerMovement.MovementState.TakeDamage);
-            transform.DOLocalJump(transform.position+(Vector3)JumpDirection, JumpForce, 1, JumpDuration).OnComplete(() =>
-            {
-                PlayerMovement.SetState(PlayerMovement.MovementState.Move);
-            });
+            transform.DOLocalJump(transform.position + (Vector3) JumpDirection, JumpForce, 1, JumpDuration)
+                .OnComplete(() => { PlayerMovement.SetState(PlayerMovement.MovementState.Move); });
 
             StartCoroutine(SetInvisible());
         }

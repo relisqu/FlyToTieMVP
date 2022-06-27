@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,19 +6,27 @@ public abstract class Unit : MonoBehaviour
 {
     protected static Unit BottomUnit;
 
+    public static Action OnDamageTaken;
+
     [FormerlySerializedAs("collider")] [SerializeField]
     private Collider2D Collider;
 
     [FormerlySerializedAs("offsetOnAttachment")] [SerializeField]
     private Vector3 OffsetOnAttachment;
 
-    public UnitState UnitState { get; private set; }
-
 
     private Unit _aboveUnit;
     private Unit _belowUnit;
 
-    public static Action OnDamageTaken;
+    public UnitState UnitState { get; private set; }
+
+    protected virtual void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.TryGetComponent(out Obstacle obstacle)) OnObstacleCollision(obstacle);
+
+        if (col.gameObject.TryGetComponent(out Unit unit)) OnUnitCollision(unit);
+    }
+
     public abstract void OnJump();
 
     public void SetState(UnitState state)
@@ -43,19 +49,6 @@ public abstract class Unit : MonoBehaviour
         return _belowUnit;
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.TryGetComponent(out Obstacle obstacle))
-        {
-            OnObstacleCollision(obstacle);
-        }
-
-        if (col.gameObject.TryGetComponent(out Unit unit))
-        {
-            OnUnitCollision(unit);
-        }
-    }
-
     public static Vector3 GetAttachmentPosition(Unit unit)
     {
         return BottomUnit.transform.position + unit.OffsetOnAttachment;
@@ -63,10 +56,7 @@ public abstract class Unit : MonoBehaviour
 
     protected virtual void AttachTo()
     {
-        if (UnitState != UnitState.Unattached)
-        {
-            return;
-        }
+        if (UnitState != UnitState.Unattached) return;
 
         transform.SetParent(BottomUnit.transform, true);
         transform.position = BottomUnit.transform.position + OffsetOnAttachment;

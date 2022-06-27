@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
@@ -6,11 +5,24 @@ using UnityEngine;
 
 public class Attraction : MonoBehaviour
 {
-    private Unit _unit;
     [SerializeField] private float AttachSpeed;
-    [SerializeField] private Unit Unit;
-    private bool _foundPlayer;
     private Vector3 _defaultPosition;
+    private bool _foundPlayer;
+
+    private TweenerCore<Vector3, Vector3, VectorOptions> _returnRoutine;
+    private Unit _unit;
+    [SerializeField] private Unit Unit;
+
+    private void Start()
+    {
+        _defaultPosition = Unit.transform.position;
+    }
+
+    private void Update()
+    {
+        if (!_foundPlayer) return;
+        MoveToUnit();
+    }
 
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
@@ -22,25 +34,17 @@ public class Attraction : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (!_foundPlayer) return;
-        MoveToUnit();
-    }
-
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out Unit otherUnit))
-        {
             if (otherUnit.Equals(_unit))
             {
                 _foundPlayer = false;
                 ReturnToDefaultPosition();
             }
-        }
     }
 
-    void MoveToUnit()
+    private void MoveToUnit()
     {
         if (Vector3.Distance(_unit.transform.position, Unit.transform.position) < 0.001f ||
             Unit.UnitState == UnitState.Attached)
@@ -55,15 +59,8 @@ public class Attraction : MonoBehaviour
         Unit.transform.position = Vector3.MoveTowards(Unit.transform.position, position, AttachSpeed * Time.deltaTime);
     }
 
-    private void Start()
-    {
-        _defaultPosition = Unit.transform.position;
-    }
-
-    void ReturnToDefaultPosition()
+    private void ReturnToDefaultPosition()
     {
         _returnRoutine = Unit.transform.DOMove(_defaultPosition, AttachSpeed).SetSpeedBased().SetEase(Ease.InOutSine);
     }
-
-    private TweenerCore<Vector3, Vector3, VectorOptions> _returnRoutine;
 }
