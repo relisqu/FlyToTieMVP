@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float FallMultiplier;
     [SerializeField] private float LowJumpMultiplier;
     [SerializeField] private float MaintainedSpeed;
+    public static Action Jumped;
 
     private bool _buttonReleased = true;
 
@@ -41,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         _buttonReleased = context.canceled;
         if (!context.performed) return;
         Rigidbody.velocity *= Vector2.right;
+        Jumped?.Invoke();
         Rigidbody.AddForce(JumpAcceleration.normalized * Force, ForceMode2D.Impulse);
     }
 

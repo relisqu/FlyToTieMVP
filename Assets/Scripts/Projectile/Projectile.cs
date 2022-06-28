@@ -1,17 +1,14 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour
 {
-    [FormerlySerializedAs("speedController")]
-    public HorizontalMovement MovementController;
+    public abstract void SpawnProjectile();
 
-    public float initialSpeed;
-    public float delay;
-    public Vector3 spawnPosOffset;
 
-    private void Start()
-    {
-        MovementController.SetSpeed(initialSpeed);
-    }
+    protected abstract void DestroyProjectile();
+
+
+
+
 }

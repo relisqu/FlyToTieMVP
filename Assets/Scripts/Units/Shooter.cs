@@ -3,35 +3,20 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    public List<Projectile> projectiles;
+    [SerializeField] protected Projectile Projectile;
+    public float delay;
 
-    private float lastShotTime;
-
-    private Queue<Projectile> queuedProjectiles;
-
-    private void Start()
+    public virtual void Shoot(bool isProjectileStatic)
     {
-        queuedProjectiles = new Queue<Projectile>();
-    }
-
-    protected virtual void Update()
-    {
-        if (queuedProjectiles.Count == 0) return;
-
-        Debug.Log("Trying to shoot");
-
-        var curProj = queuedProjectiles.Peek();
-
-        if (Time.time - lastShotTime > curProj.delay)
+        if (Projectile != null)
         {
-            Instantiate(curProj.gameObject, transform.position + curProj.spawnPosOffset, Quaternion.identity);
-            queuedProjectiles.Dequeue();
-            lastShotTime = Time.time;
-        }
-    }
+            Transform parentTransform = null;
+            if (isProjectileStatic)
+            {
+                parentTransform = transform;
+            }
 
-    public void OnShoot()
-    {
-        foreach (var projectile in projectiles) queuedProjectiles.Enqueue(projectile);
+            Instantiate(Projectile, transform.position, Quaternion.identity, parentTransform);
+        }
     }
 }

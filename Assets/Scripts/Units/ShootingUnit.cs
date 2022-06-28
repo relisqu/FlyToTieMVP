@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ShootingUnit : Unit
 {
-    [SerializeField]private Shooter Shooter;
+    [SerializeField] protected Shooter Shooter;
 
     protected override void AttachTo()
     {
@@ -12,6 +12,6 @@ public class ShootingUnit : Unit
 
     public override void OnJump()
     {
-        if (Shooter.enabled) Shooter.OnShoot();
+        if (Shooter.enabled) Shooter.Shoot(false);
     }
 }

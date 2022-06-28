@@ -26,7 +26,7 @@ public class Attraction : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.TryGetComponent(out Unit otherUnit))
+        if (col.TryGetComponent(out Unit otherUnit) && !otherUnit.Equals(Unit))
         {
             if (otherUnit.UnitState != UnitState.Attached) return;
             _unit = otherUnit;

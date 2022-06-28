@@ -64,7 +64,7 @@ public abstract class Unit : MonoBehaviour
         _aboveUnit = BottomUnit;
         _aboveUnit.SetBelowUnit(this);
         BottomUnit = this;
-
+        PlayerMovement.Jumped += OnJump;
         UnitState = UnitState.Attached;
     }
 
@@ -81,6 +81,7 @@ public abstract class Unit : MonoBehaviour
         BottomUnit.Collider.enabled = false;
         BottomUnit.transform.SetParent(null, true);
         BottomUnit = BottomUnit._aboveUnit;
+        PlayerMovement.Jumped -= OnJump;
         UnitState = UnitState.Dropped;
     }
 
