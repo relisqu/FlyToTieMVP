@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using DG.Tweening;
 using UnityEngine;
@@ -11,13 +12,31 @@ public class LaserProjectile : Projectile
     [SerializeField] private float LaserLife;
     [SerializeField] private LayerMask LaserIgnoreLayers;
     [SerializeField] private Transform ColliderTransform;
+    [SerializeField] private List<ParticleSystem> Particles;
 
+    public void EmitAllParticles()
+    {
+        foreach (var particle in Particles)
+        {
+            
+            particle.Play();
+        }
+    }
+    public void StopAllParticles()
+    {
+        foreach (var particle in Particles)
+        {
+            
+            particle.Stop();
+        }
+    }
     public override void SpawnProjectile()
     {
         if (_isEnabled) return;
         LaserBody.enabled = true;
         _isEnabled = true;
         StartCoroutine(UpdateLaserLife());
+        EmitAllParticles();
     }
 
     public override void DestroyProjectile()
@@ -25,6 +44,7 @@ public class LaserProjectile : Projectile
         LaserBody.positionCount = 0;
         _isEnabled = false;
         StopAllCoroutines();
+        StopAllParticles();
     }
 
     IEnumerator UpdateLaserLife()
