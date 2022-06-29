@@ -15,17 +15,16 @@ public class LaserProjectile : Projectile
     public override void SpawnProjectile()
     {
         if (_isEnabled) return;
-        print("Started laser");
         LaserBody.enabled = true;
         _isEnabled = true;
         StartCoroutine(UpdateLaserLife());
     }
 
-    protected override void DestroyProjectile()
+    public override void DestroyProjectile()
     {
         LaserBody.positionCount = 0;
         _isEnabled = false;
-        print("Stopped laser");
+        StopAllCoroutines();
     }
 
     IEnumerator UpdateLaserLife()

@@ -3,6 +3,7 @@ using UnityEngine;
 public class ShootingUnit : Unit
 {
     [SerializeField] protected Shooter Shooter;
+    [SerializeField] protected bool IsShootingViaAnimation;
 
     protected override void AttachTo()
     {
@@ -12,6 +13,16 @@ public class ShootingUnit : Unit
 
     public override void OnJump()
     {
-        if (Shooter.enabled) Shooter.Shoot(false);
+        if (Shooter.enabled && !IsShootingViaAnimation) Shooter.Shoot();
+    }
+
+    public void Shoot()
+    {
+        if (Shooter.enabled) Shooter.Shoot();
+    }
+    
+    public void StopShooting()
+    {
+        if (Shooter.enabled) Shooter.StopShooting();
     }
 }

@@ -6,7 +6,7 @@ public abstract class Projectile : MonoBehaviour
     public abstract void SpawnProjectile();
 
 
-    protected abstract void DestroyProjectile();
+    public abstract void DestroyProjectile();
 
 
 

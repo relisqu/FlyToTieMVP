@@ -6,17 +6,13 @@ public class Shooter : MonoBehaviour
     [SerializeField] protected Projectile Projectile;
     public float delay;
 
-    public virtual void Shoot(bool isProjectileStatic)
+    public virtual void Shoot()
     {
-        if (Projectile != null)
-        {
-            Transform parentTransform = null;
-            if (isProjectileStatic)
-            {
-                parentTransform = transform;
-            }
+        Instantiate(Projectile, transform.position, Quaternion.identity, null);
+    }
 
-            Instantiate(Projectile, transform.position, Quaternion.identity, parentTransform);
-        }
+    public virtual void StopShooting()
+    {
+        
     }
 }

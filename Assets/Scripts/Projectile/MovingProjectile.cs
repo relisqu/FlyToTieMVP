@@ -9,7 +9,7 @@ public class MovingProjectile : Projectile
     {
     }
 
-    protected override void DestroyProjectile()
+    public override void DestroyProjectile()
     {
     }
 }

@@ -9,6 +9,7 @@ using UnityEngine;
 
         protected override void OnObstacleCollision(Obstacle obstacle)
         {
+            Animator.TakeDamage();
             if (BottomUnit == this)
             {
                 Debug.Log("Lost");
@@ -21,6 +22,7 @@ using UnityEngine;
 
         public override void OnJump()
         {
+            Animator.Jump();
         }
 
         public static void SetInvisible(bool value)
@@ -37,6 +39,8 @@ using UnityEngine;
         {
             SetState(UnitState.Attached);
             OnDamageTaken += Damageable.TakeDamage;
+            PlayerMovement.Jumped += OnJump;
             BottomUnit = this;
         }
+        
     }

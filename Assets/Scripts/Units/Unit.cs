@@ -1,4 +1,5 @@
 using System;
+using Units;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,6 +15,7 @@ public abstract class Unit : MonoBehaviour
     [FormerlySerializedAs("offsetOnAttachment")] [SerializeField]
     private Vector3 OffsetOnAttachment;
 
+    [SerializeField] protected UnitAnimator Animator;
 
     private Unit _aboveUnit;
     private Unit _belowUnit;
@@ -54,6 +56,11 @@ public abstract class Unit : MonoBehaviour
         return BottomUnit.transform.position + unit.OffsetOnAttachment;
     }
 
+    void AnimateJump()
+    {
+        if (Animator != null) Animator.Jump();
+    }
+
     protected virtual void AttachTo()
     {
         if (UnitState != UnitState.Unattached) return;
@@ -65,6 +72,7 @@ public abstract class Unit : MonoBehaviour
         _aboveUnit.SetBelowUnit(this);
         BottomUnit = this;
         PlayerMovement.Jumped += OnJump;
+        PlayerMovement.Jumped += AnimateJump;
         UnitState = UnitState.Attached;
     }
 
@@ -82,6 +90,9 @@ public abstract class Unit : MonoBehaviour
         BottomUnit.transform.SetParent(null, true);
         BottomUnit = BottomUnit._aboveUnit;
         PlayerMovement.Jumped -= OnJump;
+        PlayerMovement.Jumped -= AnimateJump;
+        Animator.TakeDamage();
+
         UnitState = UnitState.Dropped;
     }
 
