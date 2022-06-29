@@ -10,10 +10,12 @@ public class LaserProjectile : Projectile
     [SerializeField] private float MaxRange;
     [SerializeField] private float LaserLife;
     [SerializeField] private LayerMask LaserIgnoreLayers;
+    [SerializeField] private Transform ColliderTransform;
 
     public override void SpawnProjectile()
     {
-        if (LaserBody.positionCount > 0) return;
+        if (_isEnabled) return;
+        print("Started laser");
         LaserBody.enabled = true;
         _isEnabled = true;
         StartCoroutine(UpdateLaserLife());
@@ -23,6 +25,7 @@ public class LaserProjectile : Projectile
     {
         LaserBody.positionCount = 0;
         _isEnabled = false;
+        print("Stopped laser");
     }
 
     IEnumerator UpdateLaserLife()
@@ -35,7 +38,6 @@ public class LaserProjectile : Projectile
 
         yield return new WaitForSeconds(LaserLife / 5);
         DestroyProjectile();
-        print("F");
     }
 
     void DrawLaser()
@@ -56,6 +58,7 @@ public class LaserProjectile : Projectile
         LaserBody.positionCount = 2;
         LaserBody.SetPosition(0, firstPoint);
         LaserBody.SetPosition(1, secondPoint);
+        ColliderTransform.position = secondPoint;
     }
 
     private void Update()

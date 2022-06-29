@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1709586634}
   - component: {fileID: 1709586635}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709586633}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.118, y: -0.177, z: 0}
+  m_LocalPosition: {x: 0.16, y: -0.177, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,10 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1709586633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6bfe1098bec4fedaf924392d454608f, type: 3}
+  m_Script: {fileID: 11500000, guid: cb2779a89ad14d19baf0430686e9b3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Projectile: {fileID: 8806555639359994804, guid: 6b94daf685255378f811176ed30b453b, type: 3}
+  Projectile: {fileID: 2865113283633501121, guid: 8c8d0ca770f585b4da8ffc785848df01, type: 3}
   delay: 0
 --- !u!1001 &5727212207488980167
 PrefabInstance:

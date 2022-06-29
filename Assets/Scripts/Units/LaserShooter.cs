@@ -12,10 +12,8 @@ namespace Units
             {
                 _laser = Instantiate(Projectile, transform);
             }
-            else
-            {
-                _laser.SpawnProjectile();
-            }
+
+            _laser.SpawnProjectile();
         }
     }
 }
