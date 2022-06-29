@@ -53,13 +53,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 523004774288087876, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.146
+      objectReference: {fileID: 0}
     - target: {fileID: 5529608669832447052, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: Unit
       value: 
       objectReference: {fileID: 5602585125828000979}
     - target: {fileID: 5873617965627962470, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_Name
-      value: LaserUnit Variant
+      value: LaserUnit
       objectReference: {fileID: 0}
     - target: {fileID: 6196472439847660615, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_Sprite
