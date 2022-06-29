@@ -8,7 +8,6 @@ namespace Units
     {
         [SerializeField] private int ProjectileCount;
         [SerializeField] private float Delay;
-        [SerializeField] private Vector3 ProjectilePosOffset;
         
         private Coroutine _shooterCoroutine;
         private bool _isShooting;
@@ -18,7 +17,7 @@ namespace Units
             _isShooting = true;
             for (int i = 0; i < n; i++)
             {
-                Instantiate(Projectile, transform.position + ProjectilePosOffset, Quaternion.identity);
+                Instantiate(Projectile, transform);
                 Projectile.SpawnProjectile();
                 yield return new WaitForSeconds(Delay);
             }
@@ -36,8 +35,8 @@ namespace Units
             if (_shooterCoroutine != null)
             {
                 StopCoroutine(_shooterCoroutine);
-                _isShooting = false;
             }
+            _isShooting = false;
         }
     }
 }
