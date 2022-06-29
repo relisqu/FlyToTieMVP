@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DefaultNamespace;
 using DG.Tweening;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace Player
 
         public void TakeDamage()
         {
+            CameraShake.ShakeCamera(0.3f,5f);
             print("AAA");
             PlayerMovement.SetState(PlayerMovement.MovementState.TakeDamage);
             transform.DOLocalJump(transform.position + (Vector3) JumpDirection, JumpForce, 1, JumpDuration)

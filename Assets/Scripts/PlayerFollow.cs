@@ -22,8 +22,6 @@ namespace DefaultNamespace
             }
         }
 
-        public static void ShakeScreen()
-        {
-        }
+  
     }
 }
