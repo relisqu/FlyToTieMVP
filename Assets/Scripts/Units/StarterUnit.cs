@@ -1,18 +1,18 @@
 using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-    public class StarterUnit : Unit
+public class StarterUnit : Unit
     {
-        private static bool _isInvisible;
+        private static bool _isInvincible;
 
         [SerializeField] private ObstacleDamageable Damageable;
 
         protected override void OnObstacleCollision(Obstacle obstacle)
         {
-            Animator.TakeDamage();
             if (BottomUnit == this)
             {
-                Debug.Log("Lost");
+                Animator.TakeDamage();
                 return;
             }
 
@@ -20,19 +20,25 @@ using UnityEngine;
         }
 
 
+        public void Die()
+        {
+            
+            SceneManager.LoadScene("SampleScene");
+        }
+
         public override void OnJump()
         {
-            Animator.Jump();
+            if(Animator!=null)Animator.Jump();
         }
 
-        public static void SetInvisible(bool value)
+        public static void SetInvincible(bool value)
         {
-            _isInvisible = value;
+            _isInvincible = value;
         }
 
-        public static bool IsInvisible()
+        public static bool IsInvincible()
         {
-            return _isInvisible;
+            return _isInvincible;
         }
 
         private void Start()

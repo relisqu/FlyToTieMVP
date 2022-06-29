@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Units;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -24,6 +26,7 @@ public abstract class Unit : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
     {
+        print("Collided: " + name);
         if (col.gameObject.TryGetComponent(out Obstacle obstacle)) OnObstacleCollision(obstacle);
 
         if (col.gameObject.TryGetComponent(out Unit unit)) OnUnitCollision(unit);
@@ -61,6 +64,7 @@ public abstract class Unit : MonoBehaviour
         if (Animator != null) Animator.Jump();
     }
 
+
     protected virtual void AttachTo()
     {
         if (UnitState != UnitState.Unattached) return;
@@ -82,18 +86,26 @@ public abstract class Unit : MonoBehaviour
             DamageSelf();
     }
 
+    public void TakeDamage()
+    {
+        Animator.TakeDamage();
+    }
+
     private void DamageSelf()
     {
-        if (StarterUnit.IsInvisible()) return;
+        if (StarterUnit.IsInvincible()) return;
+        print("Took damage: " + name);
+        print("Damaged: " + BottomUnit.name);
         OnDamageTaken?.Invoke();
         BottomUnit.Collider.enabled = false;
         BottomUnit.transform.SetParent(null, true);
+        BottomUnit.TakeDamage();
         BottomUnit = BottomUnit._aboveUnit;
         PlayerMovement.Jumped -= OnJump;
         PlayerMovement.Jumped -= AnimateJump;
-        Animator.TakeDamage();
 
-        UnitState = UnitState.Dropped;
+
+        BottomUnit.UnitState = UnitState.Dropped;
     }
 
     private void SetBelowUnit(Unit unit)
