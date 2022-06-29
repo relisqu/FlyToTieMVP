@@ -1,4 +1,5 @@
 ﻿using System;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -8,9 +9,6 @@ namespace DefaultNamespace
         [SerializeField] private PlayerMovement Player;
         [SerializeField] private float FollowSpeed;
 
-        private void Start()
-        {
-        }
 
         private void LateUpdate()
         {
@@ -22,6 +20,10 @@ namespace DefaultNamespace
                     FollowSpeed);
                 transform.position = position;
             }
+        }
+
+        public static void ShakeScreen()
+        {
         }
     }
 }
