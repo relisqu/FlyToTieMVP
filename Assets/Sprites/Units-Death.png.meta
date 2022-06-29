@@ -349,6 +349,153 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Units-Death_10
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 161
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b2865915033e9540b2e852dddc55ddb
+      internalID: -1836348717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Death_11
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 159
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d5768ca352cad54ca010c0fcb9188ea
+      internalID: -1834480485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Death_12
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 159
+        width: 48
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbafd9a5b193133468d60bc0c0a40857
+      internalID: -1114975931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Death_13
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 159
+        width: 48
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95f40e9234ab10f4ea66a466483f62d2
+      internalID: -692634332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Death_14
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 158
+        width: 62
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbac9b17691270d4f96ea6234a696fd5
+      internalID: -2128043768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Death_15
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 158
+        width: 55
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3007966e5baad6b45b402eb1fb93abb8
+      internalID: -1465037332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Death_16
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 158
+        width: 41
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31ba3c12260c35c408d7276497771ed6
+      internalID: 560959524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -361,14 +508,21 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Units-Death_9: -1367001928
+      Units-Death_15: -1465037332
       Units-Death_2: -341016161
+      Units-Death_11: -1834480485
+      Units-Death_12: -1114975931
       Units-Death_0: 1971956433
       Units-Death_3: -87189103
       Units-Death_4: -143902452
       Units-Death_8: 625639924
       Units-Death_1: 1836572913
+      Units-Death_16: 560959524
       Units-Death_6: -273324241
       Units-Death_5: -230707856
+      Units-Death_13: -692634332
+      Units-Death_10: -1836348717
+      Units-Death_14: -2128043768
       Units-Death_7: 434833789
   spritePackingTag: 
   pSDRemoveMatte: 0

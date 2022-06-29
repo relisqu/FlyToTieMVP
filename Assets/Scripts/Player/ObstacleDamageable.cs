@@ -15,8 +15,9 @@ namespace Player
 
         public void TakeDamage()
         {
+            if(StarterUnit.IsInvincible()) return;
+            StopAllCoroutines();
             CameraShake.ShakeCamera(0.3f,5f);
-            print("AAA");
             PlayerMovement.SetState(PlayerMovement.MovementState.TakeDamage);
             transform.DOLocalJump(transform.position + (Vector3) JumpDirection, JumpForce, 1, JumpDuration)
                 .OnComplete(() => { PlayerMovement.SetState(PlayerMovement.MovementState.Move); });
@@ -26,9 +27,9 @@ namespace Player
 
         private IEnumerator SetInvisible()
         {
-            StarterUnit.SetInvisible(true);
+            StarterUnit.SetInvincible(true);
             yield return new WaitForSeconds(ImmuneDuration);
-            StarterUnit.SetInvisible(false);
+            StarterUnit.SetInvincible(false);
         }
     }
 }
