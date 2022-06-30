@@ -33,6 +33,7 @@ public class LaserProjectile : Projectile
     public override void SpawnProjectile()
     {
         if (_isEnabled) return;
+        ColliderTransform.gameObject.SetActive(true);
         LaserBody.enabled = true;
         _isEnabled = true;
         StartCoroutine(UpdateLaserLife());
@@ -45,6 +46,7 @@ public class LaserProjectile : Projectile
         _isEnabled = false;
         StopAllCoroutines();
         StopAllParticles();
+        ColliderTransform.gameObject.SetActive(false);
     }
 
     IEnumerator UpdateLaserLife()
@@ -64,10 +66,10 @@ public class LaserProjectile : Projectile
         var firstPoint = transform.position;
         Vector3 secondPoint;
 
-        var raycast = Physics2D.Raycast(firstPoint, Vector2.right, float.PositiveInfinity, LaserIgnoreLayers);
+        var raycast = Physics2D.Raycast(firstPoint, Vector2.right, MaxRange, LaserIgnoreLayers);
         if (raycast)
         {
-            secondPoint = new Vector2(raycast.transform.position.x, firstPoint.y);
+            secondPoint = new Vector2(raycast.point.x, firstPoint.y);
         }
         else
         {

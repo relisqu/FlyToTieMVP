@@ -14826,7 +14826,7 @@ MonoBehaviour:
   LaserLife: 1
   LaserIgnoreLayers:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 1
   ColliderTransform: {fileID: 8850172775502698099}
   Particles:
   - {fileID: 988686954775419873}

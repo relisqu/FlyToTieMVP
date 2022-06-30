@@ -5149,6 +5149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b57ac3308d346ba8b5c433bd261ea91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxLifetime: 4.01
+  MaxLifetime: 2
   IsDestructible: 1
   Animator: {fileID: 2433930133631197031}
