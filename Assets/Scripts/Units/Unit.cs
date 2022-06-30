@@ -99,13 +99,13 @@ public abstract class Unit : MonoBehaviour
         OnDamageTaken?.Invoke();
         BottomUnit.Collider.enabled = false;
         BottomUnit.transform.SetParent(null, true);
+        BottomUnit.UnitState = UnitState.Dropped;
         BottomUnit.TakeDamage();
         BottomUnit = BottomUnit._aboveUnit;
         PlayerMovement.Jumped -= OnJump;
         PlayerMovement.Jumped -= AnimateJump;
 
 
-        BottomUnit.UnitState = UnitState.Dropped;
     }
 
     private void SetBelowUnit(Unit unit)
