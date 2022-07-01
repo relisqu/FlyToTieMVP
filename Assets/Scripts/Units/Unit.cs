@@ -77,7 +77,7 @@ public abstract class Unit : MonoBehaviour
         BottomUnit = this;
         PlayerMovement.Jumped += OnJump;
         PlayerMovement.Jumped += AnimateJump;
-        UnitState = UnitState.Attached;
+        BottomUnit.UnitState = UnitState.Attached;
     }
 
     protected virtual void OnObstacleCollision(Obstacle obstacle)

@@ -13,6 +13,7 @@ namespace DefaultNamespace.Obstacle
         [SerializeField] private List<SpriteRenderer> FirstDots;
         [SerializeField] private List<SpriteRenderer> SecondDots;
         [SerializeField] private float OnDuration;
+        [SerializeField] private ParticleSystem Particles;
         private bool _isEnabled;
         private float _currentStateTime;
         private static readonly int TurnOff = Animator.StringToHash("TurnOff");
@@ -45,7 +46,10 @@ namespace DefaultNamespace.Obstacle
                 LaserAnimator.SetTrigger(TurnOn);
                 TurnOffDots(FirstDots);
                 TurnOffDots(SecondDots);
+                Particles.Play();
+                Particles.Emit(15);
                 yield return new WaitForSeconds(OnDuration);
+                Particles.Stop();
                 LaserAnimator.SetTrigger(TurnOff);
             }
         }
@@ -54,6 +58,7 @@ namespace DefaultNamespace.Obstacle
         {
             TurnOffDots(FirstDots);
             TurnOffDots(SecondDots);
+            Particles.Stop();
             StartCoroutine(ChangeState());
         }
     }

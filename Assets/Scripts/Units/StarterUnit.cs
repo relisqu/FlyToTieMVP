@@ -10,7 +10,7 @@ public class StarterUnit : Unit
 
         protected override void OnObstacleCollision(Obstacle obstacle)
         {
-            if (BottomUnit == this)
+            if (BottomUnit == this && !IsInvincible())
             {
                 Animator.TakeDamage();
                 return;
