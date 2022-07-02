@@ -20,7 +20,7 @@ public class Attraction : MonoBehaviour
 
     private void Update()
     {
-        if (!_foundPlayer) return;
+        if (_foundPlayer) return;
         MoveToUnit();
     }
 
@@ -29,7 +29,9 @@ public class Attraction : MonoBehaviour
         if (col.TryGetComponent(out Unit otherUnit) && !otherUnit.Equals(Unit))
         {
             if (otherUnit.UnitState != UnitState.Attached) return;
+            
             _unit = otherUnit;
+            _returnRoutine?.Kill();
             _foundPlayer = true;
         }
     }
@@ -50,7 +52,7 @@ public class Attraction : MonoBehaviour
             Unit.UnitState == UnitState.Attached)
         {
             gameObject.SetActive(false);
-            _foundPlayer = false;
+            _foundPlayer = true;
             _returnRoutine?.Kill();
             return;
         }

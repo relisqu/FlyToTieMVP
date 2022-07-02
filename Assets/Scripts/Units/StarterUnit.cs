@@ -1,3 +1,4 @@
+using System;
 using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,6 +42,11 @@ public class StarterUnit : Unit
             return _isInvincible;
         }
 
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private void Start()
         {
             SetState(UnitState.Attached);
@@ -48,5 +54,6 @@ public class StarterUnit : Unit
             PlayerMovement.Jumped += OnJump;
             BottomUnit = this;
         }
-        
+
+        public static StarterUnit Instance;
     }
