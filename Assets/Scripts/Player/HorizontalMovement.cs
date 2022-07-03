@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 public class HorizontalMovement : MonoBehaviour
@@ -9,12 +10,23 @@ public class HorizontalMovement : MonoBehaviour
     public Rigidbody2D rigidbody;
     private bool _isMoving = true;
 
+    private void Start()
+    {
+        _defaultSpeed = Speed;
+    }
+
+    public void ResetSpeed()
+    {
+        Speed = _defaultSpeed;
+    }
+
     private void Update()
     {
         if (_isMoving)
             Move(Speed);
     }
 
+    private float _defaultSpeed;
     public void Move(float newSpeed)
     {
         var requiredForce = newSpeed - rigidbody.velocity.x;

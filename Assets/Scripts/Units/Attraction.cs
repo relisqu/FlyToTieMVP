@@ -20,7 +20,7 @@ public class Attraction : MonoBehaviour
 
     private void Update()
     {
-        if (_foundPlayer) return;
+        if (!_foundPlayer) return;
         MoveToUnit();
     }
 
@@ -39,7 +39,7 @@ public class Attraction : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out Unit otherUnit))
-            if (otherUnit.Equals(_unit))
+            if (otherUnit.Equals(_unit) && _foundPlayer)
             {
                 _foundPlayer = false;
                 ReturnToDefaultPosition();
@@ -52,7 +52,7 @@ public class Attraction : MonoBehaviour
             Unit.UnitState == UnitState.Attached)
         {
             gameObject.SetActive(false);
-            _foundPlayer = true;
+            _foundPlayer = false;
             _returnRoutine?.Kill();
             return;
         }
@@ -65,4 +65,5 @@ public class Attraction : MonoBehaviour
     {
         _returnRoutine = Unit.transform.DOMove(_defaultPosition, AttachSpeed).SetSpeedBased().SetEase(Ease.InOutSine);
     }
+    
 }
