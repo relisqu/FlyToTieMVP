@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3770916517232675695}
   - component: {fileID: 1181730274247807797}
   - component: {fileID: 8358236694297744158}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EndParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4959,7 +4959,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8850172775502698099}
   - component: {fileID: 7678175880676217846}
-  m_Layer: 6
+  - component: {fileID: 7870788919305761079}
+  - component: {fileID: 1442929341487009704}
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4993,12 +4995,48 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1591585
+  m_Radius: 0.42
+--- !u!114 &7870788919305761079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041501404491679059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b57ac3308d346ba8b5c433bd261ea91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxLifetime: 12.5
+  IsDestructible: 0
+  Animator: {fileID: 0}
+--- !u!50 &1442929341487009704
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041501404491679059}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &6178881502838498318
 GameObject:
   m_ObjectHideFlags: 0
@@ -5010,7 +5048,7 @@ GameObject:
   - component: {fileID: 2405277320302776972}
   - component: {fileID: 988686954775419873}
   - component: {fileID: 2751275128782663516}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9822,7 +9860,7 @@ GameObject:
   - component: {fileID: 7870123159472648925}
   - component: {fileID: 8556076848817898745}
   - component: {fileID: 8318631150654653852}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EndSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14685,6 +14723,10 @@ PrefabInstance:
     - target: {fileID: 6434294328536507908, guid: 6b94daf685255378f811176ed30b453b, type: 3}
       propertyPath: m_Name
       value: Laser Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434294328536507908, guid: 6b94daf685255378f811176ed30b453b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1305263735318789639, guid: 6b94daf685255378f811176ed30b453b, type: 3}

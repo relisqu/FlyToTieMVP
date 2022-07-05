@@ -33,7 +33,7 @@ namespace Player
                 return;
             }
 
-            Destroy();
+            Destroy(gameObject);
         }
 
         public void Destroy()

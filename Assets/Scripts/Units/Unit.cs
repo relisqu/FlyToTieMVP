@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Units;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -71,7 +72,7 @@ public abstract class Unit : MonoBehaviour
 
         transform.SetParent(BottomUnit.transform, true);
         transform.position = BottomUnit.transform.position + OffsetOnAttachment;
-
+        DOTween.Kill(transform);
         _aboveUnit = BottomUnit;
         _aboveUnit.SetBelowUnit(this);
         BottomUnit = this;

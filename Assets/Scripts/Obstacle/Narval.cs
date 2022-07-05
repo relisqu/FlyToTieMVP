@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Scripts.Obstacle
 {
@@ -23,7 +24,14 @@ namespace Scripts.Obstacle
             Animator.SetTrigger(WakeUpIdx);
         }
 
+        public void GenerateCoins()
+        {
+            var moneyCount = Random.Range(1, 5);
+            CoinGenerator.GenerateMoney(moneyCount, transform);
+        }
+
         private bool _isAlive;
+
         private void Start()
         {
             _isAlive = true;

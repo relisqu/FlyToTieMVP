@@ -29,7 +29,7 @@ namespace Player
             }
             else
             {
-                Destroy();
+                Destroy(gameObject);
             }
         }
 

@@ -19,7 +19,7 @@
                 {
                     "name": "",
                     "id": "61b91d34-b624-472a-89f1-639f1e47a504",
-                    "path": "<Touchscreen>/Press",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -31,17 +31,6 @@
                     "name": "",
                     "id": "ebd40c60-7436-416c-9d46-737d25caa12b",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "54ac4af6-5b17-493a-bf9a-1f33b6a16b52",
-                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

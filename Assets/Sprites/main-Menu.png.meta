@@ -379,7 +379,7 @@ TextureImporter:
         width: 27
         height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -496,6 +496,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: main-Menu_12
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 194
+        width: 85
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 17, y: 13, z: 18, w: 12}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8088404931ffa5647b7b6a606e85cb36
+      internalID: -1273360430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-Menu_14
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 308
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f6ea60c9531fb41863957eb5adb072
+      internalID: -403587489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-Menu_19
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 309
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed42478ced420684ab03163f12f15a6b
+      internalID: -1185835717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -523,6 +586,7 @@ TextureImporter:
       main-Menu_3: 1288095269
       main-Menu_6: 1023216968
       main-Menu_14: -403587489
+      main-Menu_19: -1185835717
       main-Menu_10: -238416098
       main-Menu_15: -1226063651
       main-Menu_13: -1391868342
