@@ -22,6 +22,7 @@ namespace Units
 
         public void DestroyObject()
         {
+            print("Destroyed: "+gameObject);
             Destroy(gameObject);
         }
     }

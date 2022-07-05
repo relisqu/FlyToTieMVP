@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Units;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -71,13 +72,13 @@ public abstract class Unit : MonoBehaviour
 
         transform.SetParent(BottomUnit.transform, true);
         transform.position = BottomUnit.transform.position + OffsetOnAttachment;
-
+        DOTween.Kill(transform);
         _aboveUnit = BottomUnit;
         _aboveUnit.SetBelowUnit(this);
         BottomUnit = this;
         PlayerMovement.Jumped += OnJump;
         PlayerMovement.Jumped += AnimateJump;
-        UnitState = UnitState.Attached;
+        BottomUnit.UnitState = UnitState.Attached;
     }
 
     protected virtual void OnObstacleCollision(Obstacle obstacle)
@@ -99,13 +100,13 @@ public abstract class Unit : MonoBehaviour
         OnDamageTaken?.Invoke();
         BottomUnit.Collider.enabled = false;
         BottomUnit.transform.SetParent(null, true);
+        BottomUnit.UnitState = UnitState.Dropped;
         BottomUnit.TakeDamage();
         BottomUnit = BottomUnit._aboveUnit;
         PlayerMovement.Jumped -= OnJump;
         PlayerMovement.Jumped -= AnimateJump;
 
 
-        BottomUnit.UnitState = UnitState.Dropped;
     }
 
     private void SetBelowUnit(Unit unit)

@@ -16,7 +16,7 @@ namespace Player
         public void TakeDamage()
         {
             if(StarterUnit.IsInvincible()) return;
-            StopAllCoroutines();
+            //StopAllCoroutines();
             CameraShake.ShakeCamera(0.3f,5f);
             PlayerMovement.SetState(PlayerMovement.MovementState.TakeDamage);
             transform.DOLocalJump(transform.position + (Vector3) JumpDirection, JumpForce, 1, JumpDuration)

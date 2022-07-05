@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_state != MovementState.Move) return;
+        if (_state != MovementState.Move || Cutscene.IsPlayingCutscene) return;
         if (Rigidbody.velocity.y < 0)
             Rigidbody.velocity += Vector2.up * (Physics.gravity.y * (FallMultiplier - 1) * Time.deltaTime);
         else if (Rigidbody.velocity.y > 0 && _buttonReleased)
@@ -40,12 +41,32 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if(Cutscene.IsPlayingCutscene) return;
         _buttonReleased = context.canceled;
         if (!context.performed) return;
         Rigidbody.velocity *= Vector2.right;
         Jumped?.Invoke();
         Rigidbody.AddForce(JumpAcceleration.normalized * Force, ForceMode2D.Impulse);
     }
+
+    public void Jump()
+    {
+        Rigidbody.velocity *= Vector2.right;
+        Jumped?.Invoke();
+        Rigidbody.AddForce(JumpAcceleration.normalized * Force, ForceMode2D.Impulse);
+    }
+
+    public void DisableMovement()
+    {
+        Rigidbody.gravityScale = 0;
+        SetSpeed(0f);
+    }
+    public void EnableMovement()
+    {
+        Rigidbody.gravityScale = 1;
+        SetSpeed(MaintainedSpeed);
+    }
+
 
     public void SetState(MovementState state)
     {
@@ -57,9 +78,11 @@ public class PlayerMovement : MonoBehaviour
         return _state;
     }
 
+    private float _currentVelocity;
     private void SetSpeed(float newSpeed)
     {
+        _currentVelocity = newSpeed;
         var verticalVelocity = Rigidbody.velocity.y;
-        Rigidbody.velocity = new Vector2(newSpeed, verticalVelocity);
+        Rigidbody.velocity = new Vector2(_currentVelocity, verticalVelocity);
     }
 }

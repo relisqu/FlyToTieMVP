@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Unit
   - PostProcessing
-  - 
-  - 
-  - 
+  - Bullet
+  - IgnoreBullet
+  - Coin
   - 
   - 
   - 

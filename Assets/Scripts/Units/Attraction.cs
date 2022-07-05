@@ -29,7 +29,9 @@ public class Attraction : MonoBehaviour
         if (col.TryGetComponent(out Unit otherUnit) && !otherUnit.Equals(Unit))
         {
             if (otherUnit.UnitState != UnitState.Attached) return;
+
             _unit = otherUnit;
+            _returnRoutine?.Kill();
             _foundPlayer = true;
         }
     }
@@ -37,7 +39,7 @@ public class Attraction : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out Unit otherUnit))
-            if (otherUnit.Equals(_unit))
+            if (otherUnit.Equals(_unit) && _foundPlayer)
             {
                 _foundPlayer = false;
                 ReturnToDefaultPosition();
@@ -61,6 +63,20 @@ public class Attraction : MonoBehaviour
 
     private void ReturnToDefaultPosition()
     {
-        _returnRoutine = Unit.transform.DOMove(_defaultPosition, AttachSpeed).SetSpeedBased().SetEase(Ease.InOutSine);
+        if (Unit.UnitState == UnitState.Attached)
+        {
+            gameObject.SetActive(false);
+            _returnRoutine?.Kill();
+        }
+
+        _returnRoutine = Unit.transform.DOMove(_defaultPosition, AttachSpeed).SetSpeedBased().SetEase(Ease.InOutSine)
+            .OnPlay(() =>
+            {
+                if (Unit.UnitState == UnitState.Attached)
+                {
+                    gameObject.SetActive(false);
+                    _returnRoutine?.Kill();
+                }
+            });
     }
 }

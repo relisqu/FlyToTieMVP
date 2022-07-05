@@ -42,5 +42,5 @@ Material:
     - _LaserThickness: 1.89
     m_Colors:
     - _BeamGlowColor: {r: 6.2067976, g: 0.3747497, b: 0.3747497, a: 1}
-    - _BloomColor: {r: 4.388868, g: 2.6888096, b: 2.6250398, a: 1}
+    - _BloomColor: {r: 5.638371, g: 1.0093913, b: 0.8191593, a: 1}
   m_BuildTextureStacks: []

@@ -17,7 +17,7 @@ namespace Units
             _isShooting = true;
             for (int i = 0; i < n; i++)
             {
-                Instantiate(Projectile, transform);
+                Instantiate(Projectile, transform.position, Quaternion.identity, null);
                 Projectile.SpawnProjectile();
                 yield return new WaitForSeconds(Delay);
             }
