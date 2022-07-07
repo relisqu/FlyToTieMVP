@@ -21,6 +21,11 @@ namespace DefaultNamespace.Props
 
         private bool _isDead;
 
+        public void SetAlive(bool alive)
+        {
+            _isDead = !alive;
+        }
+
         public void Die()
         {
             _isDead = true;

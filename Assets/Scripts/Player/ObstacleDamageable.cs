@@ -28,6 +28,8 @@ namespace Player
         private IEnumerator SetInvisible()
         {
             StarterUnit.SetInvincible(true);
+           // SpriteRenderer.color = Color.white * 0.6f;
+           // SpriteRenderer.DOColor(Color.white, ImmuneDuration - 0.01f).SetEase(Ease.InBounce);
             yield return new WaitForSeconds(ImmuneDuration);
             StarterUnit.SetInvincible(false);
         }
