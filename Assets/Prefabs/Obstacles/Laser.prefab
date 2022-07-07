@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LaserAnimator: {fileID: 4886827170000926296}
-  OffDuration: 1.33
+  OffDuration: 2.41
   FirstDots:
   - {fileID: 4886827169881372532}
   - {fileID: 4886827169613583815}
@@ -884,7 +884,7 @@ MonoBehaviour:
   - {fileID: 4886827169444353656}
   - {fileID: 4886827169482764476}
   - {fileID: 4886827168318316759}
-  OnDuration: 0.93
+  OnDuration: 0.6
   Particles: {fileID: 4886827170000926295}
 --- !u!61 &4886827170000926300
 BoxCollider2D:

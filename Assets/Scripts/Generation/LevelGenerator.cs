@@ -99,6 +99,7 @@ namespace DefaultNamespace.Generation
             Collider.GenerateGeometry();
         }
 
+
         private Vector3Int GenerateOffset(int xBounds, int yBounds)
         {
             return new Vector3Int(Random.Range(-xBounds, xBounds), Random.Range(-yBounds, yBounds), 0);

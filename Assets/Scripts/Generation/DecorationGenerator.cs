@@ -27,6 +27,7 @@ namespace DefaultNamespace.Generation
             }
         }
 
+        
         [Button("Generate Islands")]
         public void GenerateIslands()
         {
