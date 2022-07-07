@@ -11,7 +11,7 @@ public abstract class Unit : MonoBehaviour
     protected static Unit BottomUnit;
 
     public static Action OnDamageTaken;
-
+    [SerializeField] public int SpawnsFromLevel;
     [FormerlySerializedAs("collider")] [SerializeField]
     private Collider2D Collider;
 
@@ -105,8 +105,6 @@ public abstract class Unit : MonoBehaviour
         BottomUnit = BottomUnit._aboveUnit;
         PlayerMovement.Jumped -= OnJump;
         PlayerMovement.Jumped -= AnimateJump;
-
-
     }
 
     private void SetBelowUnit(Unit unit)

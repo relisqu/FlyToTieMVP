@@ -10,6 +10,11 @@ namespace Scripts.Obstacle
         [SerializeField] private Animator Animator;
         private Transform _goalTransform;
 
+        public float GetTriggerDistance()
+        {
+            return TriggerDistance;
+        }
+
         private void Update()
         {
             if (!_isAwake && Vector3.Distance(_goalTransform.position, transform.position) <= TriggerDistance)

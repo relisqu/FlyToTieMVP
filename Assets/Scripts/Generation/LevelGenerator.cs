@@ -5,6 +5,7 @@ using DefaultNamespace.Obstacle;
 using Sirenix.OdinInspector;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -12,28 +13,43 @@ namespace DefaultNamespace.Generation
 {
     public class LevelGenerator : MonoBehaviour
     {
-        [SerializeField] private float MinDistanceBetweenChunks;
-        [SerializeField] private float MaxDistanceBetweenChunks;
-        [SerializeField] private float LevelWidth;
-        [SerializeField] private float Height;
+        [BoxGroup("Islands")] [SerializeField] private float MinDistanceBetweenChunks;
+        [BoxGroup("Islands")] [SerializeField] private float MaxDistanceBetweenChunks;
 
-        [SerializeField] private Tilemap GroundTilemap;
-        [SerializeField] private ChunkGenerator ChunkGenerator;
-        [SerializeField] private float ChanceToGenerateLaser;
-        [SerializeField] private float MinimumLaserDistance;
-        [SerializeField] private float MaximumLaserDistance;
-        [SerializeField] private LaserEditor Laser;
-        [SerializeField] private TileBase Tile;
+        [BoxGroup("Level constrains")] [SerializeField]
+        private float LevelWidth;
 
+        [BoxGroup("Level constrains")] [SerializeField]
+        private float Height;
 
-        [SerializeField] private Transform GarbageTransform;
-        private float previousWidth;
+        [BoxGroup("Level constrains")] [SerializeField]
+        private Tilemap GroundTilemap;
+
+        [BoxGroup("Islands")] [SerializeField] private ChunkGenerator ChunkGenerator;
+        [BoxGroup("Lasers")] [SerializeField] private float ChanceToGenerateLaser;
+        [BoxGroup("Lasers")] [SerializeField] private float MinimumLaserDistance;
+        [BoxGroup("Lasers")] [SerializeField] private float MaximumLaserDistance;
+        [BoxGroup("Lasers")] [SerializeField] private LaserEditor Laser;
+
+        [BoxGroup("Level constrains")] [SerializeField]
+        private Transform GarbageTransform;
+
+        [BoxGroup("Level constrains")] [SerializeField]
+        private CompositeCollider2D Collider;
+
+        [BoxGroup("Lasers")] [FormerlySerializedAs("sizeChange")] [SerializeField]
+        private float LasersSizeOffset;
+
+        public List<PlaceForObject> Places = new();
+        public List<PlaceForObject> OpenPlaces = new();
+
 
         [Button("Generate Islands")]
         public void GenerateIslands()
         {
             GroundTilemap.ClearAllTiles();
-            places.Clear();
+            Places.Clear();
+            OpenPlaces.Clear();
             ChunkGenerator.InitiateChunks();
 
             var currentX = 0f;
@@ -79,6 +95,8 @@ namespace DefaultNamespace.Generation
                     currentX += biggestWidth / 2f;
                 }
             }
+
+            Collider.GenerateGeometry();
         }
 
         private Vector3Int GenerateOffset(int xBounds, int yBounds)
@@ -98,38 +116,36 @@ namespace DefaultNamespace.Generation
 
         private float _minSize = 5;
 
-        public PlaceForObject GetSpace(Tilemap tilemap, Vector3Int position)
+        public PlaceForObject GetSpace(Tilemap tilemap, Vector3Int position, int minTopNumber, int maxTopNumber,
+            int minBottomNumber, int maxBottomNumber)
         {
             Vector3Int topTile = Vector3Int.zero;
             Vector3Int bottomTile = Vector3Int.zero;
             var newPosition = position;
-            var maxNumber = 15;
             var number = 0;
-            while (tilemap.GetTile(newPosition) == null && number < maxNumber)
+            while (tilemap.GetTile(newPosition) == null && number < maxTopNumber)
             {
                 number++;
                 newPosition += Vector3Int.up;
                 topTile = newPosition;
-                //   tilemap.SetTile(newPosition, Tile);
             }
 
-            if (number == maxNumber)
+            if (number == maxTopNumber || number < minTopNumber)
             {
                 topTile = Vector3Int.zero;
             }
 
             newPosition = position;
             number = 0;
-            while (tilemap.GetTile(newPosition) == null && number < maxNumber)
+            while (tilemap.GetTile(newPosition) == null && number < maxBottomNumber)
             {
                 number++;
                 newPosition -= Vector3Int.up;
                 bottomTile = newPosition;
-                //   tilemap.SetTile(newPosition, Tile);
             }
 
 
-            if (number == maxNumber)
+            if (number == maxBottomNumber || number < minBottomNumber)
             {
                 bottomTile = Vector3Int.zero;
             }
@@ -139,12 +155,9 @@ namespace DefaultNamespace.Generation
                 return null;
             }
 
-            return new PlaceForObject(topTile, bottomTile);
+            return new PlaceForObject(topTile, bottomTile, GroundTilemap);
         }
 
-
-        public List<PlaceForObject> places = new List<PlaceForObject>();
-        public float sizeChange;
 
         public void GenerateLasers()
         {
@@ -155,9 +168,10 @@ namespace DefaultNamespace.Generation
                 for (int i = 1; i < 10; i++)
                 {
                     var position = new Vector3Int((int) currentX, (int) (Height / 2 - Height * (1 - 1f / i)), 10);
-                    var place = GetSpace(GroundTilemap, position);
+                    var place = GetSpace(GroundTilemap, position, 0, 15, 0, 15);
                     if (place != null && place.IsValid())
                     {
+                        Places.Add(place);
                         if (Random.value > ChanceToGenerateLaser)
                         {
                             currentX += 5;
@@ -172,13 +186,12 @@ namespace DefaultNamespace.Generation
                             break;
                         }
 
-                        places.Add(place);
-                        var topPoint = GroundTilemap.CellToWorld(place.TopPoint);
-                        var BottomPoint = GroundTilemap.CellToWorld(place.BottomPoint);
-                        var newLaser = Instantiate(Laser, (topPoint + BottomPoint )/ 2f + new Vector3(0.5f, 0.5f, 0f),
+                        var newLaser = Instantiate(Laser,
+                            (place.WorldTopPoint + place.WorldBottomPoint) / 2f + new Vector3(0.5f, 0.5f, 0f),
                             Quaternion.identity, GarbageTransform);
-                        newLaser.ChangeRendererYSize(place.TopPoint.y - place.BottomPoint.y - sizeChange);
-                        currentX += 5;
+                        place.isFilled = true;
+                        newLaser.ChangeRendererYSize(place.TopPoint.y - place.BottomPoint.y - LasersSizeOffset);
+                        currentX += (int) Random.Range(MinimumLaserDistance, MaximumLaserDistance);
                         break;
                     }
 
@@ -186,30 +199,14 @@ namespace DefaultNamespace.Generation
                 }
 
                 currentX++;
-
-                /*
-
-                var position = GroundTilemap.CellToWorld(new Vector3Int((int) currentX, (int) Height / 2, 10));
-                var bottomHit = Physics2D.Raycast(position, Vector2.up, Height / 2);
-                var topHit = Physics2D.Raycast(position, Vector2.down, Height / 2);
-                Debug.DrawLine(bottomHit.point, topHit.point);
-                if (bottomHit && topHit)
-                {
-                    print(bottomHit.transform.name + " " + topHit.transform.name);
-                    print("Eba");
-                    if (Random.value < ChanceToGenerateLaser)
-                    {
-                        Instantiate(Laser, Vector3.Lerp(topHit.point, bottomHit.point, 0.5f), quaternion.identity,
-                            GarbageTransform);
-                        Laser.ChangeRendererYSize(-topHit.point.y + bottomHit.point.y);
-                        print(topHit.point + " " + bottomHit.point);
-                        currentX += Random.Range(MinimumLaserDistance, MaximumLaserDistance);
-                    }
-                }
-
-                currentX += 1f;
-                */
             }
+        }
+
+        private float _previousWidth;
+
+        public float GetWidth()
+        {
+            return LevelWidth;
         }
     }
 
@@ -217,12 +214,16 @@ namespace DefaultNamespace.Generation
     {
         public Vector3Int TopPoint;
         public Vector3Int BottomPoint;
+        public Vector3 WorldTopPoint;
+        public Vector3 WorldBottomPoint;
         public bool isFilled;
 
-        public PlaceForObject(Vector3Int cellBoundsMIN, Vector3Int cellBoundsMAX)
+        public PlaceForObject(Vector3Int cellBoundsMIN, Vector3Int cellBoundsMAX, Tilemap map)
         {
             TopPoint = cellBoundsMIN;
             BottomPoint = cellBoundsMAX;
+            WorldTopPoint = map.CellToWorld(TopPoint);
+            WorldBottomPoint = map.CellToWorld(BottomPoint);
         }
 
         public float GetMagnitude()

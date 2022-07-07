@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5b80b27b5946dd8736aa85c5f53763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerDistance: 10.49
+  TriggerDistance: 7.16
   Animator: {fileID: 9216601613599923503}
 --- !u!60 &8659016249049441013
 PolygonCollider2D:
