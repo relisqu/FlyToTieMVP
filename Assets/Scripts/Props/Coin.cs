@@ -8,7 +8,20 @@ namespace DefaultNamespace.Props
     public class Coin : MonoBehaviour
     {
         [SerializeField] private ParticleSystem ParticleSystem;
+        [SerializeField] private float TriggerDistance;
+        [SerializeField] private float Speed;
 
+
+        private void Update()
+        {
+            var position = transform.position;
+            var playerPosition = StarterUnit.Instance.transform.position;
+            var step =  Speed* Time.deltaTime;
+            if (Vector2.Distance(playerPosition, position) < TriggerDistance)
+            {
+                transform.position = Vector3.MoveTowards(position,playerPosition,step);
+            }
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {

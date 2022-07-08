@@ -12,6 +12,7 @@ namespace DefaultNamespace.UI
     {
         public static bool IsPlayingCutscene;
         [SerializeField] private List<CanvasGroup> DisabledUIScenes;
+        [SerializeField] private List<CanvasGroup> EnabledUIScenes;
         [SerializeField] private PlayerMovement PlayerMovement;
 
         public void PlayCutscene()
@@ -34,6 +35,7 @@ namespace DefaultNamespace.UI
 
         public IEnumerator DisableScenes()
         {
+            yield return EnableScenes();
             var delay = 0.06f;
             foreach (var scene in DisabledUIScenes)
             {
@@ -42,6 +44,19 @@ namespace DefaultNamespace.UI
             yield return new WaitForSeconds(delay);
             gameObject.SetActive(false);
 
+        }
+
+        public IEnumerator EnableScenes()
+        {
+            var delay = 0.2f;
+            
+            foreach (var scene in EnabledUIScenes)
+            {
+                scene.gameObject.SetActive(true);
+                scene.DOFade(1f, delay).OnComplete(() => {  });
+            }
+            yield return new WaitForSeconds(delay/2);
+            
         }
 
         private void Start()

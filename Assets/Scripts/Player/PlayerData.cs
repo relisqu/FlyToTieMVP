@@ -8,6 +8,7 @@ namespace Player
         public static int MoneyCount = 0;
         public static int СurrentLevel = 3;
         public static Action ChangedMoneyCount;
+        public static Action ChangedLevel;
         public static void SaveMoney(int newMoneyCount)
         {
             MoneyCount = newMoneyCount;
@@ -15,14 +16,21 @@ namespace Player
             ChangedMoneyCount?.Invoke();
         }
 
-        public static void LoadMoney()
+        public static void SaveLevel(int newLevel)
+        {
+            СurrentLevel = newLevel;
+            PlayerPrefs.SetInt("Level", СurrentLevel);
+            ChangedLevel?.Invoke();
+        }
+        public static void LoadVariables()
         {
             MoneyCount = PlayerPrefs.GetInt("Money", 0);
+            СurrentLevel = PlayerPrefs.GetInt("Level", 1);
         }
 
         private void Awake()
         {
-            LoadMoney();
+            LoadVariables();
         }
     }
 }

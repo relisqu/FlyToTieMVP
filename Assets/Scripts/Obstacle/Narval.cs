@@ -17,7 +17,7 @@ namespace Scripts.Obstacle
 
         private void Update()
         {
-            if (!_isAwake && Vector3.Distance(_goalTransform.position, transform.position) <= TriggerDistance)
+            if (!_isAwake && Vector2.Distance(StarterUnit.Instance.transform.position, transform.position) <= TriggerDistance)
             {
                 WakeUp();
             }
