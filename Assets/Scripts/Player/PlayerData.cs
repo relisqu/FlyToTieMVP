@@ -7,8 +7,11 @@ namespace Player
     {
         public static int MoneyCount = 0;
         public static int СurrentLevel = 3;
+        public static float СurrentBulletProjectileSpeed = 30;
+        public static int СurrentBulletProjectileAmount = 2;
         public static Action ChangedMoneyCount;
         public static Action ChangedLevel;
+
         public static void SaveMoney(int newMoneyCount)
         {
             MoneyCount = newMoneyCount;
@@ -22,6 +25,7 @@ namespace Player
             PlayerPrefs.SetInt("Level", СurrentLevel);
             ChangedLevel?.Invoke();
         }
+
         public static void LoadVariables()
         {
             MoneyCount = PlayerPrefs.GetInt("Money", 0);

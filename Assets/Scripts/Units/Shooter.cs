@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Projectiles;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour

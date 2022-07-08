@@ -11,6 +11,7 @@ namespace DefaultNamespace.Generation
     {
         [SerializeField] private LevelGenerator Level;
         [SerializeField] private List<Unit> Units;
+        [SerializeField] private GameObject UnitSpawn;
         [SerializeField] private float ChanceToGenerateUnit;
         [SerializeField] private float MinimumDistanceBetweenUnits;
         [SerializeField] private Transform GarbageTransform;
@@ -43,6 +44,7 @@ namespace DefaultNamespace.Generation
 
                 Instantiate(GetAppropriateUnit(), position, Quaternion.identity,
                     GarbageTransform);
+                Instantiate(UnitSpawn, position-Vector3.up*0.2f, Quaternion.identity, GarbageTransform);
                 lastPosition = position;
                 place.isFilled = true;
             }
