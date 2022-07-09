@@ -29,7 +29,7 @@ namespace DefaultNamespace.Generation
         [BoxGroup("Lasers")] [SerializeField] private float ChanceToGenerateLaser;
         [BoxGroup("Lasers")] [SerializeField] private float MinimumLaserDistance;
         [BoxGroup("Lasers")] [SerializeField] private float MaximumLaserDistance;
-        [BoxGroup("Lasers")] [SerializeField] private LaserEditor Laser;
+        [BoxGroup("Lasers")] [SerializeField] private List<LaserEditor> Laser;
 
         [BoxGroup("Level constrains")] [SerializeField]
         private Transform GarbageTransform;
@@ -187,9 +187,14 @@ namespace DefaultNamespace.Generation
                             break;
                         }
 
-                        var newLaser = Instantiate(Laser,
-                            (place.WorldTopPoint + place.WorldBottomPoint) / 2f + new Vector3(0.5f, 0.5f, 0f),
-                            Quaternion.identity, GarbageTransform);
+
+                        var newLaser = PropsGenerator.GetObjectFromPool(_laserPool);
+                        newLaser.transform.position = (place.WorldTopPoint + place.WorldBottomPoint) / 2f +
+                                                      new Vector3(0.5f, 0.5f, 0f);
+                        newLaser.transform.parent = GarbageTransform;
+                        newLaser.gameObject.SetActive(true);
+
+
                         place.isFilled = true;
                         newLaser.ChangeRendererYSize(place.TopPoint.y - place.BottomPoint.y - LasersSizeOffset);
                         currentX += (int) Random.Range(MinimumLaserDistance, MaximumLaserDistance);
@@ -203,6 +208,12 @@ namespace DefaultNamespace.Generation
             }
         }
 
+        private void Start()
+        {
+            _laserPool = PropsGenerator.InstantiatePool(Laser, 30);
+        }
+
+        private LaserEditor[] _laserPool;
         private float _previousWidth;
 
         public float GetWidth()

@@ -33,7 +33,7 @@ namespace DefaultNamespace.UI
 
         public void UpdateSprite()
         {
-            var level = GetNumber()+1;
+            var level = GetNumber();
             transform.localScale =Vector3.one;
 
             var playerLevel = PlayerData.СurrentLevel;

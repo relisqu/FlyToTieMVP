@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.Generation;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -29,6 +30,7 @@ namespace DefaultNamespace.UI
             
             PlayerMovement.EnableMovement();
             PlayerMovement.Jump();
+            FullGenerator.Instance.GenerateLevel();
             IsPlayingCutscene = false;
             StartCoroutine(DisableScenes());
         }

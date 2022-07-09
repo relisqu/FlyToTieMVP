@@ -29,13 +29,13 @@ namespace Player
             }
             else
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
 
         public void Destroy()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

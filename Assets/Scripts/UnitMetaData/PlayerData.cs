@@ -1,4 +1,5 @@
 ﻿using System;
+using DefaultNamespace.UI;
 using UnityEngine;
 
 namespace Player
@@ -9,6 +10,7 @@ namespace Player
         public static int СurrentLevel = 3;
         public static float СurrentBulletProjectileSpeed = 30;
         public static int СurrentBulletProjectileAmount = 2;
+        
         public static Action ChangedMoneyCount;
         public static Action ChangedLevel;
 
@@ -30,6 +32,8 @@ namespace Player
         {
             MoneyCount = PlayerPrefs.GetInt("Money", 0);
             СurrentLevel = PlayerPrefs.GetInt("Level", 1);
+            СurrentLevel++;
+            SaveLevel(СurrentLevel);
         }
 
         private void Awake()

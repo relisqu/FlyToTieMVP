@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using DefaultNamespace.Props;
 using Player;
 using Scripts.Obstacle;
+using Units;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -11,12 +14,12 @@ namespace DefaultNamespace.Generation
     {
         [SerializeField] private LevelGenerator Level;
         [SerializeField] private List<Unit> Units;
-        [SerializeField] private GameObject UnitSpawn;
+        [SerializeField] private List<UnitSpawn> UnitSpawn;
         [SerializeField] private float ChanceToGenerateUnit;
         [SerializeField] private float MinimumDistanceBetweenUnits;
         [SerializeField] private Transform GarbageTransform;
 
-        [SerializeField] private List<GameObject> BoxObjects;
+        [SerializeField] private List<Box> BoxObjects;
         [SerializeField] private Vector3 DefaultBoxPosition;
         [SerializeField] private float MinimumDistanceBetweenBoxes;
         [SerializeField] private float MaximumDistanceBetweenBoxes;
@@ -25,8 +28,16 @@ namespace DefaultNamespace.Generation
 
 
         [SerializeField] private float ChanceToGenerateEnemies;
-        [SerializeField] private Narval Enemy;
+        [SerializeField] private List<Narval> Enemy;
         [SerializeField] private float MinimumEnemyDistance;
+
+        private void Start()
+        {
+            _unitPool = InstantiatePool<Unit>(Units, 30);
+            _unitSpawnPointPool = InstantiatePool<UnitSpawn>(UnitSpawn, 30);
+            _narvalPool = InstantiatePool<Narval>(Enemy, 30);
+            _boxPool = InstantiatePool<Box>(BoxObjects, 40);
+        }
 
         public void GenerateUnits()
         {
@@ -42,31 +53,71 @@ namespace DefaultNamespace.Generation
                     continue;
                 }
 
-                Instantiate(GetAppropriateUnit(), position, Quaternion.identity,
-                    GarbageTransform);
-                Instantiate(UnitSpawn, position-Vector3.up*0.2f, Quaternion.identity, GarbageTransform);
+                var unit = GetAppropriateUnit();
+                unit.transform.position = position;
+                unit.transform.parent = GarbageTransform;
+                unit.gameObject.SetActive(true);
+
+
+                var spawnObject = GetObjectFromPool(_unitSpawnPointPool);
+                spawnObject.transform.position = position - Vector3.up * 0.2f;
+                spawnObject.transform.parent = GarbageTransform;
+                spawnObject.gameObject.SetActive(true);
                 lastPosition = position;
                 place.isFilled = true;
             }
         }
 
+        private Unit[] _unitPool;
+        private UnitSpawn[] _unitSpawnPointPool;
+        private Narval[] _narvalPool;
+        private Box[] _boxPool;
+
+        public static T GetObjectFromPool<T>(T[] poolList) where T : MonoBehaviour
+        {
+            var obj = poolList[Random.Range(0, poolList.Length)];
+            int number = 0;
+            while (!obj.gameObject.activeInHierarchy && number<100)
+            {
+                number++;
+                obj = poolList[Random.Range(0, poolList.Length)];
+            }
+
+            return obj;
+        }
+
+        public static T[] InstantiatePool<T>(List<T> poolObject, int size) where T : MonoBehaviour
+        {
+            var poolList = new T[30];
+            for (int i = 0; i < poolList.Length; i++)
+            {
+                poolList[i] = Instantiate(poolObject[Random.Range(0, poolObject.Count)]);
+                poolList[i].gameObject.SetActive(false);
+            }
+
+            return poolList;
+        }
+
+
         public void GenerateEnemies()
         {
             var width = Level.GetWidth();
             var newPosition = DefaultBoxPosition;
-            print("AA");
             while (newPosition.x < DefaultBoxPosition.x + width)
             {
-                if (!Physics2D.OverlapCapsule(newPosition + Vector3.right * (0.5f * Enemy.GetTriggerDistance()),
-                    new Vector2(0.4f, 1.2f) * Enemy.GetTriggerDistance(), CapsuleDirection2D.Horizontal, 0))
+                if (!Physics2D.OverlapCapsule(newPosition + Vector3.right * (0.5f * Enemy[0].GetTriggerDistance()),
+                    new Vector2(0.4f, 1.2f) * Enemy[0].GetTriggerDistance(), CapsuleDirection2D.Horizontal, 0))
                 {
                     if (Random.value > ChanceToGenerateEnemies)
                     {
                         continue;
                     }
 
-                    Instantiate(Enemy, newPosition + Vector3.right * Enemy.GetTriggerDistance(), Quaternion.identity,
-                        GarbageTransform);
+                    var spawnObject = GetObjectFromPool(_narvalPool);
+                    spawnObject.transform.position = newPosition + Vector3.right * spawnObject.GetTriggerDistance();
+                    spawnObject.transform.parent = GarbageTransform;
+                    spawnObject.gameObject.SetActive(true);
+
                     newPosition.y = DefaultBoxPosition.y + Random.Range(-4f, 2f);
                     newPosition += Vector3.right * Random.Range(MinimumEnemyDistance, MinimumEnemyDistance * 1.3f);
                 }
@@ -96,8 +147,14 @@ namespace DefaultNamespace.Generation
                                 continue;
                             }
 
-                            var randomBox = BoxObjects[Random.Range(0, BoxObjects.Count)];
-                            Instantiate(randomBox, newPosition, quaternion.identity, GarbageTransform);
+                            var boxAmount = Random.Range(1, 3);
+                            for (int i=0; i<boxAmount;i++) {
+                                var spawnObject = GetObjectFromPool(_boxPool);
+                                spawnObject.transform.position = newPosition+ Vector3.up * (0.5f * i);
+                                spawnObject.transform.parent = GarbageTransform;
+                                spawnObject.gameObject.SetActive(true);
+                            }
+
                             newPosition += Vector3.right *
                                            Random.Range(MinimumDistanceBetweenBoxes, MaximumDistanceBetweenBoxes);
                             continue;
@@ -112,10 +169,11 @@ namespace DefaultNamespace.Generation
         private Unit GetAppropriateUnit()
         {
             var level = PlayerData.СurrentLevel;
-            var unit = Units[Random.Range(0, Units.Count)];
-            while (unit.SpawnsFromLevel > level)
+            var unit = _unitPool[Random.Range(0, _unitPool.Length)];
+            while (unit.SpawnsFromLevel > level && unit.gameObject.activeInHierarchy
+            )
             {
-                unit = Units[Random.Range(0, Units.Count)];
+                unit = _unitPool[Random.Range(0, _unitPool.Length)];
             }
 
             return unit;

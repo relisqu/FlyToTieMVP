@@ -13,6 +13,11 @@ namespace DefaultNamespace.UI
             LevelText.SetText(PlayerData.СurrentLevel.ToString());
         }
 
+        private void Start()
+        {
+            UpdateText();
+        }
+
         private void OnEnable()
         {
             PlayerData.ChangedLevel += UpdateText;

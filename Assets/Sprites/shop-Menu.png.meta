@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a3ba11be5a644564d9292c0f385c4315
+guid: 639bf50d95f8db547bc66ca58b04b126
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -66,10 +66,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -140,43 +140,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Units-Hand_0
+      name: shop-Menu_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 10
-        width: 6
-        height: 5
+        x: 2
+        y: 147
+        width: 61
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 7, z: 6, w: 7}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f561643cda84a9e4ab84eb4cd7641b49
-      internalID: -1963623727
+      spriteID: 53f1a63664e35664b9004efc592f8408
+      internalID: 1557229893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Units-Hand_1
+      name: shop-Menu_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 113
+        width: 88
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 10, z: 12, w: 11}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51273a464c6bf4b4396449becdd17359
+      internalID: 105719430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop-Menu_2
       rect:
         serializedVersion: 2
         x: 1
-        y: 0
-        width: 5
-        height: 5
+        y: 26
+        width: 98
+        height: 71
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 7, y: 7, z: 7, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c59390714d1ecb4395abc38c1a3c286
+      internalID: -1087656169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop-Menu_3
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 0
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38e7fb4a5b6566f43a5b8b38bed3df6c
-      internalID: 909967966
+      spriteID: b47a64e32e9b16e4c84cb288a4f6c3c1
+      internalID: -384833333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop-Menu_4
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 6
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60f4f14217a0e30449eb244ae2a56436
+      internalID: -217824427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop-Menu_5
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 6
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63ae0516847a1af49b40f961a2f266c5
+      internalID: 1520768177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop-Menu_6
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 6
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94193533516a74345b35ae1e90f3cc9a
+      internalID: -1956905576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop-Menu_7
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 5
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deba4e348c37ef7449dfae225c92e65d
+      internalID: 1083470784
       vertices: []
       indices: 
       edges: []
@@ -192,8 +318,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Units-Hand_1: 909967966
-      Units-Hand_0: -1963623727
+      shop-Menu_7: 1083470784
+      shop-Menu_0: 1557229893
+      shop-Menu_5: 1520768177
+      shop-Menu_6: -1956905576
+      shop-Menu_3: -384833333
+      shop-Menu_4: -217824427
+      shop-Menu_1: 105719430
+      shop-Menu_2: -1087656169
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

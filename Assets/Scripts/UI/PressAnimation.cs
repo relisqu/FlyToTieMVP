@@ -14,7 +14,7 @@ namespace DefaultNamespace.UI
             if (_isPressing) return;
             _isPressing = true;
             transform.DOPunchScale(MaxScale, PressDuration).OnComplete(() => { _isPressing = false; });
-            transform.DOPunchPosition(transform.position + PositionShift, PressDuration);
+            transform.DOPunchPosition(PositionShift, PressDuration);
         }
 
         private bool _isPressing;

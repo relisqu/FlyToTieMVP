@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DefaultNamespace.Props;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -10,7 +11,7 @@ namespace DefaultNamespace.Generation
     public class DecorationGenerator : MonoBehaviour
     {
         [SerializeField] private List<TilemapChunk> TilemapChunks;
-        [SerializeField] private GameObject DecorationObject;
+        [SerializeField] private List<LeafParticle> DecorationObject;
         [SerializeField] private Tilemap Tilemap;
 
         [SerializeField] private float MinDistanceBetweenChunks;
@@ -27,14 +28,14 @@ namespace DefaultNamespace.Generation
             }
         }
 
-        
+
         [Button("Generate Islands")]
         public void GenerateIslands()
         {
             int children = transform.childCount;
             for (int i = children - 1; i > 0; i--)
             {
-                DestroyImmediate(transform.GetChild(i).gameObject);
+                transform.GetChild(i).gameObject.SetActive(false);
             }
 
             Tilemap.ClearAllTiles();
@@ -50,8 +51,22 @@ namespace DefaultNamespace.Generation
                 AddTilesToTilemapChunks(chunk, newPosition
                 );
                 if (Random.value < 0.7f)
-                    Instantiate(DecorationObject, Tilemap.CellToWorld(newPosition), Quaternion.identity, transform);
+                {
+                    var decoration=PropsGenerator.GetObjectFromPool(_particlesPool);
+                    decoration.transform.position = Tilemap.CellToWorld(newPosition);
+                    decoration.transform.parent = transform;
+                    decoration.gameObject.SetActive(true);
+
+                }
+
             }
         }
+
+        private void Start()
+        {
+            _particlesPool = PropsGenerator.InstantiatePool<LeafParticle>(DecorationObject, 30);
+        }
+
+        private LeafParticle[] _particlesPool;
     }
 }

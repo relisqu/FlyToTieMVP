@@ -33,12 +33,12 @@ namespace Player
                 return;
             }
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         public void Destroy()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

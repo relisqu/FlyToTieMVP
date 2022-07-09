@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using DG.Tweening;
 using Player;
 using UnityEngine;
@@ -16,12 +17,13 @@ namespace DefaultNamespace.Props
         {
             var position = transform.position;
             var playerPosition = StarterUnit.Instance.transform.position;
-            var step =  Speed* Time.deltaTime;
+            var step = Speed * Time.deltaTime;
             if (Vector2.Distance(playerPosition, position) < TriggerDistance)
             {
-                transform.position = Vector3.MoveTowards(position,playerPosition,step);
+                transform.position = Vector3.MoveTowards(position, playerPosition, step);
             }
         }
+
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -30,6 +32,18 @@ namespace DefaultNamespace.Props
                 Die();
                 PlayerData.SaveMoney(PlayerData.MoneyCount + 1);
             }
+        }
+
+        private void OnEnable()
+        {
+            StopAllCoroutines();
+            StartCoroutine(DieAfterTime());
+        }
+
+        public IEnumerator DieAfterTime()
+        {
+            yield return new WaitForSeconds(10f);
+            Die();
         }
 
         private bool _isDead;

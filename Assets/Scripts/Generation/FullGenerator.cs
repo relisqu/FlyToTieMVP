@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -26,6 +27,12 @@ namespace DefaultNamespace.Generation
             yield return new WaitForEndOfFrame();
             PropsGenerator.GenerateBoxes();
             PropsGenerator.GenerateEnemies();
+        }
+
+        public static FullGenerator Instance;
+        private void Start()
+        {
+            Instance = this;
         }
     }
 }
