@@ -9,73 +9,73 @@ using UnityEngine.InputSystem;
 
 namespace DefaultNamespace.UI
 {
-    public class Cutscene : MonoBehaviour, IPointerClickHandler
+    public class Cutscene : MonoBehaviour
     {
         public static bool IsPlayingCutscene;
-        [SerializeField] private List<CanvasGroup> DisabledUIScenes;
-        [SerializeField] private List<CanvasGroup> EnabledUIScenes;
-        [SerializeField] private PlayerMovement PlayerMovement;
+        public static bool LockedPlayerInputMovement;
+        [SerializeField] public List<CanvasGroup> DisabledUIScenes;
+        [SerializeField] public List<CanvasGroup> EnabledUIScenes;
+        [SerializeField] protected PlayerMovement PlayerMovement;
 
         public void PlayCutscene()
         {
             gameObject.SetActive(true);
+            StartCoroutine(EnableScenes(DisabledUIScenes));
+            StartCoroutine(DisableScenes(EnabledUIScenes));
+            AdditionalCutsceneStart();
             if (IsPlayingCutscene) return;
             IsPlayingCutscene = true;
-            PlayerMovement.DisableMovement();
             
         }
 
-        public void StopCutscene()
+        public virtual void AdditionalCutsceneStart()
         {
             
+            PlayerMovement.DisableMovement();
+            PlayerFollow.Instance.ResetPosition();
+        }
+        public virtual void AdditionalCutsceneStop()
+        {
             PlayerMovement.EnableMovement();
             PlayerMovement.Jump();
             FullGenerator.Instance.GenerateLevel();
+        }
+        public void StopCutscene()
+        {
+            AdditionalCutsceneStop();
             IsPlayingCutscene = false;
-            StartCoroutine(DisableScenes());
+            StartCoroutine(EnableScenes(EnabledUIScenes));
+            StartCoroutine(DisableScenes(DisabledUIScenes));
+            gameObject.SetActive(false);
         }
 
-        public IEnumerator DisableScenes()
+        public IEnumerator DisableScenes( List<CanvasGroup> scenes)
         {
-            yield return EnableScenes();
             var delay = 0.06f;
-            foreach (var scene in DisabledUIScenes)
+            foreach (var scene in scenes)
             {
                 scene.DOFade(0f, delay).OnComplete(() => { scene.gameObject.SetActive(false); });
+                print("FF");
             }
             yield return new WaitForSeconds(delay);
-            gameObject.SetActive(false);
 
         }
 
-        public IEnumerator EnableScenes()
+        public IEnumerator EnableScenes(List<CanvasGroup> scenes)
         {
             var delay = 0.2f;
             
-            foreach (var scene in EnabledUIScenes)
+            foreach (var scene in scenes)
             {
                 scene.gameObject.SetActive(true);
                 scene.DOFade(1f, delay).OnComplete(() => {  });
             }
-            yield return new WaitForSeconds(delay/2);
+            yield return new WaitForSeconds(delay);
             
         }
 
-        private void Start()
-        {
-            PlayCutscene();
-        }
+      
 
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            switch (IsPlayingCutscene)
-            {
-                case false:
-                    return;
-                case true:
-                    StopCutscene();
-                    break;
-            }
-        }
+    
     }
 }

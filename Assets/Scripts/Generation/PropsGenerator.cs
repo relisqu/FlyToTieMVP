@@ -77,7 +77,7 @@ namespace DefaultNamespace.Generation
         {
             var obj = poolList[Random.Range(0, poolList.Length)];
             int number = 0;
-            while (!obj.gameObject.activeInHierarchy && number<100)
+            while (obj.gameObject.activeInHierarchy && number<100)
             {
                 number++;
                 obj = poolList[Random.Range(0, poolList.Length)];
@@ -170,7 +170,7 @@ namespace DefaultNamespace.Generation
         {
             var level = PlayerData.СurrentLevel;
             var unit = _unitPool[Random.Range(0, _unitPool.Length)];
-            while (unit.SpawnsFromLevel > level && unit.gameObject.activeInHierarchy
+            while (unit.SpawnsFromLevel > level || unit.gameObject.activeInHierarchy
             )
             {
                 unit = _unitPool[Random.Range(0, _unitPool.Length)];

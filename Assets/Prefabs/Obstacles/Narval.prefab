@@ -252,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UsesAnimation: 1
   Animator: {fileID: 9216601613599923503}
+  DeathSoundTag: enemy_kill
 --- !u!114 &9216601613599923497
 MonoBehaviour:
   m_ObjectHideFlags: 0

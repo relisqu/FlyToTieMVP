@@ -31,6 +31,7 @@ namespace DefaultNamespace.Props
             {
                 Die();
                 PlayerData.SaveMoney(PlayerData.MoneyCount + 1);
+                AudioManager.instance.Play("coin");
             }
         }
 

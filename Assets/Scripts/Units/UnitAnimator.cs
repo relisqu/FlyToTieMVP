@@ -23,7 +23,12 @@ namespace Units
         public void DestroyObject()
         {
             print("Destroyed: "+gameObject);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+        }
+
+        public void SetTag(string idle)
+        {
+            Animator.SetTrigger(idle);
         }
     }
 }

@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(Cutscene.IsPlayingCutscene) return;
+        if (Cutscene.IsPlayingCutscene || Cutscene.LockedPlayerInputMovement) return;
         _buttonReleased = context.canceled;
         if (!context.performed) return;
         Rigidbody.velocity *= Vector2.right;
@@ -51,16 +51,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        Rigidbody.velocity *= Vector2.right;
-        Jumped?.Invoke();
+        //Rigidbody.velocity *= Vector2.right;
+        //Jumped?.Invoke();
         Rigidbody.AddForce(JumpAcceleration.normalized * Force, ForceMode2D.Impulse);
+        SetSpeed(MaintainedSpeed);
     }
 
     public void DisableMovement()
     {
         Rigidbody.gravityScale = 0;
+        Rigidbody.velocity = Vector2.zero;
         SetSpeed(0f);
     }
+
     public void EnableMovement()
     {
         Rigidbody.gravityScale = 1;
@@ -79,10 +82,23 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private float _currentVelocity;
+
     private void SetSpeed(float newSpeed)
     {
         _currentVelocity = newSpeed;
         var verticalVelocity = Rigidbody.velocity.y;
         Rigidbody.velocity = new Vector2(_currentVelocity, verticalVelocity);
+    }
+
+    private Vector3 defaultPosition;
+
+    public void ResetPosition()
+    {
+        transform.position = defaultPosition;
+    }
+
+    private void Start()
+    {
+        defaultPosition = transform.position;
     }
 }

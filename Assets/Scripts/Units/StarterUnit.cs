@@ -1,4 +1,6 @@
 using System;
+using DefaultNamespace;
+using DefaultNamespace.UI;
 using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +10,7 @@ public class StarterUnit : Unit
     private static bool _isInvincible;
 
     [SerializeField] private ObstacleDamageable Damageable;
+    [SerializeField] private Cutscene StartScene;
 
     protected override void OnObstacleCollision(Obstacle obstacle)
     {
@@ -20,10 +23,22 @@ public class StarterUnit : Unit
         base.OnObstacleCollision(obstacle);
     }
 
+    protected override void OnEnable()
+    {
+    }
+
+    public void RemoveAllChildren()
+    {
+        while (GetBelowUnit() != null)
+        {
+            Unit.BottomUnit.DestroyBottomUnit();
+        }
+    }
 
     public void Die()
     {
-        SceneManager.LoadScene("SampleScene");
+        StartScene.PlayCutscene();
+       // Animator.SetTag("Idle");
     }
 
     public override void OnJump()
@@ -40,7 +55,7 @@ public class StarterUnit : Unit
     {
         return _isInvincible;
     }
-
+        
     private void Awake()
     {
         Instance = this;

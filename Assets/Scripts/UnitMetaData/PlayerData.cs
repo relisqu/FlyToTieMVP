@@ -32,8 +32,8 @@ namespace Player
         {
             MoneyCount = PlayerPrefs.GetInt("Money", 0);
             СurrentLevel = PlayerPrefs.GetInt("Level", 1);
-            СurrentLevel++;
-            SaveLevel(СurrentLevel);
+           // СurrentLevel++;
+           // SaveLevel(СurrentLevel);
         }
 
         private void Awake()

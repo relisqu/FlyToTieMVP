@@ -12,18 +12,19 @@ public abstract class Unit : MonoBehaviour
 
     public static Action OnDamageTaken;
     [SerializeField] public int SpawnsFromLevel;
+
     [FormerlySerializedAs("collider")] [SerializeField]
     private Collider2D Collider;
 
     [FormerlySerializedAs("offsetOnAttachment")] [SerializeField]
     private Vector3 OffsetOnAttachment;
 
-    [SerializeField] protected UnitAnimator Animator;
+    [SerializeField] public UnitAnimator Animator;
 
     private Unit _aboveUnit;
     private Unit _belowUnit;
 
-    public UnitState UnitState { get; private set; }
+    public UnitState UnitState { get; protected set; }
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
     {
@@ -76,9 +77,15 @@ public abstract class Unit : MonoBehaviour
         _aboveUnit = BottomUnit;
         _aboveUnit.SetBelowUnit(this);
         BottomUnit = this;
-        PlayerMovement.Jumped += OnJump;
-        PlayerMovement.Jumped += AnimateJump;
+        PlayerMovement.Jumped += BottomUnit.OnJump;
+        PlayerMovement.Jumped += BottomUnit.AnimateJump;
         BottomUnit.UnitState = UnitState.Attached;
+        BottomUnit.Animator.SetTag("Idle");
+    }
+
+    protected virtual void OnEnable()
+    {
+        UnitState = UnitState.Unattached;
     }
 
     protected virtual void OnObstacleCollision(Obstacle obstacle)
@@ -92,17 +99,30 @@ public abstract class Unit : MonoBehaviour
         Animator.TakeDamage();
     }
 
-    private void DamageSelf()
+    public void DamageSelf()
     {
         if (StarterUnit.IsInvincible()) return;
         print("Took damage: " + name);
         print("Damaged: " + BottomUnit.name);
         OnDamageTaken?.Invoke();
+        DestroyBottomUnit();
+    }
+
+    public void DestroyBottomUnit()
+    {
+        PlayerMovement.Jumped -= BottomUnit.OnJump;
+        PlayerMovement.Jumped -= BottomUnit.AnimateJump;
         BottomUnit.Collider.enabled = false;
         BottomUnit.transform.SetParent(null, true);
         BottomUnit.UnitState = UnitState.Dropped;
         BottomUnit.TakeDamage();
+        BottomUnit.transform.parent = null;
         BottomUnit = BottomUnit._aboveUnit;
+        BottomUnit.SetBelowUnit(null);
+    }
+
+    private void OnDisable()
+    {
         PlayerMovement.Jumped -= OnJump;
         PlayerMovement.Jumped -= AnimateJump;
     }

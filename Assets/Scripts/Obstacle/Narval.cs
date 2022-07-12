@@ -35,11 +35,12 @@ namespace Scripts.Obstacle
             CoinGenerator.GenerateMoney(moneyCount, transform);
         }
 
+
         private bool _isAlive;
 
-        private void Start()
+        private void OnEnable()
         {
-            _isAlive = true;
+            _isAlive = false;
             _goalTransform = StarterUnit.Instance.transform;
         }
 

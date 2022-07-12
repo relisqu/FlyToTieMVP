@@ -26,7 +26,7 @@ namespace DefaultNamespace.UI
             return PlayerData.СurrentLevel / 4 * 4 + Offset;
         }
 
-        private void Start()
+        private void OnEnable()
         {
             UpdateSprite();
         }
