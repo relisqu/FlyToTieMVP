@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         if (Cutscene.IsPlayingCutscene || Cutscene.LockedPlayerInputMovement) return;
         _buttonReleased = context.canceled;
         if (!context.performed) return;
+        AudioManager.instance.Play("fly");
         Rigidbody.velocity *= Vector2.right;
         Jumped?.Invoke();
         Rigidbody.AddForce(JumpAcceleration.normalized * Force, ForceMode2D.Impulse);
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         _currentVelocity = newSpeed;
         var verticalVelocity = Rigidbody.velocity.y;
         Rigidbody.velocity = new Vector2(_currentVelocity, verticalVelocity);
+        
     }
 
     private Vector3 defaultPosition;

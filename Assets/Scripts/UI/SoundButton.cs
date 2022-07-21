@@ -16,7 +16,7 @@ namespace DefaultNamespace.UI
 
         private void Start()
         {
-            _isEnabled = PlayerPrefs.GetInt(Tag, 0) == 1;
+            _isEnabled = PlayerPrefs.GetInt(Tag, 1) == 1;
             Alpha.DOFade(_isEnabled ? 1f : 0.5f, 0.2f);
             foreach (var sound in Sounds)
             {

@@ -15,7 +15,9 @@ namespace DefaultNamespace.UI
 
         public IEnumerator GenerateText()
         {
+            CoinText.SetText("");
             var money = CoinPerUnitAmount;
+            var fullMoney = money;
             Unit unit = StarterUnit.Instance;
             CoinText.text += "+" + money + " <sprite=2> \n\n";
             unit = unit.GetBelowUnit();
@@ -23,12 +25,13 @@ namespace DefaultNamespace.UI
             {
                 yield return new WaitForSeconds(0.5f);
                 money += CoinPerUnitAmount;
+                fullMoney += money;
                 CoinText.text += "+" + money + " <sprite=2> \n\n";
                 unit = unit.GetBelowUnit();
             }
 
             yield return new WaitForSeconds(1f);
-            PlayerData.SaveMoney(PlayerData.MoneyCount + money);
+            PlayerData.SaveMoney(PlayerData.MoneyCount + fullMoney);
             AudioManager.instance.Play("coin");
             EndCutscene.DestroyMoneyText();
         }

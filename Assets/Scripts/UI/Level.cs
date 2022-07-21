@@ -23,7 +23,9 @@ namespace DefaultNamespace.UI
 
         int GetNumber()
         {
-            return PlayerData.СurrentLevel / 4 * 4 + Offset;
+            var number = (PlayerData.СurrentLevel - 1) / 4 * 4 + Offset;
+
+            return Mathf.Clamp(number, 0, number);
         }
 
         private void OnEnable()
@@ -34,7 +36,7 @@ namespace DefaultNamespace.UI
         public void UpdateSprite()
         {
             var level = GetNumber();
-            transform.localScale =Vector3.one;
+            transform.localScale = Vector3.one;
 
             var playerLevel = PlayerData.СurrentLevel;
             Text.SetText((level).ToString());
@@ -51,7 +53,7 @@ namespace DefaultNamespace.UI
                 Text.color = CurrentLevelTextColor;
                 LevelSpriteRenderer.sprite = CurrentLevelSprite;
                 BridgeSpriteRenderer.sprite = NotCompletedBridgeSprite;
-                transform.localScale =Vector3.one*1.23f;
+                transform.localScale = Vector3.one * 1.23f;
                 return;
             }
 

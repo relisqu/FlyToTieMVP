@@ -56,6 +56,8 @@ public class LaserProjectile : Projectile
         LaserBody.widthMultiplier = 0.01f;
         var laserTween = DOTween.To(() => LaserBody.widthMultiplier, x => LaserBody.widthMultiplier = x, 1,
             LaserLife / 5);
+        
+        AudioManager.instance.Play("laser_shot");
         yield return new WaitForSeconds(LaserLife * 3 / 5);
         laserTween.PlayBackwards();
 
@@ -87,6 +89,11 @@ public class LaserProjectile : Projectile
     private void Update()
     {
         if (_isEnabled) DrawLaser();
+    }
+
+    private void OnEnable()
+    {
+        DestroyProjectile();
     }
 
     private bool _isEnabled;

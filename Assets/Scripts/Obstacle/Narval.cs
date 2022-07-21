@@ -40,7 +40,7 @@ namespace Scripts.Obstacle
 
         private void OnEnable()
         {
-            _isAlive = false;
+            _isAwake = false;
             _goalTransform = StarterUnit.Instance.transform;
         }
 

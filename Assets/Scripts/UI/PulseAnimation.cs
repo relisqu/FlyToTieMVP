@@ -6,10 +6,12 @@ namespace DefaultNamespace.UI
 {
     public class PulseAnimation : MonoBehaviour
     {
+        [SerializeField]private float Speed=0.4f;
+        [SerializeField]private float Force=0.7f;
         private void Start()
         {
 
-            transform.DOScale(0.7f, 0.4f).SetLoops(-1, LoopType.Yoyo);
+            transform.DOScale(Force, Speed).SetLoops(-1, LoopType.Yoyo);
         }
     }
 }

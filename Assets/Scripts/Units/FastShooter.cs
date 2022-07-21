@@ -19,6 +19,7 @@ namespace Units
             _isShooting = true;
             for (int i = 0; i < n; i++)
             {
+                AudioManager.instance.Play("fast_shot");
                 var bullet=BulletPool.GetBulletFromPool();
                 bullet.gameObject.SetActive(true);
                 bullet.transform.position=transform.position;

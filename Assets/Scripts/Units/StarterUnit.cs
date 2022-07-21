@@ -17,6 +17,7 @@ public class StarterUnit : Unit
         if (BottomUnit == this && !IsInvincible())
         {
             Animator.TakeDamage();
+            AudioManager.instance.Play("full_death");
             return;
         }
 

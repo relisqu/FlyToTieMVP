@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 namespace DefaultNamespace.UI
@@ -10,6 +12,7 @@ namespace DefaultNamespace.UI
         [SerializeField] private float TransformYPosition;
 
         [SerializeField] private StartCutscene StartCutscene;
+        [SerializeField] public List<CanvasGroup> GiftScenes;
 
         public override void AdditionalCutsceneStart()
         {
@@ -39,17 +42,48 @@ namespace DefaultNamespace.UI
 
         public IEnumerator RemoveMoneyText()
         {
-            yield return StartCoroutine(StartCutscene.DisableScenes(StartCutscene.DisabledUIScenes));
+            // yield return StartCoroutine(StartCutscene.DisableScenes(StartCutscene.DisabledUIScenes));
             yield return DisableScenes(DisabledUIScenes);
-            print("FFFFFFFFFFFFFFFF");
+
+            if ((PlayerData.СurrentLevel-1) % 4 == 0)
+            {
+                
+                yield return StartCoroutine(EnableScenes(GiftScenes));
+            }
+            else
+            {
+                yield return StartCoroutine(FinishScene());
+            }
+        }
+
+        IEnumerator FinishScene()
+        {
+            yield return DisableScenes(GiftScenes);
             PlayerFollow.Instance.StopFollowing();
             yield return new WaitForSeconds(4f);
             StarterUnit.Instance.RemoveAllChildren();
             IsPlayingEndCutscene = false;
             LockedPlayerInputMovement = false;
-            StartCutscene.PlayCutscene();
+            FinishedScene?.Invoke();
             gameObject.SetActive(false);
         }
+
+        public static  Action FinishedScene;
+        private void Start()
+        {
+            Gift.OpenedGift += FinishCutscene;
+        }
+
+        private void OnDestroy()
+        {
+            Gift.OpenedGift -= FinishCutscene;
+        }
+
+        public void FinishCutscene()
+        {
+            StartCoroutine(FinishScene());
+        }
+
 
         public IEnumerator Jump()
         {

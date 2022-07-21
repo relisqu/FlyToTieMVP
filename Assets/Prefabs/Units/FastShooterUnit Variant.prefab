@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: Shooter
       value: 
       objectReference: {fileID: 1652451882418277375}
+    - target: {fileID: 2589810744125954449, guid: cba789d1137fe9144bc8b4fffeec4aa7, type: 3}
+      propertyPath: SpawnsFromLevel
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6111918681269188842, guid: cba789d1137fe9144bc8b4fffeec4aa7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -84,5 +88,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Projectile: {fileID: 2461716164256135555, guid: 7be90d8a4cc53714c8f0a84f7b8827e2, type: 3}
-  ProjectileCount: 2
+  ProjectileCount: 1
   Delay: 0.1

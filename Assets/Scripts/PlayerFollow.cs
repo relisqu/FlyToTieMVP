@@ -1,6 +1,5 @@
 ﻿using System;
 using MoreMountains.Feedbacks;
-using Sirenix.Utilities.Editor;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -9,17 +8,18 @@ namespace DefaultNamespace
     {
         [SerializeField] private PlayerMovement Player;
         [SerializeField] private float FollowSpeed;
+        [SerializeField] private Rigidbody2D Rigidbody2D;
 
 
         private void LateUpdate()
         {
+            if (!_requiredToFollow) return;
             var playerXPosition = Player.transform.position.x;
             var position = transform.position;
-            if (_requiredToFollow && playerXPosition > position.x)
+            if (playerXPosition > position.x)
             {
-                position = Vector3.Lerp(position, new Vector3(playerXPosition, position.y, 0f),
-                    FollowSpeed);
-                transform.position = position;
+                Rigidbody2D.position = Vector3.Lerp(position, new Vector3(playerXPosition, position.y, 0f),
+                    FollowSpeed * Time.deltaTime);
             }
         }
 
@@ -27,7 +27,7 @@ namespace DefaultNamespace
         {
             Player.ResetPosition();
             var playerXPosition = Player.transform.position.x;
-            transform.position = new Vector3(playerXPosition, transform.position.y, 0f);
+            Rigidbody2D.position = new Vector3(playerXPosition, transform.position.y, 0f);
         }
 
         public void StopFollowing()
@@ -40,7 +40,8 @@ namespace DefaultNamespace
             _requiredToFollow = true;
         }
 
-        private bool _requiredToFollow=true;
+        private bool _requiredToFollow = true;
+
         private void Awake()
         {
             Instance = this;

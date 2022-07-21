@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.UI;
 using DG.Tweening;
 using Units;
 using UnityEngine;
@@ -73,12 +74,13 @@ public abstract class Unit : MonoBehaviour
 
         transform.SetParent(BottomUnit.transform, true);
         transform.position = BottomUnit.transform.position + OffsetOnAttachment;
+        PlayerMovement.Jumped += OnJump;
+        PlayerMovement.Jumped += AnimateJump;
         DOTween.Kill(transform);
         _aboveUnit = BottomUnit;
+        AudioManager.instance.Play("new_unit");
         _aboveUnit.SetBelowUnit(this);
         BottomUnit = this;
-        PlayerMovement.Jumped += BottomUnit.OnJump;
-        PlayerMovement.Jumped += BottomUnit.AnimateJump;
         BottomUnit.UnitState = UnitState.Attached;
         BottomUnit.Animator.SetTag("Idle");
     }
@@ -101,7 +103,7 @@ public abstract class Unit : MonoBehaviour
 
     public void DamageSelf()
     {
-        if (StarterUnit.IsInvincible()) return;
+        if (StarterUnit.IsInvincible() || Cutscene.IsPlayingCutscene) return;
         print("Took damage: " + name);
         print("Damaged: " + BottomUnit.name);
         OnDamageTaken?.Invoke();
@@ -112,6 +114,7 @@ public abstract class Unit : MonoBehaviour
     {
         PlayerMovement.Jumped -= BottomUnit.OnJump;
         PlayerMovement.Jumped -= BottomUnit.AnimateJump;
+        AudioManager.instance.Play("unit_lost");
         BottomUnit.Collider.enabled = false;
         BottomUnit.transform.SetParent(null, true);
         BottomUnit.UnitState = UnitState.Dropped;

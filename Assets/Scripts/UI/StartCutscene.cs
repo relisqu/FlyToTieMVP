@@ -9,7 +9,13 @@ namespace DefaultNamespace.UI
         private void OnEnable()
         {
             PlayCutscene();
+            IsPlayingCutscene = true;
             PlayerFollow.Instance.Follow();
+        }
+
+        private void Awake()
+        {
+            EndCutscene.FinishedScene+=PlayCutscene;
         }
 
         public void OnPointerClick(PointerEventData eventData)
