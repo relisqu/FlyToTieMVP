@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Projectile: {fileID: 8806555639359994804, guid: 6b94daf685255378f811176ed30b453b, type: 3}
-  delay: 0
 --- !u!1001 &2399186538939953541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,6 +63,18 @@ PrefabInstance:
     - target: {fileID: 5873617965627962470, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_Name
       value: ShooterUnit Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6196472439847660615, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1962844458, guid: 511c199ee6fb58a468440d7ef2bc54f3, type: 3}
+    - target: {fileID: 7331579639844584146, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.3125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331579639844584146, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.5625
       objectReference: {fileID: 0}
     - target: {fileID: 8474220728230971759, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_RootOrder

@@ -38,7 +38,6 @@ namespace DefaultNamespace.UI
         {
             PlayerMovement.EnableMovement();
             PlayerMovement.Jump();
-            FullGenerator.Instance.GenerateLevel();
         }
         public void StopCutscene()
         {

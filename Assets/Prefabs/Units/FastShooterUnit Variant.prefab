@@ -19,6 +19,14 @@ PrefabInstance:
       propertyPath: SpawnsFromLevel
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4968771818036267863, guid: cba789d1137fe9144bc8b4fffeec4aa7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.3125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968771818036267863, guid: cba789d1137fe9144bc8b4fffeec4aa7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.5625
+      objectReference: {fileID: 0}
     - target: {fileID: 6111918681269188842, guid: cba789d1137fe9144bc8b4fffeec4aa7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -67,6 +75,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FastShooterUnit Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8409862799248072130, guid: cba789d1137fe9144bc8b4fffeec4aa7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1962844458, guid: 511c199ee6fb58a468440d7ef2bc54f3, type: 3}
     m_RemovedComponents:
     - {fileID: 4732564008144924687, guid: cba789d1137fe9144bc8b4fffeec4aa7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cba789d1137fe9144bc8b4fffeec4aa7, type: 3}
