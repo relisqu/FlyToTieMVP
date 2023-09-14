@@ -33,6 +33,11 @@ namespace DefaultNamespace.UI
             UpdateSprite();
         }
 
+        public void Start()
+        {
+            UpdateSprite();
+        }
+
         public void UpdateSprite()
         {
             var level = GetNumber();

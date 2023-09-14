@@ -8,10 +8,9 @@ namespace DefaultNamespace.UI
 {
     public class EndCutscene : Cutscene
     {
+        public static Action OnGameplayFinish;
         public static bool IsPlayingEndCutscene;
         [SerializeField] private float TransformYPosition;
-
-        [SerializeField] private StartCutscene StartCutscene;
         [SerializeField] public List<CanvasGroup> GiftScenes;
 
         public override void AdditionalCutsceneStart()
@@ -45,9 +44,8 @@ namespace DefaultNamespace.UI
             // yield return StartCoroutine(StartCutscene.DisableScenes(StartCutscene.DisabledUIScenes));
             yield return DisableScenes(DisabledUIScenes);
 
-            if ((PlayerData.СurrentLevel-1) % 4 == 0)
+            if ((PlayerData.СurrentLevel - 1) % 4 == 0)
             {
-                
                 yield return StartCoroutine(EnableScenes(GiftScenes));
             }
             else
@@ -65,10 +63,13 @@ namespace DefaultNamespace.UI
             IsPlayingEndCutscene = false;
             LockedPlayerInputMovement = false;
             FinishedScene?.Invoke();
+            OnGameplayFinish?.Invoke();
+
             gameObject.SetActive(false);
         }
 
-        public static  Action FinishedScene;
+        public static Action FinishedScene;
+
         private void Start()
         {
             Gift.OpenedGift += FinishCutscene;

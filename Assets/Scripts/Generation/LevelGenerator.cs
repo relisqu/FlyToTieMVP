@@ -4,6 +4,7 @@ using System.Linq;
 using DefaultNamespace.Obstacle;
 using Player;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities.Editor;
 using Subtegral.WeightedRandom;
 using Unity.Mathematics;
 using UnityEngine;
@@ -18,12 +19,21 @@ namespace DefaultNamespace.Generation
         [BoxGroup("Level constrains")] [SerializeField]
         private float LevelWidth;
 
+
         [BoxGroup("Level constrains")] [SerializeField]
         private int MinSpaceBetweenUnitChunks;
 
         [SerializeField] private LevelCollection levels;
 
         private float _minSize = 5;
+
+        public static LevelGenerator Instance;
+        [SerializeField] private Transform LevelEnd;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         public Level GetLevel()
         {
@@ -64,11 +74,11 @@ namespace DefaultNamespace.Generation
             while (currentWidth <= LevelWidth)
             {
                 var chunk = random.Next();
-                if(chunk == chunksToGenerate.LastOrDefault()) continue;
+                if (chunk == chunksToGenerate.LastOrDefault()) continue;
                 ind++;
                 if (chunk.HasUnits)
                 {
-                    if (ind- indWithUnit  > MinSpaceBetweenUnitChunks)
+                    if (ind - indWithUnit > MinSpaceBetweenUnitChunks)
                     {
                         chunksToGenerate.Add(chunk);
                         indWithUnit = ind;
@@ -93,25 +103,22 @@ namespace DefaultNamespace.Generation
         [Button]
         public void SpawnLevel()
         {
-            int children = transform.childCount;
-            for (int i = children; i > 0; --i)
-#if UNITY_EDITOR
-                DestroyImmediate(this.transform.GetChild(0).gameObject);
-#else
-                Destroy(this.transform.GetChild(0).gameObject);
-
-#endif
-            
-
+            foreach (Transform child in transform) {
+                Destroy(child.gameObject);
+            }
             var chunks = GenerateLevelChunks();
             var curWidth = 0f;
+            var finalXPos = 0f;
             foreach (var chunk in chunks)
             {
                 curWidth += chunk.Width / 2;
-                Instantiate(chunk, Vector3.right * curWidth, Quaternion.identity,
-                    transform);
+                var chunkObj = Instantiate(chunk, transform);
+                chunkObj.transform.localPosition = Vector3.right * curWidth;
                 curWidth += chunk.Width / 2;
+                finalXPos = chunkObj.transform.position.x + chunk.Width / 2;
             }
+
+            LevelEnd.transform.position = Vector3.right * finalXPos;
         }
     }
 }

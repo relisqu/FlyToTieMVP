@@ -17,12 +17,21 @@ namespace DefaultNamespace.UI
         [SerializeField] public List<CanvasGroup> EnabledUIScenes;
         [SerializeField] protected PlayerMovement PlayerMovement;
 
+        private void Start()
+        {
+            if (PlayerMovement == null)
+            {
+                PlayerMovement = FindObjectOfType<PlayerMovement>();
+            }
+        }
+
         public void PlayCutscene()
         {
             gameObject.SetActive(true);
             StartCoroutine(EnableScenes(DisabledUIScenes));
             StartCoroutine(DisableScenes(EnabledUIScenes));
             AdditionalCutsceneStart();
+            
             if (IsPlayingCutscene) return;
             IsPlayingCutscene = true;
             

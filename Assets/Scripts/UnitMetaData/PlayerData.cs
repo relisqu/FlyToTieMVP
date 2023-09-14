@@ -7,7 +7,7 @@ namespace Player
     public class PlayerData : MonoBehaviour
     {
         public static int MoneyCount = 0;
-        public static int СurrentLevel = 3;
+        public static int СurrentLevel = 1;
         public static float СurrentBulletProjectileSpeed = 30;
         public static int СurrentBulletProjectileAmount = 2;
         
@@ -32,8 +32,6 @@ namespace Player
         {
             MoneyCount = PlayerPrefs.GetInt("Money", 0);
             СurrentLevel = PlayerPrefs.GetInt("Level", 1);
-           // СurrentLevel++;
-           // SaveLevel(СurrentLevel);
         }
 
         private void Awake()

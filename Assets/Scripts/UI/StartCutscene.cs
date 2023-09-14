@@ -1,4 +1,5 @@
 ﻿using System;
+using DefaultNamespace.Generation;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,9 +7,11 @@ namespace DefaultNamespace.UI
 {
     public class StartCutscene : Cutscene, IPointerClickHandler
     {
+        public static Action OnGameplayStart;
         private void OnEnable()
         {
             PlayCutscene();
+            LevelGenerator.Instance.SpawnLevel();
             IsPlayingCutscene = true;
             PlayerFollow.Instance.Follow();
         }
@@ -28,6 +31,7 @@ namespace DefaultNamespace.UI
                     StopCutscene();
                     break;
             }
+            OnGameplayStart?.Invoke();
         }
         
     }

@@ -17,7 +17,7 @@ public class StarterUnit : Unit
         if (BottomUnit == this && !IsInvincible())
         {
             Animator.TakeDamage();
-            CameraShake.ShakeCamera(0.3f,20f);
+            CameraShake.ShakeCamera(0.3f, 20f);
             AudioManager.instance.Play("full_death");
             return;
         }
@@ -39,8 +39,9 @@ public class StarterUnit : Unit
 
     public void Die()
     {
+        EndCutscene.OnGameplayFinish?.Invoke();
         StartScene.PlayCutscene();
-       // Animator.SetTag("Idle");
+        // Animator.SetTag("Idle");
     }
 
     public override void OnJump()
@@ -57,7 +58,7 @@ public class StarterUnit : Unit
     {
         return _isInvincible;
     }
-        
+
     private void Awake()
     {
         Instance = this;

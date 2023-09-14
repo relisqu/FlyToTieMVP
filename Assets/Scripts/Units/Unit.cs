@@ -135,6 +135,11 @@ public abstract class Unit : MonoBehaviour
         _belowUnit = unit;
     }
 
+    void OnBecameInvisible()
+    {
+        if (UnitState == UnitState.Dropped)
+            Destroy(gameObject);
+    }
 
     private void OnUnitCollision(Unit unit)
     {
