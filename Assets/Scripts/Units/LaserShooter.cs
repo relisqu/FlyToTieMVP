@@ -9,7 +9,6 @@ namespace Units
 
         public override void Shoot()
         {
-
             if (_laser == null)
             {
                 _laser = Instantiate(Projectile, transform);
@@ -20,7 +19,7 @@ namespace Units
 
         public override void StopShooting()
         {
-            _laser.DestroyProjectile();
+            // _laser.DestroyProjectile();
         }
     }
 }
