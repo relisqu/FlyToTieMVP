@@ -12,7 +12,7 @@ public abstract class Unit : MonoBehaviour
     protected static Unit BottomUnit;
 
     public static Action OnDamageTaken;
-    [SerializeField] public int SpawnsFromLevel;
+    public Action OnCurrentUnitDamageTaken;
 
     [FormerlySerializedAs("collider")] [SerializeField]
     private Collider2D Collider;
@@ -98,6 +98,7 @@ public abstract class Unit : MonoBehaviour
 
     public void TakeDamage()
     {
+        OnCurrentUnitDamageTaken?.Invoke();
         Animator.TakeDamage();
     }
 

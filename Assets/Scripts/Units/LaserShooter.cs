@@ -19,7 +19,7 @@ namespace Units
 
         public override void StopShooting()
         {
-            // _laser.DestroyProjectile();
+             _laser.DestroyProjectile();
         }
     }
 }

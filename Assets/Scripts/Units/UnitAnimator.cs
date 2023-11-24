@@ -38,5 +38,10 @@ namespace Units
         {
             Animator.SetTrigger(idle);
         }
+
+        public void SetAlive(bool b)
+        {
+            _isDead = !b;
+        }
     }
 }

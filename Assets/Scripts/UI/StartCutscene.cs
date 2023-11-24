@@ -12,6 +12,7 @@ namespace DefaultNamespace.UI
         {
             PlayCutscene();
             LevelGenerator.Instance.SpawnLevel();
+            StarterUnit.Instance.SetAlive();
             IsPlayingCutscene = true;
             PlayerFollow.Instance.Follow();
         }

@@ -25,6 +25,11 @@ public class StarterUnit : Unit
         base.OnObstacleCollision(obstacle);
     }
 
+    public void SetAlive()
+    {
+        Animator.SetAlive(true);
+    }
+
     protected override void OnEnable()
     {
     }
@@ -35,6 +40,7 @@ public class StarterUnit : Unit
         {
             Unit.BottomUnit.DestroyBottomUnit();
         }
+
     }
 
     public void Die()
