@@ -18479,6 +18479,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 364672332575561001, guid: e54ded920a2cc1259b40d8c95145d337, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9784498
+      objectReference: {fileID: 0}
+    - target: {fileID: 364672332575561001, guid: e54ded920a2cc1259b40d8c95145d337, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8196398
+      objectReference: {fileID: 0}
+    - target: {fileID: 364672332575561001, guid: e54ded920a2cc1259b40d8c95145d337, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.045256615
+      objectReference: {fileID: 0}
+    - target: {fileID: 364672332575561001, guid: e54ded920a2cc1259b40d8c95145d337, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.23953968
+      objectReference: {fileID: 0}
+    - target: {fileID: 364672332575561001, guid: e54ded920a2cc1259b40d8c95145d337, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 1.0639455
       objectReference: {fileID: 0}
@@ -18674,7 +18690,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.79, y: 0.32, z: -10.004886}
+  m_LocalPosition: {x: 11.25875, y: 0.32, z: -10.004886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20202,7 +20218,7 @@ Transform:
   m_GameObject: {fileID: 975113470}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.79, y: 0.32, z: -10.004886}
+  m_LocalPosition: {x: 11.25875, y: 0.32, z: -10.004886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22730,7 +22746,7 @@ GameObject:
   - component: {fileID: 1665784445}
   - component: {fileID: 1665784447}
   - component: {fileID: 1665784446}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}

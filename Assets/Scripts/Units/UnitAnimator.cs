@@ -11,9 +11,9 @@ namespace Units
         private static readonly int Damage = Animator.StringToHash("TakeDamage");
         private bool _isDead;
 
-        public void Jump()
+        public void Jump(string JumpTag = "Jump")
         {
-            if (!_isDead) Animator.SetTrigger(Jump1);
+            if (!_isDead) Animator.SetTrigger(JumpTag);
         }
 
         public void TakeDamage()

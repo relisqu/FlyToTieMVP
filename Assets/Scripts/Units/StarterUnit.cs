@@ -52,7 +52,20 @@ public class StarterUnit : Unit
 
     public override void OnJump()
     {
-        if (Animator != null) Animator.Jump();
+        if (Animator != null)
+        {
+            if (GetBelowUnit() != null)
+            {
+                Debug.Log("DefaultJump");
+                Animator.Jump();
+            }
+            else
+            {
+                Debug.Log("SoloJump");
+                Animator.Jump("SoloJump");
+            }
+
+        }
     }
 
     public static void SetInvincible(bool value)
