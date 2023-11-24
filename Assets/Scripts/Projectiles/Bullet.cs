@@ -8,6 +8,12 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float MaxLifetime;
     [SerializeField] public bool IsDestructible;
     [SerializeField] private LifeAnimator Animator;
+    private Camera _camera;
+
+    private void Start()
+    {
+        _camera = Camera.main;
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -28,6 +34,15 @@ public class Bullet : MonoBehaviour
     private void OnEnable()
     {
         if (IsDestructible) StartCoroutine(DieAfterSomeTime());
+    }
+
+    private void Update()
+    {
+        var screenPosition = _camera.ScreenToWorldPoint(new Vector3(Screen.width, 0));
+        if (transform.position.x > screenPosition.x + 0.3f) 
+        {
+            Destroy();
+        }
     }
 
     IEnumerator DieAfterSomeTime()
