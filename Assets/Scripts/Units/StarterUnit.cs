@@ -36,10 +36,10 @@ public class StarterUnit : Unit
 
     public void RemoveAllChildren()
     {
-        while (GetBelowUnit() != null)
-        {
-            Unit.BottomUnit.DestroyBottomUnit();
-        }
+            Destroy(GetBelowUnit().gameObject);
+            BottomUnit = this;
+            
+            SetBelowUnit(null);
 
     }
 

@@ -27,6 +27,9 @@ namespace DefaultNamespace.UI
 
         private void Update()
         {
+            var playerPos = PlayerMovement.transform.position.x;
+            var screenPos = _camera.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
+
             if (_canJump && IsPlayingEndCutscene && PlayerMovement.transform.position.y < TransformYPosition)
             {
                 StartCoroutine(Jump());
@@ -42,11 +45,11 @@ namespace DefaultNamespace.UI
         public IEnumerator RemoveMoneyText()
         {
             // yield return StartCoroutine(StartCutscene.DisableScenes(StartCutscene.DisabledUIScenes));
-            yield return DisableScenes(DisabledUIScenes);
+            DisableScenes(DisabledUIScenes);
 
             if ((PlayerData.СurrentLevel - 1) % 4 == 0)
             {
-                yield return StartCoroutine(EnableScenes(GiftScenes));
+                EnableScenes(GiftScenes);
             }
             else
             {
@@ -56,9 +59,22 @@ namespace DefaultNamespace.UI
 
         IEnumerator FinishScene()
         {
-            yield return DisableScenes(GiftScenes);
+            DisableScenes(GiftScenes);
             PlayerFollow.Instance.StopFollowing();
-            yield return new WaitForSeconds(4f);
+
+            var playerPos = PlayerMovement.transform.position.x;
+            var screenPos = _camera.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
+
+            var distance = screenPos - playerPos;
+            var speed = distance / 2.5f;
+            while (playerPos < screenPos + 0.2f)
+            {
+                PlayerMovement.SetSpeed(speed);
+                playerPos = PlayerMovement.transform.position.x;
+                screenPos = _camera.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
+                yield return null;
+            }
+
             StarterUnit.Instance.RemoveAllChildren();
             IsPlayingEndCutscene = false;
             LockedPlayerInputMovement = false;
@@ -72,6 +88,7 @@ namespace DefaultNamespace.UI
 
         private void Start()
         {
+            _camera = Camera.main;
             Gift.OpenedGift += FinishCutscene;
         }
 
@@ -94,5 +111,6 @@ namespace DefaultNamespace.UI
         }
 
         private bool _canJump = true;
+        private Camera _camera;
     }
 }

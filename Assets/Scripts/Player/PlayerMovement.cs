@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
 
     private MovementState _state;
 
+    private float _speedCoeff = 1f;
+
+
     private void Update()
     {
         if (_state != MovementState.Move || Cutscene.IsPlayingCutscene) return;
@@ -92,14 +95,19 @@ public class PlayerMovement : MonoBehaviour
 
     private float _currentVelocity;
 
-    private void SetSpeed(float newSpeed)
+    public void SetSpeed(float newSpeed)
     {
-        _currentVelocity = newSpeed;
+        _currentVelocity = newSpeed*_speedCoeff;
         var verticalVelocity = Mathf.Clamp(Rigidbody.velocity.y, -MaxVelocity, MaxVelocity);
         Rigidbody.velocity = new Vector2(_currentVelocity, verticalVelocity);
     }
 
     private Vector3 defaultPosition;
+
+    public void SetSpeedCoeff(float coeff)
+    {
+        _speedCoeff = coeff;
+    }
 
     public void ResetPosition()
     {
@@ -110,5 +118,10 @@ public class PlayerMovement : MonoBehaviour
     {
         _state = MovementState.Move;
         defaultPosition = transform.position;
+    }
+
+    public void SetVelocity(float x, float y)
+    {
+        Rigidbody.velocity = new Vector2(x, y);
     }
 }

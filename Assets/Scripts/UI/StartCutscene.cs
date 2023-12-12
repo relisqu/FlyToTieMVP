@@ -29,6 +29,7 @@ namespace DefaultNamespace.UI
                 case false:
                     return;
                 case true:
+                    Debug.Log("Starting");
                     StopCutscene();
                     break;
             }

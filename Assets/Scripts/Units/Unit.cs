@@ -131,7 +131,7 @@ public abstract class Unit : MonoBehaviour
         PlayerMovement.Jumped -= AnimateJump;
     }
 
-    private void SetBelowUnit(Unit unit)
+    protected void SetBelowUnit(Unit unit)
     {
         _belowUnit = unit;
     }

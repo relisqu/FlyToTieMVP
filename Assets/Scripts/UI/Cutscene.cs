@@ -28,8 +28,8 @@ namespace DefaultNamespace.UI
         public void PlayCutscene()
         {
             gameObject.SetActive(true);
-            StartCoroutine(EnableScenes(DisabledUIScenes));
-            StartCoroutine(DisableScenes(EnabledUIScenes));
+            EnableScenes(DisabledUIScenes);
+            DisableScenes(EnabledUIScenes);
             AdditionalCutsceneStart();
             
             if (IsPlayingCutscene) return;
@@ -52,33 +52,29 @@ namespace DefaultNamespace.UI
         {
             AdditionalCutsceneStop();
             IsPlayingCutscene = false;
-            StartCoroutine(EnableScenes(EnabledUIScenes));
-            StartCoroutine(DisableScenes(DisabledUIScenes));
+            EnableScenes(EnabledUIScenes);
+            DisableScenes(DisabledUIScenes);
             gameObject.SetActive(false);
         }
 
-        public IEnumerator DisableScenes( List<CanvasGroup> scenes)
+        public void DisableScenes( List<CanvasGroup> scenes)
         {
             var delay = 0.06f;
             foreach (var scene in scenes)
             {
                 scene.DOFade(0f, delay).OnComplete(() => { scene.gameObject.SetActive(false); });
-                print("FF");
             }
-            yield return new WaitForSeconds(delay);
 
         }
 
-        public IEnumerator EnableScenes(List<CanvasGroup> scenes)
+        public void EnableScenes(List<CanvasGroup> scenes)
         {
-            var delay = 0.2f;
             
             foreach (var scene in scenes)
             {
                 scene.gameObject.SetActive(true);
-                scene.DOFade(1f, delay).OnComplete(() => {  });
+                scene.DOFade(1f, 0.2f).OnComplete(() => {  });
             }
-            yield return new WaitForSeconds(delay);
             
         }
 
