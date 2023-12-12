@@ -11,15 +11,14 @@ namespace DefaultNamespace
         [SerializeField] private Rigidbody2D Rigidbody2D;
 
 
-        private void LateUpdate()
+        private void Update()
         {
             if (!_requiredToFollow) return;
             var playerXPosition = Player.transform.position.x;
             var position = transform.position;
             if (playerXPosition > position.x)
             {
-                Rigidbody2D.position = Vector3.Lerp(position, new Vector3(playerXPosition, position.y, 0f),
-                    FollowSpeed * Time.deltaTime);
+                Rigidbody2D.position =  new Vector3(playerXPosition, position.y, 0f);
             }
         }
 

@@ -36,11 +36,12 @@ public class StarterUnit : Unit
 
     public void RemoveAllChildren()
     {
-            Destroy(GetBelowUnit().gameObject);
-            BottomUnit = this;
-            
-            SetBelowUnit(null);
+        if (GetBelowUnit() == null || GetBelowUnit() == this) return;
+        
+        Destroy(GetBelowUnit().gameObject);
+        BottomUnit = this;
 
+        SetBelowUnit(null);
     }
 
     public void Die()
@@ -64,7 +65,6 @@ public class StarterUnit : Unit
                 Debug.Log("SoloJump");
                 Animator.Jump("SoloJump");
             }
-
         }
     }
 
