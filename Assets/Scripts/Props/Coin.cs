@@ -58,7 +58,7 @@ namespace DefaultNamespace.Props
         {
             _isDead = true;
             ParticleSystem.Emit(15);
-            transform.DOScale(Vector3.zero, 0.3f).OnComplete(() => { gameObject.SetActive(true); });
+            transform.DOScale(Vector3.zero, 0.3f).OnComplete(() => { gameObject.SetActive(false); });
         }
     }
 }

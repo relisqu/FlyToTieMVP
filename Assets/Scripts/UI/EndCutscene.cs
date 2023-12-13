@@ -35,6 +35,10 @@ namespace DefaultNamespace.UI
                 StartCoroutine(Jump());
                 PlayerMovement.Jump();
             }
+            else if (PlayerMovement.transform.position.y < TransformYPosition - 0.3f&& IsPlayingEndCutscene)
+            {
+                PlayerMovement.Jump();
+            }
         }
 
         public void DestroyMoneyText()
