@@ -73,11 +73,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5157927563298663954, guid: 6b94daf685255378f811176ed30b453b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.580175
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5157927563298663954, guid: 6b94daf685255378f811176ed30b453b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.3629727
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5157927563298663954, guid: 6b94daf685255378f811176ed30b453b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5123,41 +5123,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &551541471567487023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96223653236810803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f4bbf9abb895c248917caccbfc6043a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2247527110634638440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96223653236810803}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33fbcb04c243139438f8b0b3f28d0e81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 0
-  target: {fileID: 0}
-  fade: 0
-  fadeDuration: 1
-  shrink: 0
-  shrinkDuration: 1
-  randomizeOnEnable: 0
-  lifeMin: 0.5
-  lifeMax: 1
-  startColor: {r: 0, g: 0, b: 0, a: 0}
-  startLocalScale: {x: 0, y: 0, z: 0}
 --- !u!114 &2433930133631197031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5187,39 +5152,3 @@ MonoBehaviour:
   MaxLifetime: 2
   IsDestructible: 1
   Animator: {fileID: 2433930133631197031}
---- !u!114 &8118673797088651439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 96223653236810803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b06713989bf4974eb4c04152bdaa60d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  threshold: 1
-  delay: 1
-  prefab: {fileID: 100000, guid: 18dc3a4628b171648a3f4dcb25d53799, type: 3}
-  offset: 0.1
-  rotateTo: 0
-  onImpact:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  cooldown: 0
