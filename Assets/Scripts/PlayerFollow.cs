@@ -1,4 +1,5 @@
 ﻿using System;
+using Cinemachine;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
@@ -7,35 +8,33 @@ namespace DefaultNamespace
     public class PlayerFollow : MonoBehaviour
     {
         [SerializeField] private PlayerMovement Player;
-        [SerializeField] private float FollowSpeed;
-        [SerializeField] private Rigidbody2D Rigidbody2D;
+        public CinemachineVirtualCamera СinemachineVirtualCamera;
 
+        private void Start()
+        {
+            _cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+        }
 
-        private void Update()
+        private void LateUpdate()
         {
             if (!_requiredToFollow) return;
-            var playerXPosition = Player.transform.position.x;
-            var position = transform.position;
-            if (playerXPosition > position.x)
-            {
-                Rigidbody2D.position =  new Vector3(playerXPosition, position.y, 0f);
-            }
         }
 
         public void ResetPosition()
         {
             Player.ResetPosition();
-            var playerXPosition = Player.transform.position.x;
-            Rigidbody2D.position = new Vector3(playerXPosition, transform.position.y, 0f);
+            СinemachineVirtualCamera.Follow = Player.transform;
         }
 
         public void StopFollowing()
         {
+            СinemachineVirtualCamera.Follow =  null;
             _requiredToFollow = false;
         }
 
         public void Follow()
         {
+            СinemachineVirtualCamera.Follow =  Player.transform;
             _requiredToFollow = true;
         }
 
@@ -47,5 +46,6 @@ namespace DefaultNamespace
         }
 
         public static PlayerFollow Instance;
+        private CinemachineVirtualCamera _cinemachineVirtualCamera;
     }
 }
