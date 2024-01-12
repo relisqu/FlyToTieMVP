@@ -1,4 +1,5 @@
 ﻿using System;
+using DefaultNamespace.Generation;
 using UnityEngine;
 
 namespace DefaultNamespace.UI
@@ -7,6 +8,7 @@ namespace DefaultNamespace.UI
     {
         private void Start()
         {
+            LevelGenerator.Instance.SpawnLevel();
             AudioManager.instance.Play("music");
         }
     }

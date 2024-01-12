@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.Generation;
 using Player;
 using UnityEngine;
 
@@ -66,6 +67,7 @@ namespace DefaultNamespace.UI
             DisableScenes(GiftScenes);
             PlayerFollow.Instance.StopFollowing();
 
+            LevelGenerator.Instance.SpawnLevel();
             var playerPos = PlayerMovement.transform.position.x;
             var screenPos = _camera.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
 

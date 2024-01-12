@@ -1,5 +1,6 @@
 using System;
 using DefaultNamespace;
+using DefaultNamespace.Generation;
 using DefaultNamespace.UI;
 using Player;
 using UnityEngine;
@@ -37,7 +38,7 @@ public class StarterUnit : Unit
     public void RemoveAllChildren()
     {
         if (GetBelowUnit() == null || GetBelowUnit() == this) return;
-        
+
         Destroy(GetBelowUnit().gameObject);
         BottomUnit = this;
 
@@ -46,6 +47,7 @@ public class StarterUnit : Unit
 
     public void Die()
     {
+        LevelGenerator.Instance.SpawnLevel(needRestart: false);
         EndCutscene.OnGameplayFinish?.Invoke();
         StartScene.PlayCutscene();
         // Animator.SetTag("Idle");

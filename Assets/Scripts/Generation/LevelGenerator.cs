@@ -98,13 +98,20 @@ namespace DefaultNamespace.Generation
             return chunksToGenerate;
         }
 
+        private List<LevelChunk> _curLevel;
+
         [Button]
-        public void SpawnLevel()
+        public void SpawnLevel(bool needRestart= true)
         {
-            foreach (Transform child in transform) {
+            foreach (Transform child in transform)
+            {
                 Destroy(child.gameObject);
             }
-            var chunks = GenerateLevelChunks();
+
+            var chunks = new List<LevelChunk>();
+            chunks = needRestart ? GenerateLevelChunks() : _curLevel;
+            _curLevel = chunks;
+            
             var curWidth = 0f;
             var finalXPos = 0f;
             foreach (var chunk in chunks)
@@ -115,6 +122,7 @@ namespace DefaultNamespace.Generation
                 curWidth += chunk.Width / 2;
                 finalXPos = chunkObj.transform.position.x + chunk.Width / 2;
             }
+
 
             LevelEnd.transform.position = Vector3.right * finalXPos;
         }

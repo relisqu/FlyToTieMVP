@@ -11,7 +11,7 @@ namespace DefaultNamespace.UI
         private void OnEnable()
         {
             PlayCutscene();
-            LevelGenerator.Instance.SpawnLevel();
+            
             StarterUnit.Instance.SetAlive();
             IsPlayingCutscene = true;
             PlayerFollow.Instance.Follow();
