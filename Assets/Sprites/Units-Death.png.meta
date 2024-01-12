@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -518,6 +518,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Units-Death_17
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 54
+        width: 13
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d07a7ca32cea27c40abb271a12d4ee20
+      internalID: -1714211294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Death_18
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 54
+        width: 13
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4411765}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48f17bbd89def5b45b6f90113f2c0c30
+      internalID: -1524666746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Death_19
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 54
+        width: 14
+        height: 37
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 435ceaa53d79ec74f8aa3de95e338266
+      internalID: -385666607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -538,6 +601,9 @@ TextureImporter:
       Units-Death_14: -2128043768
       Units-Death_15: -1465037332
       Units-Death_16: 560959524
+      Units-Death_17: -1714211294
+      Units-Death_18: -1524666746
+      Units-Death_19: -385666607
       Units-Death_2: -341016161
       Units-Death_3: -87189103
       Units-Death_4: -143902452
