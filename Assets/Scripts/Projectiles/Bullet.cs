@@ -2,7 +2,7 @@
 using System.Collections;
 using DefaultNamespace.Projectile;
 using UnityEngine;
-
+using Obstacle;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float MaxLifetime;
@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (IsDestructible && other.gameObject.TryGetComponent(out Obstacle _))
+        if (IsDestructible && other.gameObject.TryGetComponent(out Obstacle.Obstacle _))
         {
             Die();
         }
@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (IsDestructible && other.gameObject.TryGetComponent(out Obstacle _))
+        if (IsDestructible && other.gameObject.TryGetComponent(out Obstacle.Obstacle _))
         {
             Die();
         }

@@ -107,7 +107,7 @@ namespace Player
             RaycastHit2D hit = Physics2D.Raycast(point, Vector2.right, CheckDistance, ObstacleLayerMask);
 
 
-            if (hit.collider != null && hit.transform.TryGetComponent(out Obstacle _))
+            if (hit.collider != null && hit.transform.TryGetComponent(out Obstacle.Obstacle _))
             {
                 return hit;
             }

@@ -15,7 +15,7 @@ namespace Player
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.TryGetComponent(out Obstacle obstacle))
+            if (other.gameObject.TryGetComponent(out Obstacle.Obstacle obstacle))
             {
                 TakeDamage();
             }

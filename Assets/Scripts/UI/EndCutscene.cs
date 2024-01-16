@@ -67,7 +67,6 @@ namespace DefaultNamespace.UI
             DisableScenes(GiftScenes);
             PlayerFollow.Instance.StopFollowing();
 
-            LevelGenerator.Instance.SpawnLevel();
             var playerPos = PlayerMovement.transform.position.x;
             var screenPos = _camera.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
 
@@ -86,8 +85,8 @@ namespace DefaultNamespace.UI
             LockedPlayerInputMovement = false;
             FinishedScene?.Invoke();
             OnGameplayFinish?.Invoke();
-
             gameObject.SetActive(false);
+            LevelGenerator.Instance.SpawnLevel();
         }
 
         public static Action FinishedScene;
