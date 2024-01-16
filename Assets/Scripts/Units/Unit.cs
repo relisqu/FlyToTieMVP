@@ -30,7 +30,7 @@ public abstract class Unit : MonoBehaviour
     protected virtual void OnCollisionEnter2D(Collision2D col)
     {
         print("Collided: " + name);
-        if (col.gameObject.TryGetComponent(out Obstacle obstacle)) OnObstacleCollision(obstacle);
+        if (col.gameObject.TryGetComponent(out Obstacle.Obstacle obstacle)) OnObstacleCollision(obstacle);
 
         if (col.gameObject.TryGetComponent(out Unit unit)) OnUnitCollision(unit);
     }
@@ -90,7 +90,7 @@ public abstract class Unit : MonoBehaviour
         UnitState = UnitState.Unattached;
     }
 
-    protected virtual void OnObstacleCollision(Obstacle obstacle)
+    protected virtual void OnObstacleCollision(Obstacle.Obstacle obstacle)
     {
         if (UnitState == UnitState.Attached)
             DamageSelf();

@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: IgnoreLight
+    uniqueID: 3660140775
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

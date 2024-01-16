@@ -13,7 +13,7 @@ public class StarterUnit : Unit
     [SerializeField] private ObstacleDamageable Damageable;
     [SerializeField] private Cutscene StartScene;
 
-    protected override void OnObstacleCollision(Obstacle obstacle)
+    protected override void OnObstacleCollision(Obstacle.Obstacle obstacle)
     {
         if (BottomUnit == this && !IsInvincible())
         {
