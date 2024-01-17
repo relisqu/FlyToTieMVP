@@ -36,27 +36,23 @@ namespace DefaultNamespace.Generation
         public Level GetLevel()
         {
             int curLevel = PlayerData.СurrentLevel;
-            if (levels.Levels.Count < curLevel)
+            int trysCount = 150;
+            while (trysCount > 0)
             {
-                int trysCount = 150;
-                while (trysCount > 0)
+                var level = levels.Levels[Random.Range(0, levels.Levels.Count)];
+                Debug.Log("Found level with [" + level.GetMinLevel + "," + level.GetMaxLevel + "]");
+                if (level.GetMaxLevel >= curLevel && curLevel >= level.GetMinLevel)
                 {
-                    var level = levels.Levels[Random.Range(0, levels.Levels.Count)];
-                    Debug.Log("Found level with [" + level.GetMinLevel + "," + level.GetMaxLevel + "]");
-                    if (level.GetMaxLevel >= curLevel && curLevel >= level.GetMinLevel)
-                    {
-                        Debug.Log("Found");
-                        return level;
-                    }
-                    Debug.Log("Skipped");
-
-                    trysCount--;
+                    Debug.Log("Found");
+                    return level;
                 }
 
-                return levels.Levels[Random.Range(0, levels.Levels.Count)];
+                Debug.Log("Skipped");
+
+                trysCount--;
             }
 
-            return levels.Levels[curLevel - 1];
+            return levels.Levels[Random.Range(0, levels.Levels.Count)];
         }
 
         public List<LevelChunk> GenerateLevelChunks()

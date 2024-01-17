@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 732226997201774550}
   - component: {fileID: -3198375236975360051}
   - component: {fileID: 258665794658205335}
+  - component: {fileID: 1966166510647995226}
   m_Layer: 0
   m_Name: Crate
   m_TagString: Untagged
@@ -236,3 +237,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SoundName: crate_break
+--- !u!114 &1966166510647995226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732226997201774549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a6ed5059094e5294d16a9e1f892eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinCoinCount: 1
+  MaxCoinCount: 3
+  GenerationChance: 0.4
