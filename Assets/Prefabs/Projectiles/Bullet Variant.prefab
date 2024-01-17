@@ -150,6 +150,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6434294328536507908, guid: 6b94daf685255378f811176ed30b453b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3302884446590428317}
+    - targetCorrespondingSourceObject: {fileID: 6434294328536507908, guid: 6b94daf685255378f811176ed30b453b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 154706998291962256}
   m_SourcePrefab: {fileID: 100100000, guid: 6b94daf685255378f811176ed30b453b, type: 3}
 --- !u!1 &96223653236810803 stripped
 GameObject:
@@ -5167,3 +5170,16 @@ MonoBehaviour:
   MaxLifetime: 3
   IsDestructible: 1
   Animator: {fileID: 2433930133631197031}
+--- !u!114 &154706998291962256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96223653236810803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c412dd9c495f416fa518c5f492d47980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundName: bullet_die

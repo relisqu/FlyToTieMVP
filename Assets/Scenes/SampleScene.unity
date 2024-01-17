@@ -22036,7 +22036,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.700432, y: 0.67, z: -10}
+  m_LocalPosition: {x: 16.62545, y: 0.67, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22617,7 +22617,17 @@ MonoBehaviour:
     volume: 0.42
     volumeVariance: 0.2
     pitch: 1
-    pitchVariance: 0.4
+    pitchVariance: 0.8
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    currentVolume: 0.75
+  - name: bullet_die
+    clip: {fileID: 8300000, guid: 7fad4f4351140834fab4e6833179e8cf, type: 3}
+    volume: 0.26
+    volumeVariance: 0.1
+    pitch: 1.939
+    pitchVariance: 0.3
     loop: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
@@ -23576,7 +23586,7 @@ Transform:
   m_GameObject: {fileID: 975113470}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.700432, y: 0.67, z: -10}
+  m_LocalPosition: {x: 16.62545, y: 0.67, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27551,7 +27561,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000e75029da
+  m_ApplyToSortingLayers: 00000000e75029da19d8a6f6
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -28274,6 +28284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1437131933}
   - component: {fileID: 1437131934}
+  - component: {fileID: 1437131935}
   m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
@@ -28312,6 +28323,19 @@ MonoBehaviour:
   MinSpaceBetweenUnitChunks: 1
   levels: {fileID: 11400000, guid: 2b0e16dc43e565e41be7967789630d3e, type: 2}
   LevelEnd: {fileID: 1665784445}
+--- !u!114 &1437131935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437131932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0122c183dab44679755e88898b0a87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Neededlevel: 1
 --- !u!1 &1437444903
 GameObject:
   m_ObjectHideFlags: 0
@@ -29215,7 +29239,7 @@ Transform:
   m_GameObject: {fileID: 1665784444}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 181.48001, y: 0, z: 0}
+  m_LocalPosition: {x: 176.37, y: -0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

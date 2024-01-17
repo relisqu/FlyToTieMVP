@@ -42,10 +42,13 @@ namespace DefaultNamespace.Generation
                 while (trysCount > 0)
                 {
                     var level = levels.Levels[Random.Range(0, levels.Levels.Count)];
+                    Debug.Log("Found level with [" + level.GetMinLevel + "," + level.GetMaxLevel + "]");
                     if (level.GetMaxLevel >= curLevel && curLevel >= level.GetMinLevel)
                     {
+                        Debug.Log("Found");
                         return level;
                     }
+                    Debug.Log("Skipped");
 
                     trysCount--;
                 }
@@ -101,7 +104,7 @@ namespace DefaultNamespace.Generation
         private List<LevelChunk> _curLevel;
 
         [Button]
-        public void SpawnLevel(bool needRestart= true)
+        public void SpawnLevel(bool needRestart = true)
         {
             foreach (Transform child in transform)
             {
@@ -111,7 +114,7 @@ namespace DefaultNamespace.Generation
             var chunks = new List<LevelChunk>();
             chunks = needRestart ? GenerateLevelChunks() : _curLevel;
             _curLevel = chunks;
-            
+
             var curWidth = 0f;
             var finalXPos = 0f;
             foreach (var chunk in chunks)

@@ -14,7 +14,8 @@ namespace Obstacle
 
         private void Start()
         {
-            transform.position = LineRenderer.GetPosition(0)+LineRenderer.transform.position;
+            transform.localPosition = LineRenderer.GetPosition(0) + LineRenderer.transform.localPosition;
+
             MoveToPoint(0);
         }
 
@@ -29,7 +30,7 @@ namespace Obstacle
                 hasForwardDir = true;
             }
 
-            if (i >= LineRenderer.positionCount-1)
+            if (i >= LineRenderer.positionCount - 1)
             {
                 hasForwardDir = false;
             }
@@ -43,11 +44,10 @@ namespace Obstacle
                 nextInd--;
             }
 
-            transform.DOMove(LineRenderer.GetPosition(nextInd)+LineRenderer.transform.position, Speed).SetSpeedBased().SetEase(MovementEasing).OnComplete(
-                () =>
-                {
-                    MoveToPoint(nextInd);
-                });
+            transform.DOLocalMove(LineRenderer.GetPosition(nextInd) + LineRenderer.transform.localPosition,
+                    Speed).SetSpeedBased()
+                .SetEase(MovementEasing).OnComplete(
+                    () => { MoveToPoint(nextInd); });
         }
 
         private void Update()
