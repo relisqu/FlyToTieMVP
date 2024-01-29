@@ -350,6 +350,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: shop-Menu_9
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 118
+        width: 26
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb1e2cd0a6c9c884299682b5b911ca95
+      internalID: -640312912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop-Menu_10
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 131
+        width: 31
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2b1b6631e9022c489040996cfeb822f
+      internalID: -199801684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -363,6 +405,7 @@ TextureImporter:
     nameFileIdTable:
       shop-Menu_0: 1557229893
       shop-Menu_1: 105719430
+      shop-Menu_10: -199801684
       shop-Menu_2: -1087656169
       shop-Menu_3: -384833333
       shop-Menu_4: -217824427
@@ -370,6 +413,7 @@ TextureImporter:
       shop-Menu_6: -1956905576
       shop-Menu_7: 1083470784
       shop-Menu_8: -1370127769
+      shop-Menu_9: -640312912
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
