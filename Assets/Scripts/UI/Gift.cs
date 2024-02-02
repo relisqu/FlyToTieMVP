@@ -23,6 +23,12 @@ namespace DefaultNamespace.UI
             return MinCoinCount + reward * Step;
         }
 
+        private void OnEnable()
+        {
+            WasGiftOpened = false;
+            GiftObject.localScale = Vector3.one;
+        }
+
         public void OnPointerDown(PointerEventData eventData)
         {
             if (!WasGiftOpened) StartCoroutine(OpenGift());
@@ -35,9 +41,8 @@ namespace DefaultNamespace.UI
             RewardText.SetText("+" + reward + " <sprite=2>");
             var mySequence = DOTween.Sequence();
             mySequence.Append(
-                    GiftObject.DOShakePosition(0.3f,15f))
-                .Append(GiftObject.DOScaleY(1.3f, 0.4f))
-                .Append(GiftObject.DOScale(0f, 0.2f));
+                    GiftObject.DOShakePosition(0.5f, 15f))
+                .Append(GiftObject.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InOutBounce));
 
             yield return mySequence.Play();
             PlayerData.SaveMoney(PlayerData.MoneyCount + reward);
@@ -48,7 +53,7 @@ namespace DefaultNamespace.UI
         private void OnDisable()
         {
             WasGiftOpened = false;
-            transform.localScale=Vector3.one;
+            GiftObject.localScale = Vector3.one;
         }
 
         public static bool WasGiftOpened;
