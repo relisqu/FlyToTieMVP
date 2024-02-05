@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Projectiles;
+using UnityEngine;
 
 namespace Units
 {
@@ -8,7 +9,6 @@ namespace Units
 
         public override void Shoot()
         {
-
             if (_laser == null)
             {
                 _laser = Instantiate(Projectile, transform);
@@ -19,7 +19,8 @@ namespace Units
 
         public override void StopShooting()
         {
-            _laser.DestroyProjectile();
+            if (_laser != null)
+                _laser.DestroyProjectile();
         }
     }
 }

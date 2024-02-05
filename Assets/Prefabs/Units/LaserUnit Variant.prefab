@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Projectile: {fileID: 2865113283633501121, guid: 8c8d0ca770f585b4da8ffc785848df01, type: 3}
-  delay: 0
 --- !u!1001 &5727212207488980167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 5602585125828000979}
     - target: {fileID: 5873617965627962470, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_Name
-      value: LaserUnit (1)
+      value: LaserUnit Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6196472439847660615, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_Sprite
@@ -111,11 +110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8474220728230971759, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8474220728230971759, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.53
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8474220728230971759, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_LocalPosition.z
@@ -228,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb5e4dad3804076b102b2303e197764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnsFromLevel: 0
   Collider: {fileID: 3081629818278997525}
   OffsetOnAttachment: {x: 0.04, y: -0.88, z: 0}
   Animator: {fileID: 4490940751333175128}

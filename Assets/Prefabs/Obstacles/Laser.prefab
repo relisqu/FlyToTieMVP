@@ -276,7 +276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4886827168591165949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.47, z: 0}
+  m_LocalPosition: {x: 0, y: -0.835, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -311,7 +311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4886827168921847112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.47, z: 0}
+  m_LocalPosition: {x: 0, y: 0.835, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -785,7 +785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.58, y: 6.34}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.6875, y: 3.1875}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &4886827170000926303
@@ -834,7 +834,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.6875, y: 6.94}
+  m_Size: {x: 0.6875, y: 1.67}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LaserAnimator: {fileID: 4886827170000926296}
-  OffDuration: 1.33
+  OffDuration: 2.41
   FirstDots:
   - {fileID: 4886827169881372532}
   - {fileID: 4886827169613583815}
@@ -884,7 +884,7 @@ MonoBehaviour:
   - {fileID: 4886827169444353656}
   - {fileID: 4886827169482764476}
   - {fileID: 4886827168318316759}
-  OnDuration: 0.93
+  OnDuration: 0.6
   Particles: {fileID: 4886827170000926295}
 --- !u!61 &4886827170000926300
 BoxCollider2D:
@@ -904,13 +904,13 @@ BoxCollider2D:
     border: {x: 0, y: 0.8125, z: 0, w: 0.75}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.6875, y: 3.1875}
-    newSize: {x: 0.6875, y: 6.94}
+    newSize: {x: 0.6875, y: 1.67}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.33218575, y: 6.54}
+  m_Size: {x: 0.33218575, y: 1.5699999}
   m_EdgeRadius: 0
 --- !u!114 &4886827170000926291
 MonoBehaviour:
@@ -1577,7 +1577,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 90}
-    m_Scale: {x: 6.94, y: 1, z: 1}
+    m_Scale: {x: 1.67, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4753,7 +4753,7 @@ ParticleSystem:
       serializedVersion: 2
       m_Bits: 183
     maxCollisionShapes: 256
-    quality: 0
+    quality: 2
     voxelSize: 0.5
     collisionMessages: 0
     collidesWithDynamic: 1

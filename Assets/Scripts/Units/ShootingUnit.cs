@@ -1,9 +1,20 @@
+using System;
 using UnityEngine;
 
 public class ShootingUnit : Unit
 {
     [SerializeField] protected Shooter Shooter;
     [SerializeField] protected bool IsShootingViaAnimation;
+
+    private void Start()
+    {
+        OnCurrentUnitDamageTaken += Shooter.StopShooting;
+    }
+
+    private void OnDestroy()
+    {
+        OnCurrentUnitDamageTaken -= Shooter.StopShooting;
+    }
 
     protected override void AttachTo()
     {

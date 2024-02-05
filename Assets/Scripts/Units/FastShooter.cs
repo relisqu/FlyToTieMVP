@@ -1,5 +1,7 @@
 using System.Collections;
 using MoreMountains.Tools;
+using Player;
+using Projectiles;
 using UnityEngine;
 
 namespace Units
@@ -17,8 +19,12 @@ namespace Units
             _isShooting = true;
             for (int i = 0; i < n; i++)
             {
-                Instantiate(Projectile, transform.position, Quaternion.identity, null);
-                Projectile.SpawnProjectile();
+                AudioManager.instance.Play("fast_shot");
+                var bullet=BulletPool.GetBulletFromPool();
+                bullet.gameObject.SetActive(true);
+                bullet.transform.position=transform.position;
+                bullet.SpawnProjectile();
+                bullet.MovementController.SetSpeed(PlayerData.СurrentBulletProjectileSpeed);
                 yield return new WaitForSeconds(Delay);
             }
             _isShooting = false;

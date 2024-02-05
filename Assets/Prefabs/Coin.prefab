@@ -196,6 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleSystem: {fileID: 7960128950598375413}
+  TriggerDistance: 3.57
+  Speed: 14.73
 --- !u!198 &7960128950598375413
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ namespace Player
         [ShowIf("UsesAnimation")] [SerializeField]
         private Animator Animator;
 
+        [SerializeField] public string DeathSoundTag;
         private static readonly int Damage = Animator.StringToHash("TakeDamage");
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -30,15 +31,22 @@ namespace Player
             if (UsesAnimation)
             {
                 Animator.SetTrigger(Damage);
+                PlayDeathSound();
                 return;
             }
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+        }
+
+        public void PlayDeathSound()
+        {
+            if (DeathSoundTag != null)
+                AudioManager.instance.Play(DeathSoundTag);
         }
 
         public void Destroy()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

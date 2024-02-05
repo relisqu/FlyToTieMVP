@@ -54,7 +54,7 @@ namespace DefaultNamespace.Obstacle
             }
         }
 
-        private void Start()
+        private void OnEnable()
         {
             TurnOffDots(FirstDots);
             TurnOffDots(SecondDots);

@@ -66,7 +66,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -559,6 +559,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: main-Menu_20
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 97
+        width: 95
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 13, y: 6, z: 13, w: 7}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5de278519684b240b5df512e0d6abd6
+      internalID: -928827237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-Menu_21
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 83
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40f614ea3922f104eaba05ff96a11d2f
+      internalID: -1591611464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: main-Menu_22
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 34
+        width: 53
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3f7e00e7b72ccd4eb4c6dad89ea6bba
+      internalID: -71574960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -578,10 +641,12 @@ TextureImporter:
       main-Menu_12: -1273360430
       main-Menu_0: -1664866630
       main-Menu_4: -432736290
+      main-Menu_22: -71574960
       main-Menu_5: -1267705286
       main-Menu_17: -1295217264
       main-Menu_1: 1370729677
       main-Menu_16: 1732584301
+      main-Menu_21: -1591611464
       main-Menu_11: 1753319054
       main-Menu_3: 1288095269
       main-Menu_6: 1023216968
@@ -589,6 +654,7 @@ TextureImporter:
       main-Menu_19: -1185835717
       main-Menu_10: -238416098
       main-Menu_15: -1226063651
+      main-Menu_20: -928827237
       main-Menu_13: -1391868342
   spritePackingTag: 
   pSDRemoveMatte: 0

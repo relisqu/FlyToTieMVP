@@ -3,7 +3,7 @@ guid: 511c199ee6fb58a468440d7ef2bc54f3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,10 +64,12 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -74,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -86,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -98,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -110,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -122,6 +129,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -134,6 +142,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -143,7 +165,7 @@ TextureImporter:
       name: Units-Jump_0
       rect:
         serializedVersion: 2
-        x: 24
+        x: 25
         y: 161
         width: 16
         height: 30
@@ -164,7 +186,7 @@ TextureImporter:
       name: Units-Jump_1
       rect:
         serializedVersion: 2
-        x: 80
+        x: 81
         y: 161
         width: 16
         height: 30
@@ -185,9 +207,9 @@ TextureImporter:
       name: Units-Jump_2
       rect:
         serializedVersion: 2
-        x: 135
+        x: 136
         y: 161
-        width: 19
+        width: 16
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -206,9 +228,9 @@ TextureImporter:
       name: Units-Jump_3
       rect:
         serializedVersion: 2
-        x: 191
+        x: 193
         y: 161
-        width: 19
+        width: 16
         height: 30
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
@@ -311,7 +333,7 @@ TextureImporter:
       name: Units-Jump_8
       rect:
         serializedVersion: 2
-        x: 21
+        x: 22
         y: 91
         width: 21
         height: 25
@@ -332,7 +354,7 @@ TextureImporter:
       name: Units-Jump_9
       rect:
         serializedVersion: 2
-        x: 77
+        x: 78
         y: 91
         width: 21
         height: 25
@@ -353,7 +375,7 @@ TextureImporter:
       name: Units-Jump_10
       rect:
         serializedVersion: 2
-        x: 133
+        x: 134
         y: 91
         width: 21
         height: 25
@@ -374,7 +396,7 @@ TextureImporter:
       name: Units-Jump_11
       rect:
         serializedVersion: 2
-        x: 189
+        x: 191
         y: 91
         width: 21
         height: 25
@@ -391,6 +413,153 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Units-Jump_13
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 47
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe49aa00cc2876645ae3a8162764bcbf
+      internalID: 1141695420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Jump_14
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 47
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ee97b674bd0434d96d04a1f8add0a6
+      internalID: -1150365818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Jump_15
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 49
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4551645a856d6ed4287d2d2ca91974b9
+      internalID: -1666997876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Jump_12
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 3
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69809575a9b69b240ac89b8abcf55c69
+      internalID: -1292370066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Jump_16
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 3
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3bacaaeb1fc0ca45a47f4f9918e78a9
+      internalID: 476590692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Jump_17
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 3
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78c00dd25e009e1459df659bb7e444eb
+      internalID: -915163284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Units-Jump_18
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 3
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aede088fc8c5bf440a74a166d9ee33bd
+      internalID: -402130141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -402,21 +571,28 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Units-Jump_7: 1101134447
-      Units-Jump_1: -744177697
-      Units-Jump_4: 1584935877
-      Units-Jump_11: 1104637429
-      Units-Jump_2: 653626792
-      Units-Jump_8: -1962844458
-      Units-Jump_3: -947078608
-      Units-Jump_9: -80141615
-      Units-Jump_6: -1075303644
       Units-Jump_0: 1993662800
+      Units-Jump_1: -744177697
       Units-Jump_10: -939627152
+      Units-Jump_11: 1104637429
+      Units-Jump_12: -1292370066
+      Units-Jump_13: 1141695420
+      Units-Jump_14: -1150365818
+      Units-Jump_15: -1666997876
+      Units-Jump_16: 476590692
+      Units-Jump_17: -915163284
+      Units-Jump_18: -402130141
+      Units-Jump_19: 154572142
+      Units-Jump_2: 653626792
+      Units-Jump_3: -947078608
+      Units-Jump_4: 1584935877
       Units-Jump_5: 396562544
-  spritePackingTag: 
+      Units-Jump_6: -1075303644
+      Units-Jump_7: 1101134447
+      Units-Jump_8: -1962844458
+      Units-Jump_9: -80141615
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

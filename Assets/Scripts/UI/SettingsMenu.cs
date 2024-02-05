@@ -9,6 +9,9 @@ namespace DefaultNamespace.UI
     {
         [SerializeField] private Transform MenuTransform;
         [SerializeField] private CanvasGroup MenuAlpha;
+        [SerializeField] private Transform SettingsButton;
+        [SerializeField] private float MaxButtonScale;
+        [SerializeField] private float MinButtonScale;
         [SerializeField] private float FinalScale;
         private bool _isFullVisible;
 
@@ -18,11 +21,13 @@ namespace DefaultNamespace.UI
             {
                 MenuTransform.DOScaleX(0, 0.1f);
                 MenuAlpha.DOFade(0, 0.1f);
+                SettingsButton.DOScale(Vector3.one * MaxButtonScale, 0.1f);
             }
             else
             {
                 MenuTransform.DOScaleX(FinalScale, 0.1f);
                 MenuAlpha.DOFade(1, 0.1f);
+                SettingsButton.DOScale(Vector3.one * MinButtonScale, 0.1f);
             }
 
             _isFullVisible = !_isFullVisible;
@@ -30,7 +35,6 @@ namespace DefaultNamespace.UI
 
         private void Start()
         {
-            
             MenuTransform.DOScaleX(0, 0.1f);
             MenuAlpha.DOFade(0, 0.1f);
         }

@@ -29,6 +29,7 @@ namespace Scripts.Obstacle
                 coin.transform.localScale = Vector3.one * 0.3f;
                 coin.transform.DOScale(Vector3.one, 0.3f);
                 coin.gameObject.SetActive(true);
+                coin.SetAlive(true);
                 coin.transform.DOJump(position + (Vector3) randomOffset, 1f, 1, 0.3f);
             }
         }

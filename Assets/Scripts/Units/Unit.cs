@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace.UI;
 using DG.Tweening;
 using Units;
 using UnityEngine;
@@ -11,6 +12,7 @@ public abstract class Unit : MonoBehaviour
     protected static Unit BottomUnit;
 
     public static Action OnDamageTaken;
+    public Action OnCurrentUnitDamageTaken;
 
     [FormerlySerializedAs("collider")] [SerializeField]
     private Collider2D Collider;
@@ -18,17 +20,19 @@ public abstract class Unit : MonoBehaviour
     [FormerlySerializedAs("offsetOnAttachment")] [SerializeField]
     private Vector3 OffsetOnAttachment;
 
-    [SerializeField] protected UnitAnimator Animator;
+    [SerializeField] private Vector3 OffsetOnChildAttachment;
+
+    [SerializeField] public UnitAnimator Animator;
 
     private Unit _aboveUnit;
     private Unit _belowUnit;
 
-    public UnitState UnitState { get; private set; }
+    public UnitState UnitState { get; protected set; }
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
     {
         print("Collided: " + name);
-        if (col.gameObject.TryGetComponent(out Obstacle obstacle)) OnObstacleCollision(obstacle);
+        if (col.gameObject.TryGetComponent(out Obstacle.Obstacle obstacle)) OnObstacleCollision(obstacle);
 
         if (col.gameObject.TryGetComponent(out Unit unit)) OnUnitCollision(unit);
     }
@@ -71,17 +75,24 @@ public abstract class Unit : MonoBehaviour
         if (UnitState != UnitState.Unattached) return;
 
         transform.SetParent(BottomUnit.transform, true);
-        transform.position = BottomUnit.transform.position + OffsetOnAttachment;
-        DOTween.Kill(transform);
-        _aboveUnit = BottomUnit;
-        _aboveUnit.SetBelowUnit(this);
-        BottomUnit = this;
+        transform.position = BottomUnit.transform.position + OffsetOnAttachment + BottomUnit.OffsetOnChildAttachment;
         PlayerMovement.Jumped += OnJump;
         PlayerMovement.Jumped += AnimateJump;
+        DOTween.Kill(transform);
+        _aboveUnit = BottomUnit;
+        AudioManager.instance.Play("new_unit");
+        _aboveUnit.SetBelowUnit(this);
+        BottomUnit = this;
         BottomUnit.UnitState = UnitState.Attached;
+        BottomUnit.Animator.SetTag("Idle");
     }
 
-    protected virtual void OnObstacleCollision(Obstacle obstacle)
+    protected virtual void OnEnable()
+    {
+        UnitState = UnitState.Unattached;
+    }
+
+    protected virtual void OnObstacleCollision(Obstacle.Obstacle obstacle)
     {
         if (UnitState == UnitState.Attached)
             DamageSelf();
@@ -89,31 +100,49 @@ public abstract class Unit : MonoBehaviour
 
     public void TakeDamage()
     {
+        OnCurrentUnitDamageTaken?.Invoke();
         Animator.TakeDamage();
     }
 
-    private void DamageSelf()
+    public void DamageSelf()
     {
-        if (StarterUnit.IsInvincible()) return;
+        if (StarterUnit.IsInvincible() || Cutscene.IsPlayingCutscene) return;
         print("Took damage: " + name);
         print("Damaged: " + BottomUnit.name);
         OnDamageTaken?.Invoke();
+        DestroyBottomUnit();
+    }
+
+    public void DestroyBottomUnit()
+    {
+        PlayerMovement.Jumped -= BottomUnit.OnJump;
+        PlayerMovement.Jumped -= BottomUnit.AnimateJump;
+        AudioManager.instance.Play("unit_lost");
         BottomUnit.Collider.enabled = false;
         BottomUnit.transform.SetParent(null, true);
         BottomUnit.UnitState = UnitState.Dropped;
         BottomUnit.TakeDamage();
+        BottomUnit.transform.parent = null;
         BottomUnit = BottomUnit._aboveUnit;
-        PlayerMovement.Jumped -= OnJump;
-        PlayerMovement.Jumped -= AnimateJump;
-
-
+        BottomUnit.SetBelowUnit(null);
     }
 
-    private void SetBelowUnit(Unit unit)
+    private void OnDisable()
+    {
+        PlayerMovement.Jumped -= OnJump;
+        PlayerMovement.Jumped -= AnimateJump;
+    }
+
+    protected void SetBelowUnit(Unit unit)
     {
         _belowUnit = unit;
     }
 
+    void OnBecameInvisible()
+    {
+        if (UnitState == UnitState.Dropped)
+            Destroy(gameObject);
+    }
 
     private void OnUnitCollision(Unit unit)
     {

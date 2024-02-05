@@ -16,7 +16,7 @@ TagManager:
   - Bullet
   - IgnoreBullet
   - Coin
-  - 
+  - Ground
   - 
   - 
   - 
@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: IgnoreLight
+    uniqueID: 3660140775
+    locked: 0
+  - name: Light
+    uniqueID: 4138129433
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

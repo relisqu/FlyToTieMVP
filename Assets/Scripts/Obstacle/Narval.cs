@@ -10,9 +10,14 @@ namespace Scripts.Obstacle
         [SerializeField] private Animator Animator;
         private Transform _goalTransform;
 
+        public float GetTriggerDistance()
+        {
+            return TriggerDistance;
+        }
+
         private void Update()
         {
-            if (!_isAwake && Vector3.Distance(_goalTransform.position, transform.position) <= TriggerDistance)
+            if (!_isAwake && Vector2.Distance(StarterUnit.Instance.transform.position, transform.position) <= TriggerDistance)
             {
                 WakeUp();
             }
@@ -30,11 +35,12 @@ namespace Scripts.Obstacle
             CoinGenerator.GenerateMoney(moneyCount, transform);
         }
 
+
         private bool _isAlive;
 
-        private void Start()
+        private void OnEnable()
         {
-            _isAlive = true;
+            _isAwake = false;
             _goalTransform = StarterUnit.Instance.transform;
         }
 
