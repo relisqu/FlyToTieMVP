@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 523004774288087876, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.006
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5529608669832447052, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: Unit
@@ -40,13 +40,17 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 476590692, guid: 511c199ee6fb58a468440d7ef2bc54f3, type: 3}
+    - target: {fileID: 7291414084752934081, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
+      objectReference: {fileID: 0}
     - target: {fileID: 7331579639844584146, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_Size.x
       value: 0.6730242
       objectReference: {fileID: 0}
     - target: {fileID: 7331579639844584146, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_Size.y
-      value: 0.6215973
+      value: 0.60733175
       objectReference: {fileID: 0}
     - target: {fileID: 7331579639844584146, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_Offset.x
@@ -54,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7331579639844584146, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_Offset.y
-      value: -0.56287956
+      value: 0.08618188
       objectReference: {fileID: 0}
     - target: {fileID: 7331579639844584146, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -70,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7331579639844584146, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2.25
+      value: 0.9375
       objectReference: {fileID: 0}
     - target: {fileID: 8474220728230971759, guid: 04da0fdfa430da5f1aa01555772cf273, type: 3}
       propertyPath: m_LocalPosition.x
@@ -155,7 +159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Collider: {fileID: 6881816497954921134}
-  OffsetOnAttachment: {x: 0, y: -0.4, z: 0}
+  OffsetOnAttachment: {x: 0, y: -1.1, z: 0}
+  OffsetOnChildAttachment: {x: 0, y: 0.25, z: 0}
   Animator: {fileID: 1389625360559922331}
 --- !u!114 &1389625360559922331
 MonoBehaviour:

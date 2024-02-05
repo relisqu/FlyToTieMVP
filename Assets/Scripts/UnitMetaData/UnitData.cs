@@ -1,27 +1,19 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Player
 {
-    public class UnitData : MonoBehaviour
+    [CreateAssetMenu(fileName ="UnitUpgradeData", menuName = "ScriptableObjects/UnitMeta", order = 0)]
+    public class UnitData : ScriptableObject
     {
-        public bool IsVisited;
-        public int FinishedTimes;
-        public Unit DataUnit;
-        public Action Upgraded;
+        public string SaveUnitString = "MainUnitLevel";
+        public List<UnitLevelData> LevelsUpgrade;
+    }
 
-        public virtual void UpgradeFirstTime()
-        {
-        }
-        
-        
-        public virtual void UpgradeSecondTime()
-        {
-        }
-        
-        
-        public virtual void UpgradeThirdTime()
-        {
-        }
+    public class UnitLevelData
+    {
+        public int FromLevel;
+        public string Description;
+        public int UpgradeCount;
     }
 }

@@ -20,6 +20,8 @@ public abstract class Unit : MonoBehaviour
     [FormerlySerializedAs("offsetOnAttachment")] [SerializeField]
     private Vector3 OffsetOnAttachment;
 
+    [SerializeField] private Vector3 OffsetOnChildAttachment;
+
     [SerializeField] public UnitAnimator Animator;
 
     private Unit _aboveUnit;
@@ -73,7 +75,7 @@ public abstract class Unit : MonoBehaviour
         if (UnitState != UnitState.Unattached) return;
 
         transform.SetParent(BottomUnit.transform, true);
-        transform.position = BottomUnit.transform.position + OffsetOnAttachment;
+        transform.position = BottomUnit.transform.position + OffsetOnAttachment + BottomUnit.OffsetOnChildAttachment;
         PlayerMovement.Jumped += OnJump;
         PlayerMovement.Jumped += AnimateJump;
         DOTween.Kill(transform);
