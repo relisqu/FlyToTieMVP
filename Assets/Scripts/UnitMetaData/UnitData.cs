@@ -1,19 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Player
 {
-    [CreateAssetMenu(fileName ="UnitUpgradeData", menuName = "ScriptableObjects/UnitMeta", order = 0)]
-    public class UnitData : ScriptableObject
+    [CreateAssetMenu(fileName = "UnitUpgradeData", menuName = "ScriptableObjects/UnitMeta", order = 0)]
+    public class UnitData : SerializedScriptableObject
     {
         public string SaveUnitString = "MainUnitLevel";
         public List<UnitLevelData> LevelsUpgrade;
+        public String Name;
+        public int FromLevel;
+
+        public int LoadLevel()
+        {
+            return PlayerPrefs.GetInt(SaveUnitString, 0);
+        }
+
+        public void SaveLevel(int newLevel)
+        {
+            PlayerPrefs.SetInt(SaveUnitString, newLevel);
+        }
     }
 
+    [SerializeField]
     public class UnitLevelData
     {
-        public int FromLevel;
         public string Description;
-        public int UpgradeCount;
+        public int UpgradeMoneyCount;
     }
 }

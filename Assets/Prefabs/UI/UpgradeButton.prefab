@@ -414,14 +414,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.05
+  m_fontSize: 50
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 75.6
+  m_fontSizeMin: 50
+  m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -430,9 +430,9 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 4
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -450,7 +450,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -240.03654, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1003,6 +1003,7 @@ GameObject:
   - component: {fileID: 4703770198174436601}
   - component: {fileID: 7051083717909503372}
   - component: {fileID: 440655295052351934}
+  - component: {fileID: 3320810342421696106}
   m_Layer: 5
   m_Name: UpgradeButton
   m_TagString: Untagged
@@ -1070,6 +1071,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.22
+--- !u!114 &3320810342421696106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3715633429920178232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82a3abe48424571b32c886aa81afbb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: a5754e8c5a4615b41816c27817ebeed3, type: 2}
+  ClosedMenu: {fileID: 3483556400819385788}
+  ClosedMenuLevelStart: {fileID: 1373797379277200531}
+  UpgradeMenu: {fileID: 4573372565006964099}
+  DescriptionText: {fileID: 4744772402322233113}
+  NameText: {fileID: 2938517874709911413}
+  CoinCountText: {fileID: 9083509694893013859}
+  CoinCountButton: {fileID: 413511765269346599}
 --- !u!1 &4571413335933643902
 GameObject:
   m_ObjectHideFlags: 0
