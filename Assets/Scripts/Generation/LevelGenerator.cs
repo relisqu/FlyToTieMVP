@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace.Obstacle;
 using Player;
+using Scripts.Obstacle;
 using Sirenix.OdinInspector;
 using Subtegral.WeightedRandom;
 using UnityEngine;
@@ -102,6 +103,7 @@ namespace DefaultNamespace.Generation
         [Button]
         public void SpawnLevel(bool needRestart = true)
         {
+            
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
@@ -122,7 +124,7 @@ namespace DefaultNamespace.Generation
                 finalXPos = chunkObj.transform.position.x + chunk.Width / 2;
             }
 
-
+            CoinGenerator.ClearCoins();
             LevelEnd.transform.position = Vector3.right * finalXPos;
         }
     }

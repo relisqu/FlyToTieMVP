@@ -30,7 +30,15 @@ namespace Scripts.Obstacle
                 coin.transform.DOScale(Vector3.one, 0.3f);
                 coin.gameObject.SetActive(true);
                 coin.SetAlive(true);
-                coin.transform.DOJump(position + (Vector3) randomOffset, 1f, 1, 0.3f);
+                coin.transform.DOJump(position + (Vector3)randomOffset, 1f, 1, 0.3f);
+            }
+        }
+
+        public static void ClearCoins()
+        {
+            for (int i = 0; i < _coinsPool.Length; i++)
+            {
+                _coinsPool[i].gameObject.SetActive(false);
             }
         }
 

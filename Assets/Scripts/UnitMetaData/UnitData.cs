@@ -12,6 +12,7 @@ namespace Player
         public List<UnitLevelData> LevelsUpgrade;
         public String Name;
         public int FromLevel;
+        public Unit Unit;
 
         public int LoadLevel()
         {

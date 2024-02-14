@@ -9,6 +9,8 @@ public class FPSCounter : MonoBehaviour
     void Start()
     {
 #if UNITY_ANDROID
+
+        QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
 #endif
     }
@@ -18,7 +20,23 @@ public class FPSCounter : MonoBehaviour
 
     public void Update()
     {
+        if (showWarning) return;
         var curFps = (int)(1f / Time.unscaledDeltaTime);
         Text.text = "FPS: " + curFps;
+        if (curFps < 31)
+        {
+            StartCoroutine(ShowWrongFps(curFps));
+        }
+    }
+
+
+    private bool showWarning;
+
+    public IEnumerator ShowWrongFps(int curFps)
+    {
+        showWarning = true;
+        Text.text = "Warning: " + curFps;
+        yield return new WaitForSeconds(0.5f);
+        showWarning = false;
     }
 }
