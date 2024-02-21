@@ -70,6 +70,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SaveUnitString: MainUnitLevel
+  SaveUnitString: ShooterUnitLevel
   Name: Shooter
   FromLevel: 2
+  Unit: {fileID: 9180618983747893112, guid: 8239af33c32291369894452b4f8040ff, type: 3}

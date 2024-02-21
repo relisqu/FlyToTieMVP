@@ -73,3 +73,4 @@ MonoBehaviour:
   SaveUnitString: LaserBotLevel
   Name: LaserBot
   FromLevel: 15
+  Unit: {fileID: 5602585125828000979, guid: d341df4360eebd84a8ec2c6061d77e15, type: 3}
