@@ -27,7 +27,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 7
     - Name: 
       Entry: 7
       Data: 1|Player.UnitLevelData, Assembly-CSharp
@@ -36,7 +36,7 @@ MonoBehaviour:
       Data: Sorry I can only jump
     - Name: UpgradeMoneyCount
       Entry: 3
-      Data: 150
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -48,7 +48,7 @@ MonoBehaviour:
       Data: Now Im cooler
     - Name: UpgradeMoneyCount
       Entry: 3
-      Data: 300
+      Data: 1000
     - Name: 
       Entry: 8
       Data: 
@@ -60,7 +60,55 @@ MonoBehaviour:
       Data: Im the best
     - Name: UpgradeMoneyCount
       Entry: 3
-      Data: 500
+      Data: 10000
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Player.UnitLevelData, Assembly-CSharp
+    - Name: Description
+      Entry: 6
+      Data: 
+    - Name: UpgradeMoneyCount
+      Entry: 3
+      Data: 100000
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|Player.UnitLevelData, Assembly-CSharp
+    - Name: Description
+      Entry: 6
+      Data: 
+    - Name: UpgradeMoneyCount
+      Entry: 3
+      Data: 1000000
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|Player.UnitLevelData, Assembly-CSharp
+    - Name: Description
+      Entry: 6
+      Data: 
+    - Name: UpgradeMoneyCount
+      Entry: 3
+      Data: 10000000
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|Player.UnitLevelData, Assembly-CSharp
+    - Name: Description
+      Entry: 6
+      Data: 
+    - Name: UpgradeMoneyCount
+      Entry: 3
+      Data: 100000000
     - Name: 
       Entry: 8
       Data: 
@@ -73,3 +121,4 @@ MonoBehaviour:
   SaveUnitString: PoopUnitLevel
   Name: PoopBot
   FromLevel: 50
+  Unit: {fileID: 2046142469722302276, guid: c72b9ef8866f2414fa10c74f9e26ace2, type: 3}

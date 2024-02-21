@@ -64,7 +64,7 @@ public abstract class Unit : MonoBehaviour
         return BottomUnit.transform.position + unit.OffsetOnAttachment;
     }
 
-    void AnimateJump()
+    public virtual void AnimateJump()
     {
         if (Animator != null) Animator.Jump();
     }
