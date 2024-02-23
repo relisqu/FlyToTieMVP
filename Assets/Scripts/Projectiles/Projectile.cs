@@ -10,7 +10,5 @@ namespace Projectiles
         public abstract void DestroyProjectile();
 
 
-
-
     }
 }

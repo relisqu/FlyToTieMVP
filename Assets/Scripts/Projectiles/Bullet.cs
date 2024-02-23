@@ -3,12 +3,17 @@ using System.Collections;
 using DefaultNamespace.Projectile;
 using UnityEngine;
 using Obstacle;
+
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float MaxLifetime;
     [SerializeField] public bool IsDestructible;
     [SerializeField] private LifeAnimator Animator;
+    [SerializeField] private bool IsDebug;
     private Camera _camera;
+
+    private bool _canHit = true;
+    public bool CanHit() => _canHit;
 
     private void Start()
     {
@@ -23,6 +28,12 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    public void SetHit(bool shouldHit)
+    {
+        _canHit = shouldHit;
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (IsDestructible && other.gameObject.TryGetComponent(out Obstacle.Obstacle _))
@@ -33,13 +44,14 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
+        _canHit = true;
         if (IsDestructible) StartCoroutine(DieAfterSomeTime());
     }
 
     private void Update()
     {
         var screenPosition = _camera.ScreenToWorldPoint(new Vector3(Screen.width, 0));
-        if (transform.position.x > screenPosition.x + 0.3f) 
+        if (!IsDebug && transform.position.x > screenPosition.x + 0.3f)
         {
             Destroy();
         }

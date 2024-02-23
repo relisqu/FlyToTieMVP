@@ -15,7 +15,6 @@ public class LaserProjectile : Projectile
     [SerializeField] private Transform ColliderTransform;
     [SerializeField] private List<ParticleSystem> Particles;
 
-    public static float HasPiercingLaser;
 
     public void EmitAllParticles()
     {
