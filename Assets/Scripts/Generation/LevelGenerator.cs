@@ -58,6 +58,7 @@ namespace DefaultNamespace.Generation
 
         public List<LevelChunk> GenerateLevelChunks()
         {
+            int curLevel = PlayerData.СurrentLevel;
             var level = GetLevel();
             WeightedRandom<LevelChunk> random = new WeightedRandom<LevelChunk>();
             foreach (var chunk in level.Chunks)
@@ -68,11 +69,20 @@ namespace DefaultNamespace.Generation
             float currentWidth = 0;
             var ind = 0;
             var indWithUnit = 0;
+            var tries = 0;
             List<LevelChunk> chunksToGenerate = new List<LevelChunk>();
             while (currentWidth <= LevelWidth)
             {
                 var chunk = random.Next();
-                if (chunk == chunksToGenerate.LastOrDefault()) continue;
+                if (curLevel < chunk.GetMinLevel() && tries < 150)
+                {
+                    tries++;
+                    continue;
+                }
+
+                if (chunk == chunksToGenerate.LastOrDefault())
+                    continue;
+                tries = 0;
                 ind++;
                 if (chunk.HasUnits)
                 {
@@ -103,7 +113,6 @@ namespace DefaultNamespace.Generation
         [Button]
         public void SpawnLevel(bool needRestart = true)
         {
-            
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);

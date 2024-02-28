@@ -12,8 +12,9 @@ public class EnemyPathPointsSetter : MonoBehaviour
     {
         if (LineRenderer.positionCount <= 0) return;
         var lPos = LineRenderer.transform.position;
-        StartSprite.position = LineRenderer.GetPosition(0) + lPos;
-        EndSprite.position = LineRenderer.GetPosition(LineRenderer.positionCount - 1) + lPos;
+        StartSprite.position = Vector3.Scale(LineRenderer.GetPosition(0), LineRenderer.transform.localScale) + lPos;
+        EndSprite.position = Vector3.Scale(LineRenderer.GetPosition(LineRenderer.positionCount - 1),
+            LineRenderer.transform.localScale) + lPos;
     }
 
     // Update is called once per frame

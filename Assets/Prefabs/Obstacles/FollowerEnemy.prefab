@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 646262614086767120}
   - component: {fileID: 5727414103457413191}
   - component: {fileID: 213900627020304406}
+  - component: {fileID: 1538429397190099253}
   m_Layer: 12
   m_Name: FollowerEnemy
   m_TagString: Untagged
@@ -254,7 +255,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.25
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -285,3 +286,19 @@ MonoBehaviour:
   Layers:
     serializedVersion: 2
     m_Bits: 2115
+--- !u!114 &1538429397190099253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112430245134480846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e3d35906d1f41e0b2e5c8f9b3ffc085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasMinLevel: 1
+  MinLevel: 20
+  HasMaxLevel: 0
+  MaxLevel: 0
