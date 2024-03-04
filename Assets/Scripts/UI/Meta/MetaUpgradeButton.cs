@@ -80,6 +80,7 @@ namespace DefaultNamespace.UI.Meta
             PlayerData.SaveMoney(PlayerData.MoneyCount - Data.LevelsUpgrade[_curUpgradeLevel].UpgradeMoneyCount);
             Data.SaveLevel(Data.LoadLevel() + 1);
             SetTextContext();
+            Unit.UpdateUnits?.Invoke();
         }
     }
 }

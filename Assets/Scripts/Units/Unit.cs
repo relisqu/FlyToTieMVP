@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace.UI;
 using DG.Tweening;
+using Player;
 using Units;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -27,7 +28,9 @@ public abstract class Unit : MonoBehaviour
     private Unit _aboveUnit;
     private Unit _belowUnit;
 
+    public static Action UpdateUnits;
     public UnitState UnitState { get; protected set; }
+    [SerializeField] protected UnitData UnitData;
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
     {
@@ -35,6 +38,48 @@ public abstract class Unit : MonoBehaviour
         if (col.gameObject.TryGetComponent(out Obstacle.Obstacle obstacle)) OnObstacleCollision(obstacle);
 
         if (col.gameObject.TryGetComponent(out Unit unit)) OnUnitCollision(unit);
+    }
+
+    public void SetUpdates()
+    {
+        if (!UnitData) return;
+        ClearUpdates();
+
+        var level = UnitData.LoadLevel();
+        for (var index = 0; index < level; index++)
+        {
+            var upgrades = UnitData.LevelsUpgrade[index];
+            if (upgrades.HasUpgrades)
+            {
+                upgrades.Upgrade.UpgradeAction(this);
+            }
+        }
+    }
+
+    public void ClearUpdates()
+    {
+        if (!UnitData) return;
+
+        var level = UnitData.LoadLevel();
+        for (var index = 0; index < level; index++)
+        {
+            var upgrades = UnitData.LevelsUpgrade[index];
+            if (upgrades.HasUpgrades)
+            {
+                upgrades.Upgrade.ClearUpgradeActions(this);
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        SetUpdates();
+        UpdateUnits += SetUpdates;
+    }
+
+    private void OnDestroy()
+    {
+        UpdateUnits -= SetUpdates;
     }
 
     public abstract void OnJump();

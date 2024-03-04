@@ -14,6 +14,7 @@ namespace Player
         public int FromLevel;
         public Unit Unit;
 
+
         public int LoadLevel()
         {
             return PlayerPrefs.GetInt(SaveUnitString, 0);
@@ -30,5 +31,7 @@ namespace Player
     {
         public string Description;
         public int UpgradeMoneyCount;
+        public bool HasUpgrades;
+        [ShowIf("HasUpgrades")] public UnitUpgrade Upgrade;
     }
 }

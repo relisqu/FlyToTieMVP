@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] public bool IsDestructible;
     [SerializeField] private LifeAnimator Animator;
     [SerializeField] private bool IsDebug;
+    public Action<Vector3> OnEnemyProjectileDestroy;
     private Camera _camera;
 
     private bool _canHit = true;
@@ -31,7 +32,6 @@ public class Bullet : MonoBehaviour
     public void SetHit(bool shouldHit)
     {
         _canHit = shouldHit;
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -71,6 +71,7 @@ public class Bullet : MonoBehaviour
 
     public void Destroy()
     {
+        OnEnemyProjectileDestroy = null;
         gameObject.SetActive(false);
     }
 

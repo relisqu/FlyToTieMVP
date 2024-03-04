@@ -5174,6 +5174,7 @@ MonoBehaviour:
   OffsetOnAttachment: {x: 0.04, y: -0.9, z: 0}
   OffsetOnChildAttachment: {x: 0, y: 0.12, z: 0}
   Animator: {fileID: 5684175452271573495}
+  UnitData: {fileID: 11400000, guid: 315e18b5fa58bde4db423bf1874843a3, type: 2}
 --- !u!114 &5684175452271573495
 MonoBehaviour:
   m_ObjectHideFlags: 0

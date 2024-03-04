@@ -30,10 +30,17 @@ namespace Player
                 Debug.Log("Damaged by bullet");
                 bullet.SetHit(false);
                 TakeDamage();
+                if (_currentHealth <= 0)
+                {
+                    Debug.Log("destroyed obj");
+                    bullet.OnEnemyProjectileDestroy?.Invoke(bullet.transform.position);
+                }
                 if (bullet.IsDestructible)
                 {
                     bullet.TakeDamage();
                 }
+
+                
             }
         }
 

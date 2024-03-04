@@ -18,13 +18,12 @@ namespace Scripts.Obstacle
             }
         }
 
-        public static void GenerateMoney(int amount, Transform transform)
+        public static void GenerateMoney(int amount, Vector3 position)
         {
             for (int i = 0; i < amount; i++)
             {
                 var randomOffset = new Vector2(Random.Range(-0.6f, 0.6f), Random.Range(-0.2f, 0.2f));
                 var coin = GetCoinFromPool();
-                var position = transform.position;
                 coin.transform.position = position;
                 coin.transform.localScale = Vector3.one * 0.3f;
                 coin.transform.DOScale(Vector3.one, 0.3f);

@@ -32,7 +32,7 @@ namespace Scripts.Obstacle
         public void GenerateCoins()
         {
             var moneyCount = Random.Range(1, 5);
-            CoinGenerator.GenerateMoney(moneyCount, transform);
+            CoinGenerator.GenerateMoney(moneyCount, transform.position);
         }
 
 
