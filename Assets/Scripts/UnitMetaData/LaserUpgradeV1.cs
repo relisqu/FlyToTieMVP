@@ -2,15 +2,17 @@
 
 namespace Player
 {
-    [CreateAssetMenu(fileName = "ShooterUpgradeV1", menuName = "ScriptableObjects/UnitUpgrades/Shooter/V1", order = 0)]
+    [CreateAssetMenu(fileName = "LaserUpgradeV1", menuName = "ScriptableObjects/UnitUpgrades/LaserShooter/V1", order = 0)]
     public class LaserUpgradeV1 : UnitUpgrade
     {
-        public float bulletSpeed;
+        public float laserScale;
 
         public override void UpgradeAction(Unit unit)
         {
+            
+            Debug.Log($"Applied upgrade1 for laser {Time.time}");
             var shooterUnit = (ShootingUnit)unit;
-            shooterUnit.Shooter.SetProjectileSpeed(bulletSpeed);
+            shooterUnit.Shooter.SetDefaultProjectileScale(laserScale);
         }
 
         public override void ClearUpgradeActions(Unit unit)

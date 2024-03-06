@@ -5,10 +5,10 @@ public class ShootingUnit : Unit
 {
     [SerializeField] public Shooter Shooter;
     [SerializeField] protected bool IsShootingViaAnimation;
-
     private void Start()
     {
         OnCurrentUnitDamageTaken += Shooter.StopShooting;
+        
     }
 
 
@@ -25,12 +25,18 @@ public class ShootingUnit : Unit
 
     public override void OnJump()
     {
-        if (Shooter != null && Shooter.enabled && !IsShootingViaAnimation) Shooter.Shoot();
+        if (Shooter != null && Shooter.enabled && !IsShootingViaAnimation)
+        {
+            Shooter.Shoot();
+        }
     }
 
     public void Shoot()
     {
-        if (Shooter != null && Shooter.enabled) Shooter.Shoot();
+        if (Shooter != null && Shooter.enabled)
+        {
+            Shooter.Shoot();
+        }
     }
 
     public void StopShooting()

@@ -93,7 +93,7 @@ MonoBehaviour:
       Data: the best
     - Name: UpgradeMoneyCount
       Entry: 3
-      Data: 0
+      Data: 5
     - Name: HasUpgrades
       Entry: 5
       Data: false

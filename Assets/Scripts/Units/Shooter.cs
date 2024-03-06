@@ -7,9 +7,16 @@ public class Shooter : MonoBehaviour
 {
     [SerializeField] protected Projectile Projectile;
     public Action<Vector3> OnBulletEnemyHit;
+    public Action<Shooter> OnShoot;
+
+
+    protected int shotsCount = 0;
+    public int GetShotsCount() => shotsCount;
 
     public virtual void Shoot()
     {
+        OnShoot?.Invoke(this);
+        shotsCount++;
         var bullet = Instantiate(Projectile, transform.position, Quaternion.identity, null);
     }
 
@@ -18,7 +25,7 @@ public class Shooter : MonoBehaviour
         Projectile.SetSpeed(speed);
     }
 
-  
+
     public virtual void SetProjectileScale(float scale)
     {
         Projectile.SetScale(scale);
@@ -26,5 +33,16 @@ public class Shooter : MonoBehaviour
 
     public virtual void StopShooting()
     {
+    }
+
+
+    public virtual void ResetProjectileScale()
+    {
+        Projectile.ResetToDefaultScale();
+    }
+
+    public virtual void SetDefaultProjectileScale(float laserScale)
+    {
+        Projectile.SetDefaultScale(laserScale);
     }
 }

@@ -15,6 +15,14 @@ public class LaserProjectile : Projectile
     [SerializeField] private Transform ColliderTransform;
     [SerializeField] private List<ParticleSystem> Particles;
 
+    private float _laserWidth = 1f;
+
+   
+
+    public void SetWidth(float width)
+    {
+        _laserWidth = width;
+    }
 
     public void EmitAllParticles()
     {
@@ -30,8 +38,11 @@ public class LaserProjectile : Projectile
         {
             particle.Stop();
         }
+    }  
+    public override void SetScale(float scale)
+    {
+        Scale = scale;
     }
-
     public override void SpawnProjectile()
     {
         if (_isEnabled) return;
@@ -53,25 +64,27 @@ public class LaserProjectile : Projectile
 
     IEnumerator UpdateLaserLife()
     {
-        LaserBody.widthMultiplier = 0.01f;
         LaserAnimator.SetTrigger("StartLaser");
-        var laserTween = DOTween.To(() => LaserBody.widthMultiplier, x => LaserBody.widthMultiplier = x, 1,
-            LaserLife / 3).SetAutoKill(false);
+       // var laserTween = DOTween.To(() => LaserBody.widthMultiplier, x => LaserBody.widthMultiplier = x, Scale,
+        //    LaserLife / 3).SetAutoKill(false);
 
-        transform.localScale = new Vector3(1,0.1f,1);
-        var defaultTween = DOTween.To(() =>transform.localScale.y, x => transform.localScale= new Vector3(1,x,1), 1,
-            LaserLife / 5).SetAutoKill(false);
-
+       // transform.localScale = new Vector3(1, 0.1f, 1);
+       // var defaultTween = DOTween.To(() => transform.localScale.y,
+       //     x => transform.localScale = Vector3.one * (Mathf.Clamp(Scale * 0.6f, 1f, 3f)),
+       //     Scale,
+       //     LaserLife / 5).SetAutoKill(false);
+        //ColliderTransform.localScale = Vector3.one * (0.4f * Scale);
         AudioManager.instance.Play("laser_shot");
         Debug.Log("Started laser");
         yield return new WaitForSeconds(LaserLife * 3 / 5);
-        laserTween.PlayBackwards();
-        defaultTween.PlayBackwards();
+        //laserTween.PlayBackwards();
+        //defaultTween.PlayBackwards();
         LaserAnimator.SetTrigger("FinishLaser");
 
         yield return new WaitForSeconds(LaserLife / 5);
         DestroyProjectile();
     }
+
 
     Vector3 SetParticlesAtSecondPoint()
     {
@@ -88,6 +101,7 @@ public class LaserProjectile : Projectile
         {
             secondPoint = firstPoint + range * Vector3.right;
         }
+
         ColliderTransform.position = secondPoint;
         return secondPoint;
     }
@@ -96,7 +110,6 @@ public class LaserProjectile : Projectile
     {
         var firstPoint = transform.position;
 
-        
 
         LaserBody.positionCount = 2;
         LaserBody.SetPosition(0, firstPoint);
@@ -121,6 +134,8 @@ public class LaserProjectile : Projectile
 
     private void Update()
     {
+        LaserBody.widthMultiplier = Scale;
+        Debug.Log("scale "+Scale+$" {Time.time}");
         if (_isEnabled)
         {
             DrawLaser();

@@ -15,7 +15,9 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: c2bed9236e9105b48852ea27fadfbe87, type: 2}
+    - {fileID: 11400000, guid: 4424f1245541c674ebe9626090f55b20, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,7 +29,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: 
       Entry: 7
       Data: 1|Player.UnitLevelData, Assembly-CSharp
@@ -36,7 +38,13 @@ MonoBehaviour:
       Data: Sorry I can only jump
     - Name: UpgradeMoneyCount
       Entry: 3
-      Data: 150
+      Data: 1
+    - Name: HasUpgrades
+      Entry: 5
+      Data: true
+    - Name: Upgrade
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -48,7 +56,13 @@ MonoBehaviour:
       Data: Now Im cooler
     - Name: UpgradeMoneyCount
       Entry: 3
-      Data: 300
+      Data: 3
+    - Name: HasUpgrades
+      Entry: 5
+      Data: true
+    - Name: Upgrade
+      Entry: 10
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -57,10 +71,34 @@ MonoBehaviour:
       Data: 3|Player.UnitLevelData, Assembly-CSharp
     - Name: Description
       Entry: 1
+      Data: Even more cooler
+    - Name: UpgradeMoneyCount
+      Entry: 3
+      Data: 3
+    - Name: HasUpgrades
+      Entry: 5
+      Data: false
+    - Name: Upgrade
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|Player.UnitLevelData, Assembly-CSharp
+    - Name: Description
+      Entry: 1
       Data: Im the best
     - Name: UpgradeMoneyCount
       Entry: 3
-      Data: 500
+      Data: 5
+    - Name: HasUpgrades
+      Entry: 5
+      Data: false
+    - Name: Upgrade
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 

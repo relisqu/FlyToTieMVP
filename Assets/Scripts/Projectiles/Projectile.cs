@@ -7,7 +7,8 @@ namespace Projectiles
     {
         [SerializeField] protected float Speed = 1f;
         [SerializeField] protected float Scale = 1f;
-        
+
+        private float _defaultScale;
         public abstract void SpawnProjectile();
 
 
@@ -17,11 +18,29 @@ namespace Projectiles
         {
             Speed = speed;
         }
-        
-        public void SetScale(float scale)
+
+        public virtual void SetScale(float scale)
         {
             Scale = scale;
-            transform.localScale= Vector3.one*Scale;
+            Debug.Log($"Setted scale {Scale} {Time.time}");
+            transform.localScale = Vector3.one * Scale;
         }
+
+        public void SetDefaultScale(float scale)
+        {
+            _defaultScale = scale;
+            ResetToDefaultScale();
+        }
+
+        public void ResetToDefaultScale()
+        {
+            Scale = _defaultScale;
+        }
+
+        private void OnEnable()
+        {
+           // transform.localScale = Vector3.one * Scale;
+        }
+
     }
 }
