@@ -7,11 +7,8 @@ namespace Units
 {
     public class LaserShooter : Shooter
     {
-        private LaserProjectile _laser;
-
         public override void Shoot()
         {
-
             shotsCount++;
 
             OnShoot?.Invoke(this);
@@ -20,23 +17,17 @@ namespace Units
 
         private void Awake()
         {
-            if (_laser == null)
-            {
-                _laser = Instantiate((LaserProjectile)Projectile, transform);
-                Projectile = _laser;
-            }
+            Projectile = Instantiate((LaserProjectile)Projectile, transform);
         }
 
         public override void SetProjectileScale(float scale)
         {
-            _laser.SetScale(scale);
+            ((LaserProjectile)Projectile).SetScale(scale);
         }
 
         public override void StopShooting()
         {
-            if (_laser != null)
-                _laser.DestroyProjectile();
+            
         }
-        
     }
 }

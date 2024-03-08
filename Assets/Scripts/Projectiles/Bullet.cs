@@ -3,10 +3,11 @@ using System.Collections;
 using DefaultNamespace.Projectile;
 using UnityEngine;
 using Obstacle;
+using Sirenix.OdinInspector;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float MaxLifetime;
+    [SerializeField] [ShowIf("IsDestructible")]private float MaxLifetime;
     [SerializeField] public bool IsDestructible;
     [SerializeField] private LifeAnimator Animator;
     [SerializeField] private bool IsDebug;
@@ -15,6 +16,7 @@ public class Bullet : MonoBehaviour
 
     private bool _canHit = true;
     public bool CanHit() => _canHit;
+    public int LastHitId;
 
     private void Start()
     {

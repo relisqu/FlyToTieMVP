@@ -1,4 +1,5 @@
 ﻿using System;
+using Units;
 using UnityEngine;
 
 namespace Player
@@ -20,12 +21,10 @@ namespace Player
         {
             if (unit.GetShotsCount() % 3 == 0)
             {
-                Debug.Log("Tried to shoot big one " +unit.name+ unit.GetShotsCount());
-                unit.SetProjectileScale(laserScale * 4);
+                unit.SetProjectileScale(laserScale);
             }
             else
             {
-                Debug.Log("Tried to shoot small one"  +unit.name+ unit.GetShotsCount());
                 unit.ResetProjectileScale();
             }
         }

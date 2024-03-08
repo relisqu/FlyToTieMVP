@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -25,8 +26,10 @@ namespace Player
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.TryGetComponent(out Bullet bullet) && bullet.CanHit())
+            if (other.gameObject.TryGetComponent(out Bullet bullet) &&
+                (bullet.CanHit() || bullet.LastHitId != GetInstanceID()))
             {
+                bullet.LastHitId = GetInstanceID();
                 Debug.Log("Damaged by bullet");
                 bullet.SetHit(false);
                 TakeDamage();
@@ -35,12 +38,11 @@ namespace Player
                     Debug.Log("destroyed obj");
                     bullet.OnEnemyProjectileDestroy?.Invoke(bullet.transform.position);
                 }
+
                 if (bullet.IsDestructible)
                 {
                     bullet.TakeDamage();
                 }
-
-                
             }
         }
 
