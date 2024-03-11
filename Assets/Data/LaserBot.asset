@@ -18,6 +18,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: c2bed9236e9105b48852ea27fadfbe87, type: 2}
     - {fileID: 11400000, guid: 4424f1245541c674ebe9626090f55b20, type: 2}
+    - {fileID: 11400000, guid: 1c1bbcf918ee6984190763aa78a1d3c9, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -77,10 +78,10 @@ MonoBehaviour:
       Data: 3
     - Name: HasUpgrades
       Entry: 5
-      Data: false
+      Data: true
     - Name: Upgrade
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 

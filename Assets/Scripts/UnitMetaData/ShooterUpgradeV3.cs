@@ -15,13 +15,13 @@ namespace Player
         {
             Debug.Log("Set money for shooter upgrade");
             var shooterUnit = (ShootingUnit)unit;
-            shooterUnit.Shooter.OnBulletEnemyHit += GenerateMoney;
+            shooterUnit.Shooter.OnBulletEnemyDeath += GenerateMoney;
         }
 
         public override void ClearUpgradeActions(Unit unit)
         {
             var shooterUnit = (ShootingUnit)unit;
-            shooterUnit.Shooter.OnBulletEnemyHit -= GenerateMoney;
+            shooterUnit.Shooter.OnBulletEnemyDeath -= GenerateMoney;
         }
 
         public void GenerateMoney(Vector3 position)

@@ -30,17 +30,12 @@ namespace Units
                 bullet.SetSpeed(_projectileSpeed);
                 bullet.transform.localScale = new Vector3(0f, _projectileScale, _projectileScale);
                 bullet.SpawnProjectile();
-                bullet.Bullet.OnEnemyProjectileDestroy+=OnBulletEnemyHit;
+                bullet.GetBullet().OnEnemyDestroy+=OnBulletEnemyDeath;
                 bullet.transform.DOScaleX(_projectileScale, 0.3f);
                 yield return new WaitForSeconds(Delay);
             }
 
             _isShooting = false;
-        }
-
-        private void Start()
-        {
-            OnBulletEnemyHit += _ => Debug.Log("AAA");
         }
 
         private float _projectileSpeed = 30f;

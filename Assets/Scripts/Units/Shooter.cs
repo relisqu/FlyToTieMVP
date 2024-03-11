@@ -6,11 +6,14 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     [SerializeField] protected Projectile Projectile;
-    public Action<Vector3> OnBulletEnemyHit;
+    public Action<Vector3> OnBulletEnemyDeath;
     public Action<Shooter> OnShoot;
 
 
     protected int shotsCount = 0;
+
+    public Action<Bullet, Vector3> OnBulletHit;
+
     public int GetShotsCount() => shotsCount;
 
     public virtual void Shoot()

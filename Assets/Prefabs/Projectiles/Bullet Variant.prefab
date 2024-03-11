@@ -5178,6 +5178,7 @@ MonoBehaviour:
   IsDestructible: 1
   Animator: {fileID: 2433930133631197031}
   IsDebug: 0
+  Collider: {fileID: 0}
 --- !u!114 &154706998291962256
 MonoBehaviour:
   m_ObjectHideFlags: 0

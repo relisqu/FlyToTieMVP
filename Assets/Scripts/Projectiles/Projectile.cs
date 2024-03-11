@@ -7,10 +7,17 @@ namespace Projectiles
     {
         [SerializeField] protected float Speed = 1f;
         [SerializeField] protected float Scale = 1f;
+        [SerializeField] protected Bullet Bullet;
 
-        private float _defaultScale =1f;
+
+        private float _defaultScale = 1f;
         public abstract void SpawnProjectile();
 
+
+        public Bullet GetBullet()
+        {
+            return Bullet;
+        }
 
         public abstract void DestroyProjectile();
 
@@ -38,7 +45,7 @@ namespace Projectiles
 
         private void OnEnable()
         {
-           // transform.localScale = Vector3.one * Scale;
+            // transform.localScale = Vector3.one * Scale;
         }
 
         public virtual bool IsEnabled()

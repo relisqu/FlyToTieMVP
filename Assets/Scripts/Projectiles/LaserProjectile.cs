@@ -13,6 +13,7 @@ public class LaserProjectile : Projectile
     [SerializeField] private Animator LaserAnimator;
     [SerializeField] private LayerMask LaserIgnoreLayers;
     [SerializeField] private Transform ColliderTransform;
+    [SerializeField] private BoxCollider2D Collider;
     [SerializeField] private List<ParticleSystem> Particles;
 
     public void EmitAllParticles()
@@ -56,6 +57,7 @@ public class LaserProjectile : Projectile
         _isEnabled = false;
     }
 
+    private Vector2 _defaultColliderSize;
     IEnumerator UpdateLaserLife()
     {
         _isEnabled = true;
@@ -65,6 +67,7 @@ public class LaserProjectile : Projectile
 
         var defaultTween = ColliderTransform.DOScale(Math.Clamp(Scale * 0.8f, 1f, 3f), LaserLife / 5);
         ColliderTransform.localScale = Vector3.one * (0.8f * Scale);
+        Collider.size = _defaultColliderSize;
         AudioManager.instance.Play("laser_shot");
         Debug.Log("Started laser");
         yield return new WaitForSeconds(LaserLife * 3 / 5);
@@ -132,6 +135,7 @@ public class LaserProjectile : Projectile
     private void Start()
     {
         gameObject.SetActive(false);
+        _defaultColliderSize = Collider.size;
     }
 
     private bool _isEnabled;

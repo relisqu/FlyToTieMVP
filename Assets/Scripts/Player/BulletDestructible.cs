@@ -27,16 +27,17 @@ namespace Player
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.TryGetComponent(out Bullet bullet) &&
-                (bullet.CanHit() || bullet.LastHitId != GetInstanceID()))
+                (bullet.CanHit() || bullet.LastHitID != GetInstanceID()))
             {
-                bullet.LastHitId = GetInstanceID();
+                bullet.LastHitID = GetInstanceID();
                 Debug.Log("Damaged by bullet");
                 bullet.SetHit(false);
                 TakeDamage();
+                bullet.OnEnemyHit?.Invoke(bullet,other.GetContact(0).point);
                 if (_currentHealth <= 0)
                 {
                     Debug.Log("destroyed obj");
-                    bullet.OnEnemyProjectileDestroy?.Invoke(bullet.transform.position);
+                    bullet.OnEnemyDestroy?.Invoke(other.GetContact(0).point);
                 }
 
                 if (bullet.IsDestructible)

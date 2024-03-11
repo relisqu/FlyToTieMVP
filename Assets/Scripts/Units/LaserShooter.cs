@@ -18,6 +18,17 @@ namespace Units
         private void Awake()
         {
             Projectile = Instantiate((LaserProjectile)Projectile, transform);
+            Projectile.GetBullet().OnEnemyHit += CallBulletHit;
+        }
+
+        void CallBulletHit(Bullet bull, Vector3 pos)
+        {
+            OnBulletHit?.Invoke(bull, pos);
+        }
+
+        private void OnDestroy()
+        {
+            Projectile.GetBullet().OnEnemyHit -= CallBulletHit;
         }
 
         public override void SetProjectileScale(float scale)
@@ -27,7 +38,6 @@ namespace Units
 
         public override void StopShooting()
         {
-            
         }
     }
 }

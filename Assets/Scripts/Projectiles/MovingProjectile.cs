@@ -5,7 +5,6 @@ public class MovingProjectile : Projectile
 {
     public HorizontalMovement MovementController;
 
-    public Bullet Bullet;
 
     public override void SpawnProjectile()
     {

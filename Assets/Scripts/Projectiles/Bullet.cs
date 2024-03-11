@@ -7,16 +7,21 @@ using Sirenix.OdinInspector;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] [ShowIf("IsDestructible")]private float MaxLifetime;
+    [SerializeField] [ShowIf("IsDestructible")]
+    private float MaxLifetime;
+
     [SerializeField] public bool IsDestructible;
     [SerializeField] private LifeAnimator Animator;
     [SerializeField] private bool IsDebug;
-    public Action<Vector3> OnEnemyProjectileDestroy;
+    public Action<Vector3> OnEnemyDestroy;
+    [SerializeField] private Collider2D Collider;
+    public Action<Bullet, Vector3> OnEnemyHit;
     private Camera _camera;
 
     private bool _canHit = true;
     public bool CanHit() => _canHit;
-    public int LastHitId;
+
+    public int LastHitID { get; set; } = 0;
 
     private void Start()
     {
@@ -73,12 +78,18 @@ public class Bullet : MonoBehaviour
 
     public void Destroy()
     {
-        OnEnemyProjectileDestroy = null;
+        OnEnemyHit = null;
+        OnEnemyDestroy = null;
         gameObject.SetActive(false);
     }
 
     public void TakeDamage()
     {
         Die();
+    }
+
+    public Collider2D GetCollider()
+    {
+        return Collider;
     }
 }
