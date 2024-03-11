@@ -4,24 +4,24 @@ namespace Projectiles
 {
     public class Pool : MonoBehaviour
     {
-        [SerializeField] private GameObject Projectile;
-        public static GameObject[] ParticlesPool;
+        [SerializeField] private ParticleSystem Particle;
+        public static ParticleSystem[] ParticlesPool;
 
         private void Start()
         {
-            ParticlesPool = new GameObject[15];
+            ParticlesPool = new ParticleSystem[15];
             for (int i = 0; i < ParticlesPool.Length; i++)
             {
-                ParticlesPool[i] = Instantiate(Projectile);
-                ParticlesPool[i].SetActive(false);
+                ParticlesPool[i] = Instantiate(Particle);
+                ParticlesPool[i].gameObject.SetActive(false);
             }
         }
 
-        public static GameObject GetBulletFromPool()
+        public static ParticleSystem GetParticleFromPool()
         {
             foreach (var ob in ParticlesPool)
             {
-                if (!ob.activeInHierarchy)
+                if (!ob.gameObject.activeInHierarchy)
                 {
                     return ob;
                 }

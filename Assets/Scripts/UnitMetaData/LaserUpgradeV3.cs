@@ -11,8 +11,6 @@ namespace Player
     public class LaserUpgradeV3 : UnitUpgrade
     {
         public float laserExplosionScale;
-        public ParticleSystem laserExplosionParticle;
-        public ParticleSystem.EmitParams EmitParams;
 
         public override void UpgradeAction(Unit unit)
         {
@@ -27,11 +25,11 @@ namespace Player
             Debug.Log("Boom");
             var boxCollider = (BoxCollider2D)unit.GetCollider();
             var size = boxCollider.size;
-            size.y *= laserExplosionScale;
-            EmitParams.position = shootPosition;
-            laserExplosionParticle.Emit(10000);
-            var shooterParticle = Instantiate(laserExplosionParticle, shootPosition, quaternion.identity, null);
-            shooterParticle.Play();
+            size.y = laserExplosionScale;
+            var explosion = Pool.GetParticleFromPool();
+            explosion.transform.position = shootPosition;
+            explosion.gameObject.SetActive(true);
+            explosion.Play();
             boxCollider.size = size;
         }
 
