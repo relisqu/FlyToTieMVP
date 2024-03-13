@@ -8,7 +8,7 @@ namespace Player
     [CreateAssetMenu(fileName = "UnitUpgradeData", menuName = "ScriptableObjects/UnitMeta", order = 0)]
     public class UnitData : SerializedScriptableObject
     {
-        public string SaveUnitString = "MainUnitLevel";
+        public string SaveUnitString = "UnitLevel";
         public List<UnitLevelData> LevelsUpgrade;
         public String Name;
         public int FromLevel;

@@ -86,12 +86,15 @@ public class StarterUnit : Unit
         Instance.Damageable = GetComponent<ObstacleDamageable>();
     }
 
+
     private void Start()
     {
         SetState(UnitState.Attached);
         OnDamageTaken += Damageable.TakeDamage;
         PlayerMovement.Jumped += OnJump;
         BottomUnit = this;
+        SetUpdates();
+        UpdateUnits += SetUpdates;
     }
 
     private void OnDestroy()

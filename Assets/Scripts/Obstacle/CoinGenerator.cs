@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace.Props;
+using DefaultNamespace.UI;
 using DG.Tweening;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace Scripts.Obstacle
 
         public static void GenerateMoney(int amount, Vector3 position)
         {
+            amount = (int)(amount * CoinMultiplierScaler.Instance.GetScale());
             for (int i = 0; i < amount; i++)
             {
                 var randomOffset = new Vector2(Random.Range(-0.6f, 0.6f), Random.Range(-0.2f, 0.2f));
