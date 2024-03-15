@@ -47,6 +47,11 @@ public class StarterUnit : Unit
 
     public void Die()
     {
+        if (PlayerMovement.Instance.GetState()==PlayerMovement.MovementState.Die)
+        {
+            return;
+        }
+
         LevelGenerator.Instance.SpawnLevel(needRestart: false);
         EndCutscene.OnGameplayFinish?.Invoke();
         StartScene.PlayCutscene();

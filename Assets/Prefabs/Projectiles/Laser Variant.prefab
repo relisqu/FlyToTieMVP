@@ -10229,7 +10229,7 @@ MonoBehaviour:
   LaserAnimator: {fileID: 5817637587375181560}
   LaserIgnoreLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4097
   ColliderTransform: {fileID: 8850172775502698099}
   Collider: {fileID: 7833280196058202410}
   Particles:
