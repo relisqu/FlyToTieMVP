@@ -27,6 +27,8 @@ namespace Player
         {
             scale += MultiplierScale;
             CoinMultiplierScaler.Instance.SetScale(scale);
+            JumpSplashUI.Instance.PlayParticles();
+            //ScreenBlink.Instance.SmallBlink();
             Debug.Log(scale);
         }
 

@@ -13,10 +13,15 @@ namespace DefaultNamespace.UI
 
         private void Start()
         {
-            Instance = this;
             CoinText.SetText("");
             PlayerMovement.OnBigJump += UpdateText;
             PlayerMovement.OnSmallJump += UpdateText;
+        }
+
+        private void Awake()
+        {
+            
+            Instance = this;
         }
 
         public bool IsEnabled;
@@ -25,6 +30,7 @@ namespace DefaultNamespace.UI
         {
             IsEnabled = true;
             CoinText.SetText("x1<sprite=2>");
+            UpdateText();
         }
 
         private void OnDestroy()
@@ -62,6 +68,7 @@ namespace DefaultNamespace.UI
         public void SetScale(float scale)
         {
             this.scale = scale;
+            UpdateText();
         }
     }
 }

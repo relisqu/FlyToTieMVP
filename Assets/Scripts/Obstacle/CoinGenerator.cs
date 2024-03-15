@@ -7,7 +7,7 @@ namespace Scripts.Obstacle
 {
     public class CoinGenerator : MonoBehaviour
     {
-        private static Coin[] _coinsPool = new Coin[30];
+        private static Coin[] _coinsPool = new Coin[70];
         [SerializeField] private Coin CoinPrefab;
 
         void Awake()

@@ -27,6 +27,7 @@ namespace DefaultNamespace.UI
         {
             WasGiftOpened = false;
             GiftObject.localScale = Vector3.one;
+            RewardText.SetText("");
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -38,6 +39,8 @@ namespace DefaultNamespace.UI
         {
             WasGiftOpened = true;
             var reward = GenerateReward();
+            RewardText.transform.localScale=Vector3.zero;
+            RewardText.transform.DOScale(Vector3.one,0.8f);
             RewardText.SetText("+" + reward + " <sprite=2>");
             var mySequence = DOTween.Sequence();
             mySequence.Append(
