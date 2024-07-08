@@ -6,6 +6,7 @@ using Player;
 using Scripts.Obstacle;
 using Sirenix.OdinInspector;
 using Subtegral.WeightedRandom;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
@@ -127,7 +128,21 @@ namespace DefaultNamespace.Generation
             foreach (var chunk in chunks)
             {
                 curWidth += chunk.Width / 2;
-                var chunkObj = Instantiate(chunk, transform);
+                LevelChunk chunkObj;
+                if (!Application.isPlaying)
+                {
+#if UNITY_EDITOR
+                var t = PrefabUtility.InstantiatePrefab(chunk, transform);
+                chunkObj = t as LevelChunk;
+#else
+                    chunkObj = Instantiate(chunk, transform);
+#endif
+                }
+                else
+                {
+                    chunkObj = Instantiate(chunk, transform);
+                }
+
                 chunkObj.transform.localPosition = Vector3.right * curWidth;
                 curWidth += chunk.Width / 2;
                 finalXPos = chunkObj.transform.position.x + chunk.Width / 2;

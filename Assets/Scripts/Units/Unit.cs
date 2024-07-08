@@ -151,6 +151,7 @@ public abstract class Unit : MonoBehaviour
 
     public void DamageSelf()
     {
+        print("why not dead: cutscene : " + Cutscene.IsPlayingCutscene);
         if (StarterUnit.IsInvincible() || Cutscene.IsPlayingCutscene) return;
         print("Took damage: " + name);
         print("Damaged: " + BottomUnit.name);

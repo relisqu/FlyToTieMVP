@@ -1,4 +1,5 @@
 ﻿using System;
+using DefaultNamespace;
 using DefaultNamespace.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,7 +25,7 @@ namespace Obstacle
             var pl = _player.position;
             var transf = transform.position;
             if (Cutscene.IsPlayingCutscene) return;
-            if (Vector2.Distance(pl, transf) < FollowDistance)
+            if (CameraShake.IsVisibleInCamera(transf) && Vector2.Distance(pl, transf) < FollowDistance)
             {
                 var hit = Physics2D.Raycast(transf, pl - transf, Mathf.Infinity, Layers);
                 if (hit && hit.transform.TryGetComponent(out Unit unit))

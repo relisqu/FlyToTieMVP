@@ -18,7 +18,7 @@ namespace Units
 
         public void TakeDamage()
         {
-            if (Cutscene.IsPlayingCutscene) return;
+            if (_isDead) return;
             _isDead = true;
             Animator.SetTrigger(Damage);
         }

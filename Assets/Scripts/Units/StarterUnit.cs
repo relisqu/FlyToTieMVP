@@ -47,7 +47,7 @@ public class StarterUnit : Unit
 
     public void Die()
     {
-        if (PlayerMovement.Instance.GetState()==PlayerMovement.MovementState.Die)
+        if (Cutscene.IsPlayingCutscene)
         {
             return;
         }
