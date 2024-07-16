@@ -19,5 +19,9 @@ namespace DefaultNamespace.UI
         {
             Animator.SetTrigger("Blink");
         }
+        public void SmallBlink()
+        {
+            Animator.SetTrigger("SmallBlink");
+        }
     }
 }

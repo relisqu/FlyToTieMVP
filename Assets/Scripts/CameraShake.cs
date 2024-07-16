@@ -35,5 +35,13 @@ namespace DefaultNamespace
         {
             _shakeNoise.m_AmplitudeGain = amplitude;
         }
+
+        public static bool IsVisibleInCamera(Vector3 position)
+        {
+            var camera = Camera.main;
+            var vpPos = camera.WorldToViewportPoint(position);
+            print(vpPos);
+            return vpPos.x >= 0f && vpPos.x <= 0.9f && vpPos.y >= 0f && vpPos.y <= 1f && vpPos.z > 0f;
+        }
     }
 }

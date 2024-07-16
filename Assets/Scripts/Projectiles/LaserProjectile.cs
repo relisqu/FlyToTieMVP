@@ -13,9 +13,8 @@ public class LaserProjectile : Projectile
     [SerializeField] private Animator LaserAnimator;
     [SerializeField] private LayerMask LaserIgnoreLayers;
     [SerializeField] private Transform ColliderTransform;
+    [SerializeField] private BoxCollider2D Collider;
     [SerializeField] private List<ParticleSystem> Particles;
-
-    public static float HasPiercingLaser;
 
     public void EmitAllParticles()
     {
@@ -33,46 +32,54 @@ public class LaserProjectile : Projectile
         }
     }
 
+    public override void SetScale(float scale)
+    {
+        Scale = scale;
+    }
+
+    Coroutine laserCoroutine;
+
     public override void SpawnProjectile()
     {
         if (_isEnabled) return;
-        ColliderTransform.gameObject.SetActive(true);
-        LaserBody.enabled = true;
-        _isEnabled = true;
-        StartCoroutine(UpdateLaserLife());
+        gameObject.SetActive(true);
         EmitAllParticles();
+        LaserBody.enabled = true;
+        laserCoroutine = StartCoroutine(UpdateLaserLife());
     }
 
     public override void DestroyProjectile()
     {
+        if (!_isEnabled) return;
         LaserBody.positionCount = 0;
+        LaserBody.enabled = false;
+        gameObject.SetActive(false);
         _isEnabled = false;
-        StopAllCoroutines();
-        StopAllParticles();
-        ColliderTransform.gameObject.SetActive(false);
     }
 
+    private Vector2 _defaultColliderSize;
     IEnumerator UpdateLaserLife()
     {
-        LaserBody.widthMultiplier = 0.01f;
+        _isEnabled = true;
         LaserAnimator.SetTrigger("StartLaser");
-        var laserTween = DOTween.To(() => LaserBody.widthMultiplier, x => LaserBody.widthMultiplier = x, 1,
+        var laserTween = DOTween.To(() => 0.01f, x => LaserBody.widthMultiplier = x, Scale,
             LaserLife / 3).SetAutoKill(false);
 
-        transform.localScale = new Vector3(1,0.1f,1);
-        var defaultTween = DOTween.To(() =>transform.localScale.y, x => transform.localScale= new Vector3(1,x,1), 1,
-            LaserLife / 5).SetAutoKill(false);
-
+        var defaultTween = ColliderTransform.DOScale(Math.Clamp(Scale * 0.8f, 1f, 3f), LaserLife / 5);
+        ColliderTransform.localScale = Vector3.one * (0.8f * Scale);
+        Collider.size = _defaultColliderSize;
         AudioManager.instance.Play("laser_shot");
         Debug.Log("Started laser");
         yield return new WaitForSeconds(LaserLife * 3 / 5);
-        laserTween.PlayBackwards();
-        defaultTween.PlayBackwards();
+        //laserTween.PlayBackwards();
+        //defaultTween.PlayBackwards();
+        StopAllParticles();
         LaserAnimator.SetTrigger("FinishLaser");
 
         yield return new WaitForSeconds(LaserLife / 5);
         DestroyProjectile();
     }
+
 
     Vector3 SetParticlesAtSecondPoint()
     {
@@ -89,6 +96,7 @@ public class LaserProjectile : Projectile
         {
             secondPoint = firstPoint + range * Vector3.right;
         }
+
         ColliderTransform.position = secondPoint;
         return secondPoint;
     }
@@ -97,7 +105,6 @@ public class LaserProjectile : Projectile
     {
         var firstPoint = transform.position;
 
-        
 
         LaserBody.positionCount = 2;
         LaserBody.SetPosition(0, firstPoint);
@@ -122,19 +129,13 @@ public class LaserProjectile : Projectile
 
     private void Update()
     {
-        if (_isEnabled)
-        {
-            DrawLaser();
-        }
-        else
-        {
-            SetParticlesAtSecondPoint();
-        }
+        DrawLaser();
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        DestroyProjectile();
+        gameObject.SetActive(false);
+        _defaultColliderSize = Collider.size;
     }
 
     private bool _isEnabled;

@@ -1,4 +1,5 @@
 ﻿using DefaultNamespace.Props;
+using DefaultNamespace.UI;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Scripts.Obstacle
 {
     public class CoinGenerator : MonoBehaviour
     {
-        private static Coin[] _coinsPool = new Coin[30];
+        private static Coin[] _coinsPool = new Coin[70];
         [SerializeField] private Coin CoinPrefab;
 
         void Awake()
@@ -18,13 +19,13 @@ namespace Scripts.Obstacle
             }
         }
 
-        public static void GenerateMoney(int amount, Transform transform)
+        public static void GenerateMoney(int amount, Vector3 position)
         {
+            amount = (int)(amount * CoinMultiplierScaler.Instance.GetScale());
             for (int i = 0; i < amount; i++)
             {
                 var randomOffset = new Vector2(Random.Range(-0.6f, 0.6f), Random.Range(-0.2f, 0.2f));
                 var coin = GetCoinFromPool();
-                var position = transform.position;
                 coin.transform.position = position;
                 coin.transform.localScale = Vector3.one * 0.3f;
                 coin.transform.DOScale(Vector3.one, 0.3f);

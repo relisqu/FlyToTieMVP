@@ -1,26 +1,43 @@
-﻿using Projectiles;
+﻿using System;
+using Projectiles;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Units
 {
     public class LaserShooter : Shooter
     {
-        private Projectile _laser;
-
         public override void Shoot()
         {
-            if (_laser == null)
-            {
-                _laser = Instantiate(Projectile, transform);
-            }
+            shotsCount++;
 
-            _laser.SpawnProjectile();
+            OnShoot?.Invoke(this);
+            Projectile.SpawnProjectile();
+        }
+
+        private void Awake()
+        {
+            Projectile = Instantiate((LaserProjectile)Projectile, transform);
+            Projectile.GetBullet().OnEnemyHit += CallBulletHit;
+        }
+
+        void CallBulletHit(Bullet bull, Vector3 pos)
+        {
+            OnBulletHit?.Invoke(bull, pos);
+        }
+
+        private void OnDestroy()
+        {
+            Projectile.GetBullet().OnEnemyHit -= CallBulletHit;
+        }
+
+        public override void SetProjectileScale(float scale)
+        {
+            ((LaserProjectile)Projectile).SetScale(scale);
         }
 
         public override void StopShooting()
         {
-            if (_laser != null)
-                _laser.DestroyProjectile();
         }
     }
 }

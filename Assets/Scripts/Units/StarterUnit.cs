@@ -47,6 +47,11 @@ public class StarterUnit : Unit
 
     public void Die()
     {
+        if (Cutscene.IsPlayingCutscene)
+        {
+            return;
+        }
+
         LevelGenerator.Instance.SpawnLevel(needRestart: false);
         EndCutscene.OnGameplayFinish?.Invoke();
         StartScene.PlayCutscene();
@@ -86,12 +91,15 @@ public class StarterUnit : Unit
         Instance.Damageable = GetComponent<ObstacleDamageable>();
     }
 
+
     private void Start()
     {
         SetState(UnitState.Attached);
         OnDamageTaken += Damageable.TakeDamage;
         PlayerMovement.Jumped += OnJump;
         BottomUnit = this;
+        SetUpdates();
+        UpdateUnits += SetUpdates;
     }
 
     private void OnDestroy()

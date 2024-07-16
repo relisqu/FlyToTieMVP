@@ -17,7 +17,7 @@ TagManager:
   - IgnoreBullet
   - Coin
   - Ground
-  - 
+  - FollowingEnemy
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackgroundLight
+    uniqueID: 3437956807
+    locked: 0
   - name: IgnoreLight
     uniqueID: 3660140775
     locked: 0

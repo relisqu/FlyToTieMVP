@@ -20,8 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float Force;
     [SerializeField] private float FallMultiplier;
+    [SerializeField] private bool LowJumpIsEnabled;
     [SerializeField] private float LowJumpMultiplier;
     [SerializeField] private float MaintainedSpeed;
+    [SerializeField] private float LongJumpTriggerTime;
+
 
     [Space] [Range(0, 10)] [SerializeField]
     private float MaxVelocity;
@@ -33,16 +36,43 @@ public class PlayerMovement : MonoBehaviour
     private MovementState _state;
 
     private float _speedCoeff = 1f;
+    public static PlayerMovement Instance;
+    private InputAction.CallbackContext context;
+    private float jumpTime;
 
-
+    public static Action OnSmallJump;
+    public static Action OnBigJump;
     private void Update()
     {
         if (_state != MovementState.Move || Cutscene.IsPlayingCutscene) return;
         if (Rigidbody.velocity.y <= 0.5f)
             Rigidbody.velocity += Vector2.up * (Physics.gravity.y * (FallMultiplier - 1) * Time.deltaTime);
 
-        if (Rigidbody.velocity.y > 0 && _buttonReleased)
+        if (LowJumpIsEnabled && Rigidbody.velocity.y > 0 && _buttonReleased)
             Rigidbody.velocity += Vector2.up * (Physics.gravity.y * (LowJumpMultiplier - 1) * Time.deltaTime);
+
+
+        if (context.phase == InputActionPhase.Waiting && jumpTime > 0)
+        {
+            if (jumpTime > LongJumpTriggerTime)
+            {
+                OnBigJump?.Invoke();
+            }
+            else
+            {
+                OnSmallJump?.Invoke();
+            }
+        }
+
+
+        if (!context.canceled && context.performed)
+        {
+            jumpTime += Time.deltaTime;
+        }
+        else
+        {
+            jumpTime = 0;
+        }
 
         SetSpeed(MaintainedSpeed);
     }
@@ -51,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         if (Cutscene.IsPlayingCutscene || Cutscene.LockedPlayerInputMovement) return;
+        this.context = context;
         _buttonReleased = context.canceled;
         if (!context.performed) return;
         AudioManager.instance.Play("fly");
@@ -97,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetSpeed(float newSpeed)
     {
-        _currentVelocity = newSpeed*_speedCoeff;
+        _currentVelocity = newSpeed * _speedCoeff;
         var verticalVelocity = Mathf.Clamp(Rigidbody.velocity.y, -MaxVelocity, MaxVelocity);
         Rigidbody.velocity = new Vector2(_currentVelocity, verticalVelocity);
     }
@@ -120,8 +151,38 @@ public class PlayerMovement : MonoBehaviour
         defaultPosition = transform.position;
     }
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void SetVelocity(float x, float y)
     {
         Rigidbody.velocity = new Vector2(x, y);
+    }
+
+    public void SetFallMultiplier(float fallMultiplier)
+    {
+        FallMultiplier = fallMultiplier;
+    }
+
+    public void EnableLowJump()
+    {
+        LowJumpIsEnabled = true;
+    }
+
+    public void SetJumpForce(float jumpForce)
+    {
+        Force = jumpForce;
+    }
+
+    public void SetLowJumpMultiplier(float lowJumpMultiplier)
+    {
+        LowJumpMultiplier = lowJumpMultiplier;
+    }
+
+    public void SetTriggerTimeForBigJump(float timeForBigJumpTrigger)
+    {
+        LongJumpTriggerTime = timeForBigJumpTrigger;
     }
 }

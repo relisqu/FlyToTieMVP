@@ -6,6 +6,7 @@ using Player;
 using Scripts.Obstacle;
 using Sirenix.OdinInspector;
 using Subtegral.WeightedRandom;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
@@ -58,6 +59,7 @@ namespace DefaultNamespace.Generation
 
         public List<LevelChunk> GenerateLevelChunks()
         {
+            int curLevel = PlayerData.СurrentLevel;
             var level = GetLevel();
             WeightedRandom<LevelChunk> random = new WeightedRandom<LevelChunk>();
             foreach (var chunk in level.Chunks)
@@ -68,11 +70,20 @@ namespace DefaultNamespace.Generation
             float currentWidth = 0;
             var ind = 0;
             var indWithUnit = 0;
+            var tries = 0;
             List<LevelChunk> chunksToGenerate = new List<LevelChunk>();
             while (currentWidth <= LevelWidth)
             {
                 var chunk = random.Next();
-                if (chunk == chunksToGenerate.LastOrDefault()) continue;
+                if (curLevel < chunk.GetMinLevel() && tries < 150)
+                {
+                    tries++;
+                    continue;
+                }
+
+                if (chunk == chunksToGenerate.LastOrDefault())
+                    continue;
+                tries = 0;
                 ind++;
                 if (chunk.HasUnits)
                 {
@@ -103,7 +114,6 @@ namespace DefaultNamespace.Generation
         [Button]
         public void SpawnLevel(bool needRestart = true)
         {
-            
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
@@ -118,7 +128,21 @@ namespace DefaultNamespace.Generation
             foreach (var chunk in chunks)
             {
                 curWidth += chunk.Width / 2;
-                var chunkObj = Instantiate(chunk, transform);
+                LevelChunk chunkObj;
+                if (!Application.isPlaying)
+                {
+#if UNITY_EDITOR
+                var t = PrefabUtility.InstantiatePrefab(chunk, transform);
+                chunkObj = t as LevelChunk;
+#else
+                    chunkObj = Instantiate(chunk, transform);
+#endif
+                }
+                else
+                {
+                    chunkObj = Instantiate(chunk, transform);
+                }
+
                 chunkObj.transform.localPosition = Vector3.right * curWidth;
                 curWidth += chunk.Width / 2;
                 finalXPos = chunkObj.transform.position.x + chunk.Width / 2;

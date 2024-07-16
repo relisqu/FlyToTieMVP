@@ -20,12 +20,18 @@ namespace DefaultNamespace.UI.Meta
         [SerializeField] private TMPro.TMP_Text CoinCountText;
         [SerializeField] private Button CoinCountButton;
 
-
+        public static Action OnUpdate;
         private int _curUpgradeLevel;
 
         private void Start()
         {
             SetTextContext();
+            OnUpdate += SetTextContext;
+        }
+
+        private void OnDestroy()
+        {
+            OnUpdate -= SetTextContext;
         }
 
         public void SetTextContext()
@@ -80,6 +86,9 @@ namespace DefaultNamespace.UI.Meta
             PlayerData.SaveMoney(PlayerData.MoneyCount - Data.LevelsUpgrade[_curUpgradeLevel].UpgradeMoneyCount);
             Data.SaveLevel(Data.LoadLevel() + 1);
             SetTextContext();
+            
+            OnUpdate?.Invoke();
+            Unit.UpdateUnits?.Invoke();
         }
     }
 }

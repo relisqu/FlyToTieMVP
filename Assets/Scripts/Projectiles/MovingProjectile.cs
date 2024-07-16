@@ -8,10 +8,10 @@ public class MovingProjectile : Projectile
 
     public override void SpawnProjectile()
     {
+        MovementController.SetSpeed(Speed);
     }
 
     public override void DestroyProjectile()
     {
     }
-    
 }

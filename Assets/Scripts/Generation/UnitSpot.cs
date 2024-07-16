@@ -12,16 +12,18 @@ namespace DefaultNamespace.Generation
         [SerializeField] private Transform SpotPlace;
 
 
-        private List<Unit> _currentUnitList;
+        private static List<Unit> _currentUnitList = new();
 
-        void GenerateUnitList()
+        public void GenerateUnitList()
         {
             _currentUnitList.Clear();
 
+            Debug.Log("Starting adding unit to list");
             foreach (var unit in Units)
             {
                 if (unit.FromLevel <= PlayerData.СurrentLevel)
                 {
+                    Debug.Log(unit.name);
                     _currentUnitList.Add(unit.Unit);
                 }
             }
@@ -30,12 +32,14 @@ namespace DefaultNamespace.Generation
         void Spawn()
         {
             var randomUnit = _currentUnitList[Random.Range(0, _currentUnitList.Count)];
-            Instantiate(randomUnit, SpotPlace.position, Quaternion.identity, null);
+            var obj = Instantiate(randomUnit.gameObject, Vector3.zero, Quaternion.identity, SpotPlace);
+            obj.transform.localPosition = Vector3.zero;
         }
 
         private void Start()
         {
             PlayerData.ChangedLevel += GenerateUnitList;
+            GenerateUnitList();
             Spawn();
         }
 

@@ -17,6 +17,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1652451882418277375}
     - target: {fileID: 2589810744125954449, guid: cba789d1137fe9144bc8b4fffeec4aa7, type: 3}
+      propertyPath: UnitData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9df4a5c4c5fadb04bab45199f850a161, type: 2}
+    - target: {fileID: 2589810744125954449, guid: cba789d1137fe9144bc8b4fffeec4aa7, type: 3}
       propertyPath: SpawnsFromLevel
       value: 5
       objectReference: {fileID: 0}
