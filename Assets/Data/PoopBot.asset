@@ -33,10 +33,16 @@ MonoBehaviour:
       Data: 1|Player.UnitLevelData, Assembly-CSharp
     - Name: Description
       Entry: 1
-      Data: Sorry I can only jump
+      Data: money?
     - Name: UpgradeMoneyCount
       Entry: 3
       Data: 100
+    - Name: HasUpgrades
+      Entry: 5
+      Data: false
+    - Name: Upgrade
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -45,10 +51,16 @@ MonoBehaviour:
       Data: 2|Player.UnitLevelData, Assembly-CSharp
     - Name: Description
       Entry: 1
-      Data: Now Im cooler
+      Data: money!
     - Name: UpgradeMoneyCount
       Entry: 3
       Data: 1000
+    - Name: HasUpgrades
+      Entry: 5
+      Data: false
+    - Name: Upgrade
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -57,10 +69,16 @@ MonoBehaviour:
       Data: 3|Player.UnitLevelData, Assembly-CSharp
     - Name: Description
       Entry: 1
-      Data: Im the best
+      Data: money?!
     - Name: UpgradeMoneyCount
       Entry: 3
       Data: 10000
+    - Name: HasUpgrades
+      Entry: 5
+      Data: false
+    - Name: Upgrade
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -68,11 +86,17 @@ MonoBehaviour:
       Entry: 7
       Data: 4|Player.UnitLevelData, Assembly-CSharp
     - Name: Description
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: money!!
     - Name: UpgradeMoneyCount
       Entry: 3
       Data: 100000
+    - Name: HasUpgrades
+      Entry: 5
+      Data: false
+    - Name: Upgrade
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -80,11 +104,17 @@ MonoBehaviour:
       Entry: 7
       Data: 5|Player.UnitLevelData, Assembly-CSharp
     - Name: Description
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: MoNeY?
     - Name: UpgradeMoneyCount
       Entry: 3
       Data: 1000000
+    - Name: HasUpgrades
+      Entry: 5
+      Data: false
+    - Name: Upgrade
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -92,11 +122,17 @@ MonoBehaviour:
       Entry: 7
       Data: 6|Player.UnitLevelData, Assembly-CSharp
     - Name: Description
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: wow so much money
     - Name: UpgradeMoneyCount
       Entry: 3
       Data: 10000000
+    - Name: HasUpgrades
+      Entry: 5
+      Data: false
+    - Name: Upgrade
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -104,11 +140,17 @@ MonoBehaviour:
       Entry: 7
       Data: 7|Player.UnitLevelData, Assembly-CSharp
     - Name: Description
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: money.
     - Name: UpgradeMoneyCount
       Entry: 3
       Data: 100000000
+    - Name: HasUpgrades
+      Entry: 5
+      Data: false
+    - Name: Upgrade
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 

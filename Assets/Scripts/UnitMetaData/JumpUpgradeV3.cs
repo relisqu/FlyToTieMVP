@@ -20,6 +20,7 @@ namespace Player
             PlayerMovement.Instance.SetTriggerTimeForBigJump(TimeForBigJumpTrigger);
             PlayerMovement.OnBigJump += AddMultiplier;
             PlayerMovement.OnSmallJump += ResetMultiplier;
+            EndCutscene.OnGameplayFinish += ResetMultiplier;
             CoinMultiplierScaler.Instance.Enable();
         }
 
@@ -41,6 +42,7 @@ namespace Player
 
         public override void ClearUpgradeActions(Unit unit)
         {
+            EndCutscene.OnGameplayFinish-= ResetMultiplier;
             PlayerMovement.OnBigJump -= AddMultiplier;
             PlayerMovement.OnSmallJump -= ResetMultiplier;
         }
